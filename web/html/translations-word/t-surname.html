@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+    Surname
+{{else if eq "swahili" .GLOBAL.language}}
+Jina la ukoo
+    {{else if eq "turkana" .GLOBAL.language}}
+    Ekiro lo emachar
+{{else if eq "french" .GLOBAL.language }}
+    Nom de famille
+{{else if eq "german" .GLOBAL.language }}
+    Nachname
+{{else if eq "spanish" .GLOBAL.language }}
+    Apellido
+{{end}}

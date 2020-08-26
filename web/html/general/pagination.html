@@ -1,0 +1,23 @@
+<!-- PAGINATION HERE -->
+ <nav style="margin-top: 10px;" aria-label="...">
+        <ul class="pagination justify-content-end pagination-lg">
+          <!-- <li  @click="prevPage" v-if="showPrevious" class="page-item">
+            <a class="page-link" tabindex="-1">
+                <img  src="/static/svg/previous.svg"
+                class="img-fluid image-square-rounded image-table-pagination" />
+              </a>
+          </li> -->
+          <button class="pagination-number" v-for="page in pages" v-if="page < currentPage" @click="loadPage(page)" >
+             
+          <p>*((page))</p>  </button>
+          <button class="pagination-number-active" v-for="page in pages" v-if="page == currentPage &&  pages != 1" @click="loadPage(page)" > <p>*((page))</p></button>
+          <button class="pagination-number" v-for="page in pages" v-if="page > currentPage" @click="loadPage(page)" ><p>*((page))</p></button>
+          <!-- <li @click="nextPage" v-if="showNext" class="page-item">
+            <a class="page-link">
+                <img  src="/static/svg/next.svg"
+                class="img-fluid image-square-rounded image-table-pagination" />
+            </a>
+          </li> -->
+        </ul>
+      </nav>
+<!-- END -->

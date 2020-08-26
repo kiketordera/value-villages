@@ -1,0 +1,170 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    {{if not .edit }}
+        <title>New Item</title>
+        {{else}}
+        <title>Edit {{.item.Name}}</title>
+        {{end}}
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-data.html" . }}
+   
+  <div class="margin-body-form">
+    {{template "information-start.html" .}}
+    {{template "i-dashboard.html" .}}
+    {{template "information-end.html" .}}
+    <div class="col-12">
+        {{if not .edit }}
+        <header class="title">
+            {{if eq "english" .GLOBAL.language }}
+            Create new Item to {{.cat.Name}} and add it to DataBase 
+            {{else if eq "swahili" .GLOBAL.language}}
+            Unda kipengee kipya kwa {{.cat.Name}} na uiongeze kwenye DataBase
+            {{else if eq "french" .GLOBAL.language }}
+            Créer un nouvel élément pour {{.cat.Name}} et l'ajouter à la base de données
+              {{else if eq "german" .GLOBAL.language }}
+              Erstellen Sie ein neues Element in {{.cat.Name}} und fügen Sie es der Datenbank hinzu
+              {{else if eq "spanish" .GLOBAL.language }}
+              Crear un nuevo item en {{.cat.Name}} y añadirlo a la Base de Datos
+              {{end}}
+
+        </header>
+        {{else}}
+        <header class="title">
+            {{if eq "english" .GLOBAL.language }}
+            Edit {{.cat.Name}} and update it to DataBase 
+         {{else if eq "swahili" .GLOBAL.language}}
+         Hariri {{.cat.Name}} na uisasishe kwa DataBase
+         {{else if eq "french" .GLOBAL.language }}
+         Éditez {{.cat.Name}} et mettez-le à jour dans la base de données
+           {{else if eq "german" .GLOBAL.language }}
+           Bearbeiten Sie {{.cat.Name}} und aktualisieren Sie es auf DataBase
+           {{else if eq "spanish" .GLOBAL.language }}
+           Editar {{.cat.Name}} y actualizar la Base de Datos
+           {{end}}
+          
+        </header>
+        {{end}}
+    </div> <br>
+    <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col">
+
+  <div class="form-group">
+    <input name="name" id="name" onchange="this.value = capitalizeFirstLetter(this.value)" type="text" required="required"/>
+    <label for="input" class="control-label"> {{template "t-name.html" .}}</label><i class="bar"></i>
+  </div>  
+       </div>
+        <div class="col">
+          <div class="form-group">
+            <input type="number" name="cost" id="cost"  required="required"/>
+            <label for="input" class="control-label">Cost: (Per Unit or Kg)</label><i class="bar"></i>
+          </div> 
+        </div>
+        <div class="col">
+        <select class="custom-select form-control form-field" name="unittype" id="unittype" required>
+          <option value="" selected disabled> 
+            {{template "t-unit-type.html" .}}
+        </option>
+          <option value="unit">Units</option>
+          {{if not .cat.IsTrackable }} 
+        <option value="kilogram">Kilograms</option>
+        <option value="meter">Meters</option>
+        <option value="liter">Liters</option>
+        {{end}} 
+      </select>
+    </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <textarea  rows="6" name="description" id="description" onchange="this.value =  capitalizeFirstLetter(this.value)" required="required"></textarea>
+            <label for="textarea" class="control-label">Description</label><i class="bar"></i>
+          </div>        </div>
+        <br>
+      </div>
+      <br>
+
+      <div class="container">
+        {{template "upload-img.html" .}}
+        <div class="error_msg"></div>
+        <div class="uploaded_file_view" id="uploaded_view">
+            <span class="file_remove">X</span>
+        </div>
+    </div>
+      {{if .edit }}
+      <br><br> Category:
+      <select class="custom-select form-control form-field" name="category" id="category">
+        {{range .categories}}
+        <option value="{{.ID.Hex}}">{{.Name}}</option>
+        {{end}}
+      </select>
+
+      {{end}}
+      
+
+        <div class="col-12">
+            {{if not .edit }}
+            <button type="submit" class="btn btn--green btn--animated">
+                {{template "t-create.html" .}}
+            </button>
+            {{else}}
+            <button type="submit" class="btn btn--green btn--animated">
+                {{template "t-update.html" .}}
+            </button>
+            {{end}}
+            <div onclick="goBack();" class="btn btn--red btn--animated">
+              {{template "t-cancel.html" .}}
+          </div>
+        </div>
+      </div>
+
+    
+    </form>
+  </div>
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+      {{if .edit }}
+          fillData();
+      {{end}}
+    }
+
+    {{if .edit }}
+        function fillData(){
+          var perf = document.getElementById("name");
+          perf.value = {{.item.Name}}
+          var perf2 = document.getElementById("cost");
+          perf2.value = {{.item.Price}}
+          var perf2 = document.getElementById("description");
+          perf2.value = {{.item.Description}}
+          var perf2 = document.getElementById("unittype");
+          perf2.value = {{.item.UnitType}}
+          var perf2 = document.getElementById("category");
+          perf2.value = {{.item.IDCategory}}
+        }
+    {{end}}
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      categoriesON();
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      categoriesOFF();
+    } 
+
+
+
+
+  </script>
+</body>
+
+</html>

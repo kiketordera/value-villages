@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Kipande cha kazi ya kufanywa
+{{else if eq "turkana" .GLOBAL.language}}
+Ewai lo etic lo ipanyio
+{{else if eq "french" .GLOBAL.language }}
+    Tâche
+{{else if eq "german" .GLOBAL.language }}
+Aufgabe
+{{else if eq "spanish" .GLOBAL.language }}
+    Tarea
+{{else}}
+Task
+{{end}}
+

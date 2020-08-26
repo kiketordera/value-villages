@@ -1,0 +1,43 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Something went wrong </title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    <div class="margin-body-log-in-worker">
+        <div class="row">
+          <div class="col-8 offset-2 center">
+            <img src="/static/svg/Problem.svg" style="max-width: 250px;" class="image-rounded ">
+          </div>
+        </div>        <br>
+        <div class="row">
+            <div class="col-8 offset-2">
+          <p style="color: #E20000; text-align: center; font-size: 27px; font-family: nunito">{{.text}}</p>
+        </div>
+      </div>
+      <div onclick="goBack();" class="btn btn--red btn--animated">
+        {{template "t-back.html" .}}
+    </div>
+    </div>
+  <script type="text/javascript">
+    function afterLoad(){
+      // window.setTimeout(function (){
+      //   window.history.go(-1); 
+      //   return false;
+      // }, 1500)
+    }
+     //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+      //settingsON()
+  }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF(){
+      //settingsOFF()
+  }
+    
+  </script>
+</body>
+
+</html>

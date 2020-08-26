@@ -1,0 +1,10 @@
+Ceci est la page du tableau de bord. C'est la page principale où vous allez démarrer l'application.
+
+
+Le premier ensemble d'icônes représente les services de la ville auxquels vous avez accès. Là, vous pouvez effectuer les actions des services.
+
+
+Le second ensemble d'icônes représente les actions propres liées à l'application en général.
+
+
+La dernière icône est de quitter l'application.

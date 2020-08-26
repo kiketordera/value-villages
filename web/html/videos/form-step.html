@@ -1,0 +1,294 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    {{if .edit}}
+    <title>Edit Step</title>
+    {{else}}
+    <title>  {{template "t-add-step.html" .}}</title>
+    {{end}}
+    {{template "imports.html"}}
+    {{$serviceType := .serviceType}} 
+    {{$ID := .id}} 
+</head>
+<body onload="afterLoad()">
+        {{template "nav-service.html" .}}
+    <div class="margin-body-form">
+        {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-end.html" .}}
+                {{if .edit }}
+            <header class="title">
+                    {{if eq "english" .GLOBAL.language }}
+                    Edit Step to {{.product.Name}} 
+                 {{else if eq "swahili" .GLOBAL.language}}
+                 Hariri hatua kwa {{.product.Name}}
+                 {{else if eq "french" .GLOBAL.language }}
+                 Modifier l'étape à {{.product.Name}}
+                   {{else if eq "german" .GLOBAL.language }}
+                   Schritt bearbeiten zu {{.product.Name}}
+                   {{else if eq "spanish" .GLOBAL.language }}
+                   Editar paso a {{.product.Name}}
+                   {{end}}
+            </header>
+            {{else}}
+            <header class="title">
+                    {{if eq "english" .GLOBAL.language }}
+                    Add Step to {{.product.Name}} 
+                 {{else if eq "swahili" .GLOBAL.language}}
+                 Ongeza hatua kwa {{.product.Name}}
+                 {{else if eq "turkana" .GLOBAL.language}}
+                 Kietak atiakun ania {{.product.Name}}
+                 {{else if eq "french" .GLOBAL.language }}
+                 Ajouter l'étape à {{.product.Name}}
+                   {{else if eq "german" .GLOBAL.language }}
+                   Schritt zu {{.product.Name}} hinzufügen
+                   {{else if eq "spanish" .GLOBAL.language }}
+                   Añadir paso a {{.product.Name}}
+                   {{end}}
+            </header>
+            {{end}}
+            <form name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+                <div class="row" style="marggin: 0 -15px">
+                    <div class="col-8">
+                                    <input onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" placeholder="Enter the title of the Step" type="text" name="title" id="title" required> <br>
+                                    </div>    
+                <div class="col-4">
+                        <p class="form-text"> 
+                                {{if eq "english" .GLOBAL.language }}
+                                Step number (in the tutorial):  
+                             {{else if eq "swahili" .GLOBAL.language}}
+                             Nambari ya hatua (kwenye mafunzo):
+                             {{else if eq "french" .GLOBAL.language }}
+                             Numéro d'étape (dans le tutoriel):
+                               {{else if eq "german" .GLOBAL.language }}
+                               Schrittnummer (im Tutorial):
+                               {{else if eq "spanish" .GLOBAL.language }}
+                              Número de paso (en el tutorial)
+                               {{end}}
+                               {{.numStep }}
+                        </p>
+                <div class="col-2">
+
+                        <input style="visibility: hidden;" class="form-control form-field" type="number" name="indexOrder" id="indexOrder" readonly="true">
+                       </div>
+                        <br>
+                    </div>
+                </div>
+                <textarea onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field"
+                name="description" id="description" rows="6" placeholder="Enter here the Description of the Step" required="required"></textarea>                <br>
+                <div class="col">
+                <div class="field" >
+                    <div id="add-warning"> 
+                        <img  src="/static/svg/add-component.svg" class="img-zoom-min add-img-form-to-do" id="deleteButton">
+                    </div>
+                    <h2 class="">  {{template "t-warnings.html" .}} </h2>
+                </div>
+                <div id="warning-fields">
+                </div>
+            </div>
+<hr>
+                
+
+                    <div class="row">
+                        <div class="col-6">
+                            {{template "upload-video.html" .}}
+                        </div>
+                        {{template "upload-audio.html" .}}
+                      </div>
+
+                    <div class="row">
+                        <div class="col">
+                        <select style="margin-top: 22px;" class="form-control custom-select form-field" name="addtool" id="addtool">
+                            <option value="" selected disabled>  {{template "t-select-tools-needed.html" .}}</option>  
+                            {{range .tools}}
+                                <optgroup label="{{.CategoryName}}" id="catToolGroup">
+                                    {{range .Stocks}}
+                                    <option value="{{.ID.Hex}}|{{.Photo}}&{{.Name}}">{{.Name}}</option>
+                                    {{end}}
+                                </optgroup>
+                                {{end}}
+                            </select>
+
+                        </div>
+                        <div class="col">
+                                <div class="btn btn--blue">
+                                        <a onclick="cleanAndWrite('writeTools', 'tool')">
+                                            {{template "t-add-tool.html" .}}
+                                        </a>
+                                      </div>
+                            </div>
+                            <div class="col">
+                                    <div class="btn btn--green">
+                                            <a href="/data/categories">
+                                                {{template "t-new-tool.html" .}}
+                                            </a>
+                                          </div>
+                                </div>
+                    </div>
+
+                    <br>
+                    <div class="row" id="writeTools">
+                    </div>
+                    <div class="row">
+                            <div class="col">
+                                <select style="margin-top: 22px;" class="form-control custom-select form-field" name="addmaterial" id="addmaterial">
+                                    <option value="" selected disabled>  {{template "t-select-materials.html" .}}  </option>   
+                                    {{range .materials}}
+                                        <optgroup label="{{.CategoryName}}" id="catMatGroup">
+                                            {{range .Stocks}}
+                                            <option value="{{.ID.Hex}}|{{.Photo}}&{{.Name}}">{{.Name}}</option>
+                                            {{end}}
+                                        </optgroup>
+                                        {{end}}
+                                    </select>
+                            </div>
+                            <div class="col">
+                                    <div class="btn btn--blue">
+                                            <a onclick="cleanAndWrite2('writeMaterials', 'material')">
+                                                {{template "t-add-material.html" .}}
+                                            </a>
+                                          </div>
+                                </div>
+                                <div class="col">
+                                        <div class="btn btn--green">
+                                                <a href="/data/categories"> {{template "t-new-material.html" .}} </a>
+                                              </div>
+                                    </div>
+                        </div>
+                        <div class="row" id="writeMaterials">
+                            </div>
+                 
+
+                    <br>
+                    {{if .pagination}}
+                    <div class="col" style="float: right;">
+                        <div style="float: right;">
+                        {{if gt (len .pagination) 1 }}
+                        {{range $i, $e := .pagination}}
+                            {{if .Active}}
+                                <button class="pagination-number-active"><p>{{.Fakenumb}}</p></button> 
+                            {{else}}
+                            <a href="/videos/edit-step/{{$ID}}/{{$i}}/{{$serviceType.Hex}}" class="">
+                                <button class="pagination-number"><p>{{.Fakenumb}}</p></button> 
+                                </a>
+                            {{end}}
+                        {{end}}
+                        {{end}}
+                    </div>
+                    </div>
+                    {{end}}
+                    <br>
+                    <div class="col-12">
+                         
+                                  {{if .edit }}
+                                  <button type="submit" class="btn btn--green">
+                                        {{template "t-update.html" .}}
+                                  </button>
+                                  {{else}}
+                                  <button type="submit" class="btn btn--green">
+                                        {{template "t-create.html" .}}
+                                  </button>
+                                  {{end}}
+                                  <div onclick="goBack();" class="btn btn--red">
+                                    {{template "t-cancel.html" .}}
+                                  </div>
+                </div>
+                </div><br><br><br><br> 
+                <br><br><br><br>
+        </div>
+        </form>
+    </div>
+
+
+    
+    </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+
+        function afterLoad() {
+            var perf = document.getElementById("indexOrder");
+            perf.value = {{.numStep }};
+            highlightON();
+            {{if .edit }}
+                fillData();
+            {{end}}
+        }
+        
+        {{if .edit }}
+        function fillData(){
+            var title = document.getElementById("title");
+            title.value = {{.step.Title}};
+            var ind = document.getElementById("indexOrder");
+            ind.value = {{.step.IndexOrder}};
+            var dd = document.getElementById("description");
+            dd.innerHTML = {{.step.Description}};
+
+            for (var i=1; i<{{len .step.Warnings}}; i++){
+            addWarning();
+            }
+
+            var c = 0; //Aqui nos quedamos
+            {{range .step.Warnings}}
+                c++;
+                console.log("warning"+c)
+                var wa1 = document.getElementById("warning"+c);
+                wa1.value = {{.}};
+            {{end}}
+        }
+        {{end}}
+          
+        function cleanAndWrite(idElement, type) {
+            var text = document.getElementById("addtool").value;
+            var pos1 = text.indexOf("|");
+            var id = text.substring(0, pos1);
+            var pos2 = text.indexOf("&");
+            var photo = text.substring(pos1+1, pos2);
+            var name = text.substring(pos2+1, text.length);
+            writeTool(id, photo, name, idElement, type);
+        }
+        function cleanAndWrite2(idElement, type) {
+            var text = document.getElementById("addmaterial").value;
+            var pos1 = text.indexOf("|");
+            var id = text.substring(0, pos1);
+            var pos2 = text.indexOf("&");
+            var photo = text.substring(pos1+1, pos2);
+            var name = text.substring(pos2+1, text.length);
+            writeMaterial(id, photo, name, idElement, type);
+        }
+
+        function writeTool(id, photo, name, idElement, type) {
+            writeTools
+            var perf = document.getElementById(idElement);
+            perf.innerHTML += "<div class=\"col-6 col-sm-4 col-lg-3 center\"> <div class=\"col-12\"> <img src=\"" + photo + "\" class=\"img-fluid image-square-rounded no-selected image-tactil\" /> <div class=\"col-12\"> <label style=\"margin-bottom: -10%;\" class=\"form-text\"> " + name + "</label> <input style=\"margin-top: -90%; display: none;\" type=\"checkbox\" id=\""+ type+"\" name=\""+ type+"\" value=\"" + id + "\" checked>  </div>   </div> ";
+            //document.getElementById(id + "checkbox").checked = true;
+        }
+
+        function writeMaterial(id, photo, name, idElement, type) {
+            writeTools
+            var perf = document.getElementById(idElement);
+            perf.innerHTML += "<div class=\"col-6 col-sm-4 col-lg-3 center\"> <div class=\"col-12\"> <img src=\"" + photo + "\" class=\"img-fluid image-square-rounded no-selected image-tactil\" /> <div class=\"col-12\"> <label style=\"margin-bottom: -10%;\" class=\"form-text\"> " + name + "</label> <input style=\"margin-top: -90%; display: none;\" type=\"checkbox\" id=\""+ type+"\" name=\""+ type+"\" value=\"" + id + "\" checked>  </div>   </div> ";
+            //document.getElementById(id + "checkbox").checked = true;
+        }
+    </script>
+
+    <script type="text/javascript">
+        //Highlight the icon Settings in the navigation Bar
+        function highlightON() {
+            videosON();
+        }
+        //Removes the highligh from the navigation bar
+        function highlightOFF() {
+            videosOFF();
+        }
+
+        $("#add-warning").click(function() {
+            $("#warning-fields").append('<div class="container-field-form" id="warning-field"><div class="container-field-form__img remove"><img  src="/static/svg/problem.svg" class="icon-to-do-form img-zoom-min " id="deleteButton"></div><div class="container-field-form__field form-field"><textarea onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" name="warning" id="warning" rows="3" placeholder="Enter the warning..."></textarea></div></div>')
+        });
+
+        $('html').on("click", "div.remove", function() {
+            $(this).parent().remove();
+        });
+    </script>
+</body>
+</html>

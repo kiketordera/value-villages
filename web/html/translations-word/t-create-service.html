@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Unda Huduma mpya na uiongeze kwenye mkusanyiko wa habari ambayo imeandaliwa
+{{else if eq "turkana" .GLOBAL.language}}
+    Tosub ang'arasit nakitetet na kietak ani akinumnum a ekoi lo esubitae
+{{else if eq "french" .GLOBAL.language }}
+Créer un nouveau service et l'ajouter à la base de données
+{{else if eq "german" .GLOBAL.language }}
+Ein neuer Dienst erstellen und zur Datenbank hinzufügen
+{{else if eq "spanish" .GLOBAL.language }}
+Crear un nuevo servicio y añadirlo a la base de datos
+{{else}}
+Create a new Service and Add it to DataBase
+{{end}}
+

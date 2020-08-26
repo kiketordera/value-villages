@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <title>Users</title>
+    {{template "imports.html"}}
+  </head>
+  <body onload="afterLoad()">
+      {{template "nav-data.html" . }}
+      <div class="margin-body" >
+        <!-- VUE STARTS -->
+        <div class=""  id="app">
+          {{template "information-start.html" .}}
+          {{template "i-users.html" .}}
+          {{template "information-search-end.html" .}}
+
+          <div class="row">
+            <div class="col-12">
+          <div>
+            <div class="table-title">
+              <p> Users </p>
+        </div>
+              <table class="table">
+                  <thead>
+                <tr class="table-header">
+                    <th @click="sort('name')"> &nbsp; 
+                        {{template "t-photo.html" .}}
+                    </th> 
+                    <th @click="sort('name')"> 
+                        {{template "t-name.html" .}}
+                    </th> 
+                    <th @click="sort('role')">
+                        {{template "t-role.html" .}}
+                    </th> 
+                    <th @click="sort('village')"> 
+                        {{template "t-village.html" .}}
+                    </th> 
+                    <th class="center" @click="sort('balance')"> 
+                        {{template "t-balance.html" .}}
+                      </th> 
+                    <th class="center"> 
+                        {{template "t-edit.html" .}}
+                      </th>
+                </tr>
+              </thead>
+                <tbody class="table-body">
+                  <tr  v-for="sale in sortedSales">
+                      <td> 
+                        <img v-bind:src="sale.photo" style="cursor: initial; max-height: 100; max-height: 100px" class="img-fluid image-square-rounded-table">
+                      </td>
+                    <td> *((sale.name))  *((sale.surname))</td>
+                    <td>*((sale.role))</td>
+                    <td > *((sale.village)) </td>
+                    <td class="center"> *((sale.balance)) </td>
+                    <td class="center">
+                        <a v-bind:href="'/data/edit-user/' + sale.id"> 
+                        <img type="image" src="/static/svg/edit.svg" class="icon-table" /> 
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </div>
+            {{template "pagination.html" }}
+                </div>
+                {{if not .users}}
+                  <p class="empty-field center">  You still have no users in the database. <br/>
+                  <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+                  You can create a new User clicking the button on the right, and then every user created will be display here,<br/> 
+                  where you can search  and edit them. </p>    
+                {{end}}
+                  <a href="/data/new-user" class="btn btn--blue btn--animated"> {{template "t-new-user.html" .}}</a>
+     </div>
+     
+     <!-- HERE WE TELL VUE THE PARAMETERS TO SEARCH IN THE TABLE -->
+     <script type="text/javascript">
+     {{template "vue-init.html" .}}
+        c.name.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+        c.role.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+        c.balance.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+        c.surname.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0  || 
+        c.village.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)); 
+     {{template "vue-final.html" .}}
+     function afterLoad() {
+          highlightON();
+        }
+
+        //Highlight the icon Settings in the navigation Bar
+        function highlightON() {
+          usersON();
+        }
+
+        //Removes the highligh from the navigation bar
+        function highlightOFF() {
+          usersOFF();
+        }
+    </script>
+
+        </div>
+        </div>
+      </div>
+
+  </body>
+  <script type="text/javascript">
+       
+  </script>
+</html>

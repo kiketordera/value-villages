@@ -1,0 +1,114 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Worker Orders</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+  <div class="margin-body" >
+  <div class="row" id="app">
+    <div class="col-12">
+      {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-search-end.html" .}}
+      <table class="table">
+        <div class="table-title">
+          <p>  {{if eq "english" .GLOBAL.language }}
+            Worker Orders 
+         {{else if eq "swahili" .GLOBAL.language}}
+         Maagizo ya Wafanyakazi
+         {{else if eq "french" .GLOBAL.language }}
+         Quantité
+           {{else if eq "german" .GLOBAL.language }}
+           Arbeiterorden
+           {{else if eq "spanish" .GLOBAL.language }}
+          Órdenes a trabajadores
+           {{end}} </p>
+    </div>
+        <thead class="table-header">
+          <tr>
+            <th @click="sort('itemname')">
+              &nbsp;Video
+            </th>
+            <th @click="sort('name')">
+                {{if eq "english" .GLOBAL.language }}
+                User 
+             {{else if eq "swahili" .GLOBAL.language}}
+             Mtumiaji
+             {{else if eq "french" .GLOBAL.language }}
+             Utilisateur
+               {{else if eq "german" .GLOBAL.language }}
+               Nutzer
+               {{else if eq "spanish" .GLOBAL.language }}
+              Usuario
+               {{end}}
+            </th>
+            <th @click="sort('dateunix')">Date</th>
+            <th class="center" @click="sort('quantity')">
+                {{template "t-quantity.html" .}}  
+            </th>
+            <th @click="sort('status')" class="center">
+              {{template "t-done.html" .}}
+            </th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <tr  v-for="sale in sortedSales">
+            <td> *((sale.itemname)) </td>
+            <td> *((sale.name)) </td>
+            <td> *((sale.date)) </td>
+            <td class="center"> *((sale.quantity)) </td>
+            <td class="center"> *((sale.alreadymade)) </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+      {{if not .ordersHTML}}
+      <p class="empty-field center">  You still have no Orders in the database. <br/>
+      <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+      You can create a new Worker Order clicking the button on the right, and then every order created will be display here,<br/> 
+      where you can search and visualize them. </p>    
+    {{end}}
+        <div class="btn btn--blue">
+          <a href="/records/new-worker-order/{{.serviceType.Hex}}">
+            {{if eq "english" .GLOBAL.language }}
+            New worker order 
+         {{else if eq "swahili" .GLOBAL.language}}
+         Agizo mpya la mfanyakazi
+         {{else if eq "french" .GLOBAL.language }}
+         Nouvel ordre de travail
+           {{else if eq "german" .GLOBAL.language }}
+           Neue Arbeiterordnung
+           {{else if eq "spanish" .GLOBAL.language }}
+          Nueva Órden a trabajador
+           {{end}}
+          </a>
+       
+  </div>
+  </div>
+  </div>
+<script type="text/javascript">
+  {{template "vue-init.html" .}}
+    c.name.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+    c.itemname.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+    c.date.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+    c.quantity.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0))); 
+  {{template "vue-final.html" .}}
+</script>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      recordsON();
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      recordsOFF();
+    }    
+  </script>
+</body>
+</html>

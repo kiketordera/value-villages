@@ -1,0 +1,69 @@
+<div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12 navbar_section">
+  {{if eq "worker" .GLOBAL.role }}
+  <div class="navmenu three-icons">
+    {{else}}
+    <div class="navmenu four-icons">
+    {{end}}
+    <ul>
+      <a href="/settings/activity">
+        <li id="first-section" onmouseover="highlightOFF(); activityON();" onmouseout="activityOFF(); highlightON();">
+          <img src="/static/svg/activity.svg" class="mx-auto d-block" id="activity-icon">
+          <p id="first-text" class="navbar-text-desktop">  {{template "t-activity.html" . }}</p>
+        </li>
+      </a>
+      {{if ne "worker" .GLOBAL.role }}
+      <a href="/settings/choose-sync-option">
+        <li id="second-section" onmouseover="highlightOFF(); syncON();" onmouseout="syncOFF(); highlightON();">
+          <img src="/static/svg/sync.svg" class="mx-auto d-block" id="sync-icon">
+          <p id="second-text" class="navbar-text-desktop"> {{template "t-sync.html" . }}</p>
+        </li>
+      </a>
+      {{end}}
+      <a href="/settings/general">
+        <li id="third-section" onmouseover="highlightOFF(); generalON();" onmouseout="generalOFF(); highlightON();">
+          <img src="/static/svg/general.svg" class="mx-auto d-block" id="general-icon">
+          <p id="third-text" class="navbar-text-desktop"> {{template "t-general.html" . }}</p>
+        </li>
+      </a>
+      <a href="/dashboard">
+        <li id="back-section" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+          <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon">
+          <p id="back-text" class="navbar-text-desktop">  {{template "t-back.html" .}}</p>
+        </li>
+      </a>
+    </ul>
+  </div>
+  {{if eq "worker" .GLOBAL.role }}
+  <div class="navmenu_mobile three-icons-mobile ">
+    {{else}}
+    <div class="navmenu_mobile four-icons-mobile ">
+    {{end}}
+    <ul>
+      <a href="/settings/activity">
+        <li id="first-section-mobile" onmouseover="highlightOFF(); activityON();" onmouseout="activityOFF(); highlightON();">
+          <img src="/static/svg/activity.svg" class="mx-auto d-block" id="activity-icon-mobile">
+          <p id="first-text-mobile" class="navbar-text-mobile">{{template "t-activity.html" . }}</p>
+        </li>
+      </a>
+      {{if ne "worker" .GLOBAL.role }}
+      <a href="/settings/choose-sync-option">
+        <li id="second-section-mobile" onmouseover="highlightOFF(); syncON();" onmouseout="syncOFF(); highlightON();">
+          <img src="/static/svg/sync.svg" class="mx-auto d-block" id="sync-icon-mobile">
+          <p id="second-text-mobile" class="navbar-text-mobile"> {{template "t-sync.html" . }}</p>
+        </li>
+      </a>
+      {{end}}
+      <a href="/settings/general">
+        <li id="third-section-mobile" onmouseover="highlightOFF(); generalON();" onmouseout="generalOFF(); highlightON();">
+          <img src="/static/svg/general.svg" class="mx-auto d-block" id="general-icon-mobile">
+          <p id="third-text-mobile" class="navbar-text-mobile">{{template "t-general.html" . }}</p>
+        </li>
+      </a>
+      <a href="/dashboard">
+        <li id="back-section-mobile" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+          <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon-mobile">
+          <p id="back-text-mobile" class="navbar-text-mobile">  {{template "t-back.html" .}}</p>
+        </li>
+      </a>
+  </div>
+</div>

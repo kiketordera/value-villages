@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>  {{template "t-new-worker-sale.html" .}} </title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+   <div class="margin-body" >
+    {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-end.html" .}}
+    <div class="col-12">
+      <header class="title"> {{template "t-new-worker-sale.html" .}}</header>
+      <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+        <p class="form-text"> Workers: </p> <br>
+        <div class="row">
+            {{range .workers }}
+            <div class="col-6 col-sm-4 col-lg-3 center">
+              <div class="col-12">
+                <img id="{{.ID.Hex}}" src="/local/users/{{.Username}}/{{.Photo}}" class="img-fluid image-rounded-name no-selected image-workers" />
+              </div>
+              <div class="col-12">
+                <label class="form-text">{{.Name}}</label>
+                <br>
+                <input style="margin-top: -90%; display: none" type="radio" onclick="increaseProduct()" name="workerID"
+                  id="workers-{{.ID.Hex}}" value="{{.ID.Hex}}">
+              </div>
+            </div>
+            {{end}}
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <select onchange="setValues()" class="form-control custom-select form-field" name="stock" id="stock" required>
+                  <option value="" selected disabled >Select Item to sell</option>
+                  {{range .items}}
+                    {{if ne (len .Stocks) 0 }}
+                      <optgroup label="{{.CategoryName}}">
+                        {{range .Stocks}}
+                          <option value="{{.ID.Hex}}|{{.IsTrackable}}&{{.UnitType}}[{{.Quantity}}">-- {{.VideoOrItemName}} </option>
+                        {{end}}
+                      </optgroup>
+                    {{end}}
+                  {{end}}
+              </select>
+            </div>
+              <div class="col-3" id="idqr">
+                {{template "qr-vue.html"}}
+              </div>
+              <div class="col-3" id="idquantity">
+                <div class="form-group">
+                  <input type="number" name="quantity" id="quantity" required="required"/>
+                  <label for="input" id="idlabel" class="control-label">  {{template "t-quantity.html" .}} </label><i class="bar"></i>
+                </div> 
+              </div>
+
+              
+        <div class="col-12">
+            <button type="submit" class="btn btn--green">{{template "t-create.html" .}}</button>
+            <div onclick="goBack();" class="btn btn--red">
+              {{template "t-cancel.html" .}}
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</body>
+<script>
+
+    function setValues() {
+      console.log("Set values executed");
+      var item = document.getElementById("stock").value;
+      var pos1 = item.indexOf("|");
+      var id = item.substring(0, pos1);
+      var pos2 = item.indexOf("&");
+      var isTrackable = item.substring(pos1+1, pos2);
+      var pos3 = item.indexOf("[");
+      var unit = item.substring(pos2+1, pos3);
+      var quantity = item.substring(pos3+1, item.length);
+
+      if (isTrackable == "true" ) {
+        document.getElementById("idqr").style.display = "initial";
+        document.getElementById("idquantity").style.display = "none";
+      } else {
+        console.log("y joder deberia");
+        document.getElementById("idqr").style.display = "none";
+        document.getElementById("idquantity").style.display = "initial";
+        document.getElementById("idlabel").innerText  = "Max " + quantity + " " + unit + "s";
+        document.getElementById("quantity").max = quantity;
+      }      
+    }
+
+
+  function afterLoad() {
+    highlightON();
+    document.getElementById("idquantity").style.display = "none";
+    document.getElementById("idqr").style.display = "none";
+  }
+
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON() {
+    recordsON()
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF() {
+    recordsOFF()
+  }
+
+  var countWorker = 0;
+  var countMaterial = 0;
+
+  //This function validates the form to not introduce null values
+  function validateForm() {
+    if (countWorker==0) {
+          alert("You should select a Worker for the sale!");
+          return false;
+    }
+  }
+  function increaseMaterial() {
+    countMaterial++;
+  }
+  function increaseWorker() {
+    countWorker++;
+  }
+
+  /* Change the selec image if the user clicks the image */
+  $('.image-workers').click(function (e) {
+
+    if ($(this).hasClass('no-selected')) {
+      var product = $(this).attr('id');
+      console.log($("#workers-" + product));
+      $(".image-workers").removeClass("selected");
+      $(".image-workers").addClass("no-selected");
+      $("#workers-" + product).prop("checked", true);
+      $(this).addClass("selected");
+      $(this).removeClass("no-selected");
+      increaseWorker();
+
+    }
+    else if ($(this).hasClass("selected")) {
+      var product = $(this).attr('id');
+
+      $(this).addClass("no-selected");
+      $("#workers-" + product).prop("checked", false);
+      $(this).removeClass("selected");
+
+    }
+  });
+
+
+</script>
+
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>{{template "t-stock-generated.html" .}}</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+
+  <div class="margin-body" >
+    <div class="" id="app">
+      {{template "information-start.html" .}}
+      {{template "i-dashboard.html" .}}
+      {{template "information-search-end.html" .}}
+    <div class="row" >
+ 
+  <div class="col-12">
+    <div class="table-title">
+      <p> {{template "t-stock-generated.html" .}} </p>
+  </div>
+    <table class="table">
+      <thead class="table-header">
+        <tr>
+          <th>&nbsp;{{template "t-worker.html" .}}</th>
+          <th>{{template "t-service.html" .}}</th>
+          
+          <th>Product</th>
+          <th>{{template "t-quantity.html" .}}</th>
+          <th  class="center">{{template "t-date.html" .}}</th>
+          <th class="center">{{template "t-price.html" .}}</th>
+        </tr>
+      </thead>
+      <tbody class="table-body center">
+        <tr class=" center" v-for="sale in sortedSales">
+            <td>&nbsp; *((sale.username))</td>
+          <td>*((sale.servicename))</td>
+          <td > *((sale.videooritemname)) </td>
+          <td class="center" > *((sale.quantity)) </td>
+          <td class="center" > *((sale.date)) </td>
+          <td > *((sale.price)) </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+    </div>
+  
+    {{if not .stock}}
+    <p class="empty-field center">  You still have no Stock in the database. <br/>
+    <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+    You can create a new Stock clicking the button on the right, and then every stock created will be display here,<br/> 
+    where you can search  and edit them. </p>    
+  {{end}}
+
+  {{if not .itemType}}
+  <div class="btn btn--blue">
+      <a href="/records/workers-for-new-purchase-from-order/{{.serviceType.Hex}}">{{template "t-purchase-from-order.html" .}}</a>
+    </div>
+    <a href="/records/new-free-purchase/{{.serviceType.Hex}}" >
+      <a class="btn btn--green" style="float: left; margin-left: 0;" href="/records/new-free-purchase/{{.serviceType.Hex}}"> {{template "t-free-purchase.html" .}}</a>
+    </a>
+  {{else}}
+  {{if eq "serviceproduct" .itemType}}
+  <div class="btn btn--blue">
+      <a href="/records/workers-for-new-purchase-from-order/{{.serviceType.Hex}}">{{template "t-purchase-from-order.html" .}}</a>
+    </div>
+    <a href="/records/new-free-purchase/{{.serviceType.Hex}}" >
+      <a class="btn btn--green" style="float: left; margin-left: 0;" href="/records/new-free-purchase/{{.serviceType.Hex}}">  {{template "t-free-purchase.html" .}}</a>
+    </a>
+  {{end}}
+  {{end}}
+ 
+  </div>
+  <script type="text/javascript">
+    {{template "vue-init.html" .}}
+      //  c.username.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+       c.username.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+       c.servicename.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+      //  c.videooritemname.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+      //  c.date.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+       c.price.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0); 
+    {{template "vue-final.html" .}}
+   </script>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      recordsON();
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      recordsOFF();
+    }    
+  </script>
+</body>
+
+</html>

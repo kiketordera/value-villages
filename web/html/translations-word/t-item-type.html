@@ -1,0 +1,16 @@
+
+{{if eq "swahili" .GLOBAL.language }}
+    Aina ya kitu
+{{else if eq "turkana" .GLOBAL.language}}
+    Iyes a ibere
+{{else if eq "french" .GLOBAL.language }}
+Type d'élément:
+{{else if eq "german" .GLOBAL.language }}
+Gegenstandsart:
+{{else if eq "spanish" .GLOBAL.language }}
+    Tipo de artículo
+{{else}}
+    Item type
+{{end}}
+
+

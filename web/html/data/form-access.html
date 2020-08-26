@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <title>Give Access</title>
+    {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+        {{template "nav-data.html" . }}
+        <div class="margin-body-form">
+            {{template "information-start.html" .}}
+            {{template "i-form-access.html" .}}
+            {{template "information-end.html" .}}
+        <div class="col-12">
+            <header class="title">
+                    {{if eq "english" .GLOBAL.language }}
+                    Edit Access to {{.user.Name}}:
+                 {{else if eq "swahili" .GLOBAL.language}}
+                 Hariri Ufikiaji wa {{.user.Name}}:
+                 {{else if eq "french" .GLOBAL.language }}
+                 Modifier l'accès à {{.user.Name}}:
+                   {{else if eq "german" .GLOBAL.language }}
+                   Zugriff auf {{.user.Name}} bearbeiten:
+                   {{else if eq "spanish" .GLOBAL.language }}
+                   Editar Accesso a {{.user.Name}}:
+                   {{end}}
+            </header>
+            <div class="col-12 center" style="cursor: initial;">
+                <img style="cursor: initial;" src="/local/users/{{.user.Username}}/{{.user.Photo}}" class="img-fluid image-rounded no-selected image-products" />
+                <br>
+            </div>
+            <form name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+                <br>
+                <div class="row center">
+                    {{range .services}}
+                    <div class="col-4">
+                        <img id="{{.ID.Hex}}" src="{{.Photo}}"
+                            class="img-fluid image-square-rounded no-selected image-tactil img-zoom" />
+                            <input style="margin-top: -90%; display: none;" type="checkbox" id="ID-{{.ID.Hex}}" name="service" value="{{.ID.Hex}}" >
+                            <p class="text-services">{{.Name}}</p>
+                        </div>
+                    {{end}}
+                </div>
+                <div class="col">
+                       <button type="submit" class="btn btn--green btn--animated">
+                               {{template "t-update.html" .}}
+                       </button>
+                       <div onclick="goBack();" class="btn btn--red btn--animated">
+                           
+                           {{template "t-cancel.html" .}}
+                   </div>
+                      
+                    
+                   </div>
+<br><br><br><br>
+                <br><br><br><br>
+        </div>
+        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+
+        function afterLoad() {
+            var perf = document.getElementById("indexOrder");
+            perf.value = {{.numStep }};
+            highlightON();
+        }     
+
+
+    </script>
+
+    <script type="text/javascript">
+       function afterLoad() {
+            highlightON();
+        }
+
+        //Highlight the icon Orders in the navigation Bar
+        function highlightON() {
+            accessON()
+        }
+
+        //Removes the highligh from the navigation bar
+        function highlightOFF() {
+            accessOFF()
+        }
+
+        $('.image-tactil').click(function (e) {
+            if ($(this).hasClass('no-selected')) {
+                var product = $(this).attr('id');
+                console.log($("#workers-" + product));
+                $("#ID-" + product).prop("checked", true);
+                $(this).addClass("selected");
+                $(this).removeClass("no-selected");
+                console.log("Entramos en no-selected");
+            }
+            else if ($(this).hasClass("selected")) {
+                var product = $(this).attr('id');
+                $(this).addClass("no-selected");
+                $("#ID-" + product).prop("checked", false);
+                $(this).removeClass("selected");
+                console.log("Entramos en selected");
+            }
+        });
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> {{ if .edit }}
+    <title>Edit Workshop Order</title>
+  {{else}}
+  <title>New Workshop Order</title>
+  {{end}}
+  {{template "imports.html"}}
+
+  <link rel="stylesheet" href="/static/css/bootstrap-datepicker3.css">
+  <script src="/static/js/bootstrap-datepicker.min.js"></script>
+</head>
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+  <div class="margin-body-form">
+    {{template "information-start.html" .}}
+    {{template "i-dashboard.html" .}}
+    {{template "information-end.html" .}}
+    <div class="col-12">
+      <br><br>
+      {{ if .edit }}
+      <header class="title">
+          {{if eq "english" .GLOBAL.language }}
+          Edit the Service Order and update it to DataBase 
+       {{else if eq "swahili" .GLOBAL.language}}
+       Hariri Agizo la Huduma na usasishe kwa DataBase
+       {{else if eq "french" .GLOBAL.language }}
+       Modifier l'ordre de service et le mettre à jour vers la base de données
+         {{else if eq "german" .GLOBAL.language }}
+         Bearbeiten Sie den Serviceauftrag und aktualisieren Sie ihn auf DataBase
+         {{else if eq "spanish" .GLOBAL.language }}
+        Editar la orden de servicio y actualizar la Base de Datos
+         {{end}} 
+      </header>
+      {{else}}
+      <header class="title">
+          {{if eq "english" .GLOBAL.language }}
+          Create a new Service Order and add it to DataBase 
+       {{else if eq "swahili" .GLOBAL.language}}
+       Unda Agizo mpya ya Huduma na uiongeze kwenye DataBase
+       {{else if eq "french" .GLOBAL.language }}
+       Créer un nouvel ordre de service et l'ajouter à la base de données
+         {{else if eq "german" .GLOBAL.language }}
+         Erstellen Sie einen neuen Serviceauftrag und fügen Sie ihn der Datenbank hinzu
+         {{else if eq "spanish" .GLOBAL.language }}
+        Crear una nueva Orden de Sercicio y añadirla a la Base de Datos
+         {{end}} 
+      </header>
+      {{end}}
+      <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+
+        <p class="form-text">  
+            Video: 
+        </p>
+        <br>
+        <div class="row">
+          {{range .products }}
+          <div class="col-6 col-xs-6 col-sm-4 col-md-3 center">
+            <div class="col-12">
+              <img id="{{.ID.Hex}}" src="/local/video-courses/{{.Name}}/{{.Photo}}" class="img-fluid image-square-rounded no-selected image-products" />
+            </div>
+            <div class="col-12 ">
+              <label style="margin-bottom: -10%;" class="form-text">{{.Name}}</label>
+              <input style="margin-top: -90%; display: none" type="radio" onclick="increaseProduct()" name="productID"
+                id="products-{{.ID.Hex}}" value="{{.ID.Hex}}">
+            </div>
+          </div>
+          {{end}}
+        </div>
+
+        <br>
+
+        <div class="row" style="margin-top: 10%;">
+          <div class="col-12 col-md-6">
+            <div class="row">
+          <div class="col">
+            <select class="form-control custom-select form-field" name="workshopID" id="workshopID" required>
+              <option value="" selected disabled>Select service </option>
+              {{range .workshops}}
+              <option value="{{.ID.Hex}}">{{.Name}} </option>
+              {{end}}
+            </select>
+            </div>
+
+          <div class="col">
+            <input placeholder="Introduce quantity" class="form-control form-field" type="number" name="quantity" id="quantity" required> <br>
+          </div>
+          </div>
+          </div>
+
+
+          <div class="col-12 col-md-6">
+            <div class="row">
+              <div class="col-6">
+                  <div class="input-group date">
+                      <input placeholder="Select a date"  class="form-control form-field" data-date-format="dd/mm/yyyy" name="deadline" id="deadline" requireds>
+                    </div>
+              </div>
+          <div class="col-6">
+              <div >
+                  <select class="form-control custom-select form-field" name="window" id="window" required>
+                      <option value="" selected disabled>Select window period </option>
+                      <option value="3">3 days</option>
+                      <option value="7">1 week</option>
+                      <option value="10">10 days</option>
+                      <option value="14">2 weeks</option>
+                      <option value="30">1 month</option>
+                    </select>
+                </div>
+          </div>
+          </div>
+          </div>
+
+
+    </div>
+    <div class="col-12">
+      {{ if .edit }}
+      <button type="submit" class="btn btn--green">
+          {{template "t-update.html" .}}  
+      </button>
+      {{else}}
+      <button type="submit" class="btn btn--green">
+          {{template "t-create.html" .}}  
+      </button>
+      {{end}}
+      <div onclick="goBack();" class="btn btn--red">
+          {{template "t-cancel.html" .}}  
+      </div>
+    </div>
+    </form>
+    <script>
+    var date = new Date();
+    // The number is the quantity of date ahead
+    date.setDate(date.getDate()+2);
+
+    $('#deadline').datepicker({ 
+        startDate: date
+    });
+    
+      $('.image-products').click(function (e) {
+    
+    
+      if ($(this).hasClass('no-selected')) {
+        var product = $(this).attr('id');
+        console.log($("#products-" + product));
+        $(".image-products").removeClass("selected");
+        $(".image-products").addClass("no-selected");
+        $("#products-" + product).prop("checked", true);
+        $(this).addClass("selected");
+        $(this).removeClass("no-selected");
+        increaseProduct();
+      }
+      else if ($(this).hasClass("selected")) {
+        var product = $(this).attr('id');
+        $(this).addClass("no-selected");
+        $("#products-" + product).prop("checked", false);
+        $(this).removeClass("selected");  
+      }
+      });
+
+
+      $('#deadline').datepicker({
+          weekStart: 1,
+          daysOfWeekHighlighted: "6,0",
+          autoclose: true,
+          todayHighlight: true,
+      });
+      
+      $('#deadline').datepicker("setDate", new Date());
+
+
+
+
+      function afterLoad() {
+        highlightON()
+        {{ if .edit }}
+        var perf = document.getElementById("quantity");
+        perf.value = {{.po.Quantity }};
+      {{ end }}
+        }
+      // Highlight the icon Settings in the navigation Bar
+      function highlightON() {
+        recordsON();
+      }
+      // Removes the highligh from the navigation bar
+      function highlightOFF() {
+        recordsOFF();
+      }
+      var countProduct = 0;
+      var countWorkshop = 0;
+      function validateForm() {
+        // Validation for product select
+        if (countProduct == 0) {
+          alert("You should select a Product for the order!");
+          return false;
+        }
+      }
+      function increaseProduct() {
+        countProduct++;
+      }
+    </script>
+
+</body>
+
+</html>

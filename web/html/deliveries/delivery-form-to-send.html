@@ -1,0 +1,247 @@
+{{$isFromService := .isFromService}}
+
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  {{if $isFromService}}
+  <title>Items to {{.service.Name}}</title>
+  {{else}}
+  <title>Items to {{.serviceReceiver.Name}}</title>
+  {{end}}
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+   
+    {{$sent := .sent}}
+    {{$isFromService := .isFromService}}
+    {{if $isFromService}}
+    {{template "nav-service.html" .}}
+    {{else}}
+    {{template "nav-deliveries.html" .}}
+    {{end}}
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-end.html" .}}
+
+        <div class="col-12">
+            {{if not $sent}}
+            <header class="title">Add items for a delivery from {{.serviceEmitter.Name}}-{{.serviceEmitter.Village}} to {{.serviceReceiver.Name}}-{{.serviceReceiver.Village}}</header>
+            {{else}}
+            <header class="title">Delivery from {{.serviceEmitter.Name}} in {{.serviceEmitter.Village}} to {{.serviceReceiver.Name}} in {{.serviceReceiver.Village}}</header>
+            {{end}}
+        </div>
+    <form onsubmit="return askForDisable(); return validateForm();" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">    
+      {{if not $sent}}
+        <div class="row">
+                <div class="col-3">
+                  <select onchange="setSlider()" class="form-control custom-select form-field" name="stock" id="stock" required>
+                      <option value="" selected disabled >Choose a item to deliver</option>
+                      {{if $isFromService}}
+                          {{range .itemstochoose}}
+                            {{if ne (len .Stocks) 0 }}
+                              <optgroup label="{{.CategoryName}}">
+                                {{range .Stocks}}
+                                  <option value="{{.ID.Hex}}|{{.IsTrackable}}&{{.UnitType}}">-- {{.Name}} </option>
+                                {{end}}
+                              </optgroup>
+                            {{end}}
+                          {{end}}
+                      {{else}}
+                            {{range .itemstochoose}}
+                            {{if ne (len .Items) 0 }}
+                              <optgroup label="{{.CategoryName}}">
+                                {{range .Items}}
+                                  <option value="{{.ID.Hex}}|{{.IsTrackable}}&{{.UnitType}}">-- {{.Name}} </option>
+                                {{end}}
+                              </optgroup>
+                            {{end}}
+                          {{end}}
+                      {{end}}
+                  </select>
+                </div>
+                   <!-- THIS SHOULD BE THE QR CODE INPUT -->
+            <div class="col-3" id="idqr">
+              {{template "qr-vue.html"}}
+            </div>
+                <div class="col">
+                    <button type="submit" class="btn btn--green reduced-8">Add</button>
+                </div>
+                <div class="col">
+                    <div class="btn btn--blue reduced-8">
+                        <a href="/data/categories">New Item</a>
+                    </div>
+                </div>
+            </div>
+            {{if $isFromService}}
+            <div class="row">
+              <div class="col-12">
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="500" step="25" value="0" class="slider-delivery" id="slider-range" name="slider-range">
+                    <br><br>
+                    <p class="center">Value: <span id="value-slider"></span></p>
+                </div>
+              </div>
+    </div>
+    {{end}}
+            {{end}}
+    </form>
+        <div class="row">
+        <div class="col-12">
+
+              <div class="table-title">
+                {{if not $sent}}
+                <p> Items already added to {{.serviceReceiver.Name}} in {{.serviceReceiver.Village}} </p>
+                {{else}}
+                <p> Items already sent to {{.serviceReceiver.Name}} in {{.serviceReceiver.Village}} </p>
+                {{end}}
+              </div>
+              <table class="table">
+                <thead class="table-header"> 
+                    <tr> 
+                         <th> &nbsp; Item</th> 
+                        {{if not $sent}}      <th class="center"> Remove item</th> {{end}}
+                      </tr>                                       
+                </thead>                                 
+                <tbody class="table-body"> 
+                    {{range .itemsChosen }}
+                    <tr> 
+                      <td>{{.VideoOrItemName}} </td> 
+                    {{if not $sent}}     
+                      <td class="center">
+                          <a href="/deliveries/delete-stock/{{.ID.Hex}}">
+                              <img type="image" src="/static/svg/problem.svg" class="icon-table"/>
+                          </a>
+                      </td>
+                    {{end}}
+                    </tr>  
+                    {{end }}                                                 
+                </tbody>
+              </table>
+        </div>
+        </div>
+              {{if not $sent}}  
+              <form onsubmit="return askForEnable(); return validateForm()" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+              <div class="row">
+                <div class="col-12">
+                  <label class="checkbox path">
+                    <div class="text-checkbox-long">
+                   <input onclick="warning()" type="checkbox" name="sent" id="sent"> 
+                   <svg style="margin-left: 0px; width: auto" viewBox="0 0 21 21">
+                       <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                   </svg> 
+                 </div>
+                Mark this checkbox if you want to close the delivery
+               </label>
+             </div>
+              </div>
+             <button type="submit" class="btn btn--green btn--animated">
+              Deliver and close
+            </button>
+            <div onclick="goBack();" class="btn btn--red btn--animated">
+                {{template "t-cancel.html" .}}
+            </div>
+              </div>
+              </div>
+                </form>
+                {{else}}
+                <div onclick="goBack();" class="btn btn--green" >
+                    OK
+                  </div>
+                {{end}}
+              <!-- Toggle button section end -->
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+
+var enable = false;
+
+{{if $isFromService}}
+var slider = document.getElementById("slider-range");
+var output = document.getElementById("value-slider");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+
+
+{{end}}
+
+  function afterLoad(){
+    highlightON();
+    document.getElementById("idqr").style.display = "none";
+  }
+  
+   //Highlight the icon Settings in the navigation Bar
+   function setSlider(){
+       
+
+        if (isTrackable == "true" ) {
+          document.getElementById("idqr").style.display = "initial";
+        } else {
+          document.getElementById("idqr").style.display = "none";
+        }
+
+  }
+
+  
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+    {{if $isFromService}}
+    recordsON();
+    {{else}}
+    deliveriesON();
+    {{end}}
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF(){
+    {{if $isFromService}}
+    recordsOFF();
+    {{else}}
+    deliveriesOFF();
+    {{end}}
+  }
+
+ 
+
+   // Ask to the User to Disable the Chackbox
+   function askForDisable() {
+    if (enable) {
+      alert("You need to mark the transaction as NOT delivered to add Items!");
+      return false
+    }
+   }
+
+   // Ask to the User to Enable the Chackbox
+   function askForEnable() {
+   if (!enable) {
+    alert("You need to mark the transaction as delivered if you want to close it!");
+      return false;
+    } 
+   }
+
+  
+
+   // Alerts to the user to the consecuencias of Enable the Checkbox
+   function warning() {
+     if (!enable) {
+      alert("You market the Delivery as sent, that means that you CAN NOT MODIFY any information anymnore, if you want to add more items to the delivery, please Unchech the Slider");
+      enable = true
+    } else {
+       enable = false
+     }
+    }
+
+   
+  </script>
+</body>
+
+</html>

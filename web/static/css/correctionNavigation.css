@@ -1,0 +1,82 @@
+/************** Navigation Bar  CORRECTIONS**************/
+/* This are the different classes created or the different navigations bar. */
+
+/* The height was changed in order to allow another icon in the navigation bar */
+.two-icons {
+  box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.5);
+  height: 172px;
+  position: fixed;
+}
+
+/* The width was changed in order to allow another icon in the navigation bar */
+.two-icons-mobile ul li {
+  /* We change this value to give padding to the icons in mobile view */
+  width: 50%;
+  float: left;
+  border-bottom: 4px solid #fff;
+  margin-bottom: 0px;
+}
+
+/* The height was changed in order to allow another icon in the navigation bar */
+.three-icons {
+  box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.5);
+  height: 258px;
+  position: fixed;
+}
+
+/* The width was changed in order to allow another icon in the navigation bar */
+.three-icons-mobile ul li {
+  /* We change this value to give padding to the icons in mobile view */
+  width: 33%;
+  float: left;
+  border-bottom: 4px solid #fff;
+  margin-bottom: 0px;
+}
+
+/* The height was changed in order to allow another icon in the navigation bar */
+.four-icons {
+  box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.5);
+  height: 344px;
+  position: fixed;
+}
+
+/* The width was changed in order to allow another icon in the navigation bar */
+.four-icons-mobile ul li {
+  /* We change this value to give padding to the icons in mobile view */
+  width: 25%;
+  float: left;
+  border-bottom: 4px solid #fff;
+  margin-bottom: 0px;
+}
+
+/* The height was changed in order to allow another icon in the navigation bar */
+.five-icons {
+  box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.5);
+  height: 430px;
+  position: fixed;
+}
+
+/* The width was changed in order to allow another icon in the navigation bar */
+.five-icons-mobile ul li {
+  /* We change this value to give padding to the icons in mobile view */
+  width: 20%;
+  float: left;
+  border-bottom: 4px solid #fff;
+  margin-bottom: 0px;
+}
+
+/* The height was changed in order to allow another icon in the navigation bar */
+.six-icons {
+  box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.5);
+  height: 516px;
+  position: fixed;
+}
+
+/* The width was changed in order to allow another icon in the navigation bar */
+.six-icons-mobile ul li {
+  /* We change this value to give padding to the icons in mobile view */
+  width: 16%;
+  float: left;
+  border-bottom: 4px solid #fff;
+  margin-bottom: 0px;
+}

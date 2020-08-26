@@ -1,0 +1,15 @@
+{{if eq "swahili" .GLOBAL.language }}
+Weka alama kwenye kisanduku hiki ikiwa <br> unataka kufuatilia vitu na nambari ya majibu ya haraka
+{{else if eq "turkana" .GLOBAL.language}}
+Kiwak emachar nasaduku naka <br>xerai isaki awapakin ng'iboro a
+{{else if eq "french" .GLOBAL.language }}
+Marquez cette case si vous voulez suivre des articles avec des codes QR
+{{else if eq "german" .GLOBAL.language }}
+Markieren Sie dieses Checkbox, <br>wenn Sie die Artikel mit QR-Codes verfolgen möchten
+{{else if eq "spanish" .GLOBAL.language }}
+Marcar esta casilla si quieres <br> rastrear los artículos con códigos QR
+{{else}}
+Mark this Checkbox if you want to <br> track the items with QR codes
+{{end}}
+
+

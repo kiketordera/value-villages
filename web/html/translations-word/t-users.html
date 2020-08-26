@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+    Users 
+{{else if eq "swahili" .GLOBAL.language}}
+    Picha
+    {{else if eq "turkana" .GLOBAL.language}}
+    Ekanaiar
+{{else if eq "french" .GLOBAL.language }}
+    Utilisateurs
+{{else if eq "german" .GLOBAL.language }}
+    Benutzer
+{{else if eq "spanish" .GLOBAL.language }}
+    Usuarios
+{{end}}

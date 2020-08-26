@@ -1,0 +1,169 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Items to {{.service.Name}}</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+   
+
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+      {{template "i-dashboard.html" .}}
+      {{template "information-search-end.html" .}}
+
+        <form onsubmit="return validateForm()" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+          {{if .itemsChecked }}
+                      <header class="title"> <p> Items NOT checked to Service {{.service.Name}} </p> </header>
+                <div class="row">
+                  <!-- The QR -->
+                    <div class="col-6 col-sm-6 col-md-4 col-xl-3 center">
+                        <div class="image-upload" id="app">
+                          <label for="{{.ID.Hex}}-IMG">
+                              <!-- <img id="{{.ID.Hex}}" src="{{.Photo}}"
+                              class="img-fluid image-square-rounded no-selected image-tactil" /> -->
+                              <p class="text-services">Scan a QR code</p>
+                              <div class="col-3" >
+                                  <p class="form-text">  QR: </p>
+                                  <div class="custom-file form-field">
+                                      <qrcode-capture @decode="onDecode"></qrcode-capture>
+                                  </div> 
+                              </div>
+              <input :value="qra" class="form-control form-field" type="text" style="display: none;" name="qr" id="qr" readonly="true">
+                          </label>  
+                        </div>  
+                    </div> 
+                    <!-- The items -->
+                    {{range .itemsChecked }}
+                          <div class="col-6 col-sm-6 col-md-4 col-xl-3 center">
+                              <div class="image-upload">
+                                <label for="{{.ID.Hex}}-IMG">
+                                    {{if .IsTrackable}}  
+                                    <img id="{{.ID.Hex}}" src="{{.Photo}}"
+                                    class="img-fluid image-square-rounded no-selected" />
+                                    {{else}}
+                                    <img id="{{.ID.Hex}}" src="{{.Photo}}"
+                                    class="img-fluid image-square-rounded no-selected image-tactil" />
+                                    <input type="file" class="custom-file-input" id="{{.ID.Hex}}-IMG" name="{{.ID.Hex}}" accept="image/*">
+                                    <input style="margin-top: -90%; display: none;" type="checkbox" id="ID-{{.ID.Hex}}" name="item" value="{{.ID.Hex}}">                        
+                                    {{end}}
+                                    <p class="text-services">{{.VideoOrItemName}} | {{.Quantity}}</p>
+                                </label>  
+                              </div>  
+                          </div> 
+                  {{end}} 
+              </div><br>
+              {{end}}
+
+
+ 
+                  <div style="margin-top: 20px;">
+                    <div onclick="goBack();" style="right: 40px;" class="btn btn-primary cancel-button">
+                            Cancel
+                    </div>
+  
+                    <button type="submit" style="right: 15px;" class="btn btn-primary form-button">Check</button>
+                  </div>
+  
+
+                  </form>
+                
+              <!-- Toggle button section end -->
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+  function afterLoad(){
+    highlightON();
+  }
+  
+  
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+    recordsON();
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF(){
+    recordsOFF();
+  }
+
+
+
+  
+const app = new Vue({
+    el:'#app',
+    data:{
+      qr: null,
+    },
+    delimiters: ['*((', '))'],
+    methods: {
+      onDecode (decodedString) {
+        console.log(decodedString);
+        this.qr = decodedString;
+      }
+    },
+    computed: {
+      qra() {
+        if(qr !== null) {
+          return this.qr;
+        } else {
+          return "QR";
+        }
+      }
+    }
+  })
+
+
+
+
+
+
+
+  function validateForm() {
+      //Validation for the field Name
+      var x = document.forms["myForm"]["quantity"].value;
+      if (x == "") {
+        alert("Quantity must be filled out, can't be empty!");
+        var element = document.getElementById("quantity");
+        element.classList.add("is-invalid");
+        return false;
+      } else {
+        var element = document.getElementById("quantity");
+        element.classList.remove("is-invalid");
+      }
+   }
+
+
+    $('.image-tactil').click(function (e) {
+            if ($(this).hasClass('no-selected')) {
+                var product = $(this).attr('id');
+                console.log($("#workers-" + product));
+                $("#ID-" + product).prop("checked", true);
+                $(this).addClass("selected");
+                $(this).removeClass("no-selected");
+                console.log("Entramos en no-selected");
+            }
+            else if ($(this).hasClass("selected")) {
+                var product = $(this).attr('id');
+                $(this).addClass("no-selected");
+                $("#ID-" + product).prop("checked", false);
+                $(this).removeClass("selected");
+                console.log("Entramos en selected");
+            }
+        });
+
+   
+  </script>
+</body>
+
+</html>

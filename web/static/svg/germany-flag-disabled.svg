@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.3;
+      }
+
+      .cls-2 {
+        fill: #ffda44;
+      }
+
+      .cls-3 {
+        fill: #d80027;
+      }
+    </style>
+  </defs>
+  <g id="germany-flag" class="cls-1">
+    <path id="Path_1106" data-name="Path 1106" class="cls-2" d="M15.923,345.043C52.094,442.527,145.929,512,256,512s203.906-69.473,240.077-166.957L256,322.783Z"/>
+    <path id="Path_1107" data-name="Path 1107" d="M256,0C145.929,0,52.094,69.472,15.923,166.957L256,189.217l240.077-22.261C459.906,69.472,366.071,0,256,0Z"/>
+    <path id="Path_1108" data-name="Path 1108" class="cls-3" d="M15.923,166.957a256.93,256.93,0,0,0,0,178.086H496.078a256.938,256.938,0,0,0,0-178.086Z"/>
+  </g>
+</svg>

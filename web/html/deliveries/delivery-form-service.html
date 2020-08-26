@@ -1,0 +1,260 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Items to {{.service.Name}}</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+    {{$sent := .sent}}
+    <div class="margin-body" >
+        <div class="col-12">
+            {{if not $sent}}
+            <header class="title">Add items for a delivery from {{.serviceEmitter.Name}} in {{.serviceEmitter.Village}} to {{.serviceReceiver.Name}} in {{.serviceReceiver.Village}}</header>
+            {{else}}
+            <header class="title">Delivery from {{.serviceEmitter.Name}} in {{.serviceEmitter.Village}} to {{.serviceReceiver.Name}} in {{.serviceReceiver.Village}}</header>
+            {{end}}
+        </div>
+    <form onsubmit="return askForDisable(); return validateForm();" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">    
+      {{if not $sent}}
+        <div class="row" id="app">
+                <div class="col-3">
+                  <p class="form-text">Stock: </p>
+                    <select onchange="setSlider()" class="form-control custom-select form-field" name="stock" id="stock">
+                        <option value="" selected disabled hidden>Choose stock</option>
+                        {{range .itemstochoose}}
+                        <optgroup label="{{.CategoryName}}">
+                              {{range .Items}}
+                                  {{if ne (len .Stock) 0 }}
+                                      <optgroup label="-- {{.Name}}">
+                                          {{range .Stock}}
+                                                  <option value="{{.VideoOrItemID.Hex}}|{{.Quantity}}&{{.UnitType}}">-- {{.VideoOrItemName}} | {{.Quantity}} {{.UnitType}}</option>
+                                          {{end}}
+                                      </optgroup>
+                                  {{end}}
+                              {{end}}
+                            </optgroup>
+                        {{end}}
+                    </select>
+                </div>
+                   <!-- THIS SHOULD BE THE QR CODE INPUT -->
+            <div class="col-3" >
+                <p class="form-text">  QR: </p>
+                <div class="custom-file form-field">
+                    <qrcode-capture @decode="onDecode"></qrcode-capture>
+                </div> 
+            </div>
+            <br>
+              <input :value="qra" class="form-control form-field" type="text" style="display: none;" name="qr" id="qr" readonly="true">
+                <div class="col-2"  style="margin-top: -5px;">
+                    <button type="submit" class="btn btn-primary form-button">Add</button>
+                </div>
+                <div class="col-4" style="margin-top: 4px;">
+                    <div class="normal-button">
+                        <a href="/data/categories">New Item</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="500" step="25" value="0" class="slider-delivery" id="slider-range" name="slider-range">
+                    <br><br>
+                    <p class="center">Value: <span id="value-slider"></span></p>
+                </div>
+              </div>
+    </div>
+            {{end}}
+    </form>
+        <div class="row">
+        <div class="col-12">
+              <table class="table">
+                <thead class="table-title"> 
+                  <tr> 
+                      {{if not $sent}}
+                            <th colspan="8"> <p> Items already added to {{.serviceReceiver.Name}} in {{.serviceReceiver.Village}} </p> </th>
+                      {{else}}
+                      <th colspan="8"> <p> Items already sent to {{.serviceReceiver.Name}} in {{.serviceReceiver.Village}} </p> </th>
+                      {{end}}
+                  </tr>                                     
+                </thead>
+                <thead class="table-header"> 
+                    <tr> 
+                         <th> &nbsp; Item</th> 
+                        <th class="center"> Quantity</th> 
+                        <th class="center"> Remove item</th> 
+                      </tr>                                       
+                </thead>                                 
+                <tbody class="table-body"> 
+                    {{range .itemsChosen }}
+                    <tr> 
+                      <td>{{.VideoOrItemName}} </td> 
+                      <td class="center">{{.Quantity}}</td> 
+                      <td class="center">{{.Quantity}}</td> 
+                      <td class="right">
+                          <a href="/deliveries/delete-stock/{{.ID.Hex}}">
+                              <img type="image" src="/static/svg/problem.svg" class="icon-table"/>
+                          </a>
+                      </td>
+                      <!-- <template>
+                          <td>
+                            <p> class="decode-result">Last result: <b>*((result)) </b></p>
+                            <qrcode-capture @decode="onDecode" />
+                          </td> 
+                        </template> -->
+                    </tr>  
+                    {{end }}                                                 
+                </tbody>
+              </table>
+              {{if not $sent}}  
+              <form onsubmit="return askForEnable(); return validateForm()" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+              <div class="col-5 offset-5" style="text-align: right; top: 25px; " >
+                Close and send?
+              </div>
+            <label class="switch"  style="left: 85%;" >
+                <input type="checkbox" onclick="warning();" name="sent" id="sent" />
+                <span class="slider round"></span>
+              </label>
+                 <!-- Toggle button section start -->
+                <div style="margin-top: 20px;">
+                  <div onclick="goBack();" style="right: 105px; " class="btn btn-primary cancel-button">
+                          Cancel
+                  </div>
+                  <button type="submit" style="right: 15px;" class="btn btn-primary form-button">Deliver and close</button>
+                </div>
+                </form>
+                {{else}}
+                <div onclick="goBack();" class="btn btn-primary cancel-button" style="right: -55px;">
+                    OK
+                  </div>
+                {{end}}
+              <!-- Toggle button section end -->
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+
+var slider = document.getElementById("slider-range");
+var output = document.getElementById("value-slider");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+
+const app = new Vue({
+    el:'#app',
+    data:{
+      qr: null,
+    },
+    delimiters: ['*((', '))'],
+    methods: {
+      onDecode (decodedString) {
+        console.log(decodedString);
+        this.qr = decodedString;
+      }
+    },
+    computed: {
+      qra() {
+        if(qr !== null) {
+          return this.qr;
+        } else {
+          return "QR";
+        }
+      }
+    }
+  })
+  function afterLoad(){
+    highlightON();
+  }
+  
+   //Highlight the icon Settings in the navigation Bar
+   function setSlider(){
+        var item = document.getElementById("stock").value;
+        var pos1 = item.indexOf("|");
+        var id = item.substring(0, pos1);
+        var pos2 = item.indexOf("&");
+        var quantity = item.substring(pos1+1, pos2);
+        var unit = item.substring(pos2+1, item.length);
+
+        var slider = document.getElementById("slider-range");
+        if (quantity == 1) {
+          slider.setAttribute("max", 1);
+          // slider.setAttribute("min", 0);
+          slider.setAttribute("value", 1);
+          slider.setAttribute("step", 1);
+          document.getElementById("slider-range").value = 1;
+        } else if (quantity > 500) {
+          slider.setAttribute("step", 50);
+          slider.setAttribute("min", 0);
+        } else if (quantity > 50) {
+          slider.setAttribute("step", 25);
+          slider.setAttribute("min", 0);
+        } else {
+          slider.setAttribute("min", 1);
+        }
+        if (quantity != 1) {
+          slider.setAttribute("max", quantity);
+          // slider.setAttribute("min", 0);
+          slider.setAttribute("value", quantity/2);
+        }
+
+        if (unit == "liter") {
+          slider.setAttribute("step", 0.2);
+          console.log("grraaaams")
+        }
+
+        output.innerHTML = slider.value;
+  }
+
+  
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+    recordsON();
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF(){
+    recordsOFF();
+  }
+
+   var enable = false
+
+   // Ask to the User to Disable the Chackbox
+   function askForDisable() {
+    if (enable) {
+      alert("You need to mark the transaction as NOT delivered to add Items!");
+      return false
+    }
+   }
+
+   // Ask to the User to Enable the Chackbox
+   function askForEnable() {
+   if (!enable) {
+    alert("You need to mark the transaction as delivered if you want to close it!");
+      return false;
+    } 
+   }
+
+  
+
+   // Alerts to the user to the consecuencias of Enable the Checkbox
+   function warning() {
+     if (!enable) {
+      alert("You market the Delivery as sent, that means that you CAN NOT MODIFY any information anymnore, if you want to add more items to the delivery, please Unchech the Slider");
+      enable = true
+    } else {
+       enable = false
+     }
+    }
+
+   
+  </script>
+</body>
+
+</html>

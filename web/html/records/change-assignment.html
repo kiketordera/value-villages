@@ -1,0 +1,118 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+ <title>Add Transaction</title>
+ {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+    <div class="margin-body-form">
+  
+      {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-end.html" .}}
+  
+      <div class="row">
+        <div class="col-12">
+          <header class="title">Asignment of {{.ass.Item}} to {{.ass.Worker}}</header>
+          <div class="col-6 center" style="cursor: initial;">
+              <img style="cursor: initial;" src="{{.ass.WorkerPhoto}}" class="img-fluid image-rounded" />
+              {{.ass.Worker}}
+              <br>
+          </div>
+
+          <div class="col-6 center" style="cursor: initial;">
+              <img style="cursor: initial;" src="{{.ass.PhotoItem}}" class="img-fluid image-square-rounded" />
+              {{.ass.Item}}
+              <br>
+          </div>
+
+          <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+
+          
+<!--             
+            <p class="form-text">  Photo: </p>
+            <div class="custom-file form-field">
+              <input onchange="feedbackPhoto()" type="file" class="custom-file-input" id="photo" name="photo" accept="image/*">
+              <label id="placeHolderPhoto" class="custom-file-label" for="customFile">Take a Photo</label>                             
+              <br>  -->
+              <br>
+
+            <p class="form-text">  Did the Worker returned the tool? </p> <br>
+            <div class="row">
+             <div style="margin-left: 15px; margin-top: 5px;"> NO <di style="color: white;"> .................. </di>  YES </div>
+      
+            <label class="switch" style="left: 55px;">
+              <input type="checkbox" onclick="problemClick()" name="returned" id="returned" />
+              <span class="slider round"></span>
+            </label>
+          </div>
+          
+
+          
+                <div class="col-12">
+                    <a href="/admin/records/0">
+                      <div class="btn btn-primary cancel-button">
+                        Cancel
+                      </div>
+                    </a>
+                    <button type="submit" class="btn btn-primary form-button">Update</button>
+
+                  </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+
+    var countItem = 0
+
+    /* Change the selec image if the user clicks the image */
+          $('.image-products').click(function (e) {
+
+            if ($(this).hasClass('no-selected')) {
+              var product = $(this).attr('id');
+              console.log($("#products-" + product));
+              $(".image-products").removeClass("selected");
+              $(".image-products").addClass("no-selected");
+              $("#products-" + product).prop( "checked", true );
+              $(this).addClass("selected");
+              $(this).removeClass("no-selected");
+              increaseItem();
+
+            }
+            else if($(this).hasClass("selected")) {
+              var product = $(this).attr('id');
+
+              $(this).addClass("no-selected");
+              $("#products-" + product).prop( "checked", false );
+              $(this).removeClass("selected");
+
+            }
+
+          });
+
+          function afterLoad() {
+          highlightON();
+      }
+
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      recordsON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      recordsOFF()
+    }    
+
+   
+      </script>
+    </body>
+
+    </html>

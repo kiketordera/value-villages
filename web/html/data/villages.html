@@ -1,0 +1,143 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <title>Villages</title>
+    {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-data.html" . }}
+    <div class="margin-body" id="app">
+        {{template "information-start.html" .}}
+        {{template "i-villages.html" .}}
+        {{template "information-search-end.html" .}}
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div>
+                    <div class="table-title">
+                        <p> {{template "t-services.html" .}} </p>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr class="table-header">
+                                <th @click="sort('name')">&nbsp; {{template "t-name.html" .}}
+                                </th>
+                                <th @click="sort('village')">
+                                    {{template "t-village.html" .}}
+                                </th>
+                                <th @click="sort('type')">
+                                   Service type
+                                </th>
+                                <th @click="sort('balance')">
+                                    {{template "t-balance.html" .}}
+                                </th>
+                                {{if eq "admin" .GLOBAL.role }}
+                                <th class="center">
+                                    {{template "t-edit.html" .}}&nbsp;
+                                </th>
+                                {{end}}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+                            <tr v-for="sale in sortedSales">
+                                <td> &nbsp; *((sale.name))
+                                </td>
+                                <td> *((sale.village))</td>
+                                <td> *((sale.type))</td>
+                                <td> *((sale.balance))</td>
+
+                                <td class="center">
+                                    <a v-bind:href="'/data/edit-service/' + sale.id">
+                                        <img type="image" src="/static/svg/edit.svg" class="icon-table" />
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        {{template "pagination.html" }}
+                </div>
+                {{if eq "admin" .GLOBAL.role }}
+                <a href="/data/new-service" class="btn btn--blue btn--animated">  
+                    {{template "t-new.html" . }} {{template "t-service.html" . }}
+                </a> {{end}}
+            </div>
+            <!-- VUE ENDS -->
+            <div class="col-12 col-lg-5 offset-lg-1">
+                <div class="table-title">
+                    <p> {{template "t-villages.html" .}} </p>
+                </div>
+                <table class="table">
+                    <thead class="table-header">
+                        <tr>
+                            <th> &nbsp; {{template "t-name.html" .}}
+                            </th>
+                            <th class="center">
+                                {{template "t-prefix.html" .}}
+                            </th>
+                            <th class="right">
+                                {{template "t-edit.html" .}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        {{range .villages}}
+                        <tr>
+                            <td>&nbsp; {{.Name}} </td>
+                            <td class="center"> {{.Prefix}} </td>
+                            <td class="right">
+                                <a href="/data/edit-village/{{.ID.Hex }}">
+                                    <img type="image" src="/static/svg/edit.svg" class="icon-table" /> </a>
+                            </td>
+                        </tr>
+                        {{ end}}
+                    </tbody>
+                </table>
+
+
+                <a href="/data/new-village" class="btn btn--blue btn--animated"> 
+                    {{template "t-new.html" . }} {{template "t-village.html" . }}
+                    </a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="row" style="margin-top: 50px;">
+        <div class="col offset-9 center img-fluid">
+            <a href="/data/types-service">
+                <img src=/static/svg/next-page.svg class="img-fluid image-dashboard-van" />
+                <p class="dashboard-text" style="margin-top: 22px;">   {{template "t-see-services-type.html" .}} </p>
+            </a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function afterLoad() {
+            highlightON();
+        }
+
+        //Highlight the icon Orders in the navigation Bar
+        function highlightON() {
+            villagesON()
+        }
+
+        //Removes the highligh from the navigation bar
+        function highlightOFF() {
+            villagesOFF()
+        }
+    </script>
+
+
+    <!-- HERE WE TELL VUE THE PARAMETERS TO SEARCH IN THE TABLE -->
+    <script type="text/javascript">
+                {{template "vue-init.html".}}
+        c.name.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) ||
+        c.village.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 ||
+            c.type.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 ||
+            c.balance.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)); 
+            {{template "vue-final.html".}}
+    </script>
+</body>
+
+</html>

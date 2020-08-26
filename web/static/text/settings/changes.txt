@@ -1,0 +1,1 @@
+Here you can see all the changes made to the item selected, the previous status and the status after the change

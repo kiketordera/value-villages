@@ -1,0 +1,140 @@
+<div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12 navbar_section">
+    {{if eq "admin" .GLOBAL.role }}
+      <div class="navmenu five-icons">
+    {{else}}
+      <div class="navmenu four-icons">
+    {{end}}
+    <ul>
+      <a href="/data/all-users">
+        <li id="first-section" onmouseover="highlightOFF(); usersON();" onmouseout="usersOFF(); highlightON();">
+          <img src="/static/svg/worker.svg" class="mx-auto d-block" id="first-icon">
+          <p id="first-text" class="navbar-text-desktop">
+              {{if eq "english" .GLOBAL.language }}
+              Users
+          {{else if eq "swahili" .GLOBAL.language}}
+          Watumiaji
+          {{else if eq "french" .GLOBAL.language }}
+          Utilisatrices
+          {{else if eq "german" .GLOBAL.language }}
+          Benutzer
+          {{else if eq "spanish" .GLOBAL.language }}
+              Usuarios
+          {{end}}
+          </p>
+        </li>
+      </a>
+      <a href="/data/access">
+        <li id="second-section" onmouseover="highlightOFF(); accessON();" onmouseout="accessOFF(); highlightON();">
+          <img src="/static/svg/access.svg" class="mx-auto d-block" id="second-icon">
+          <p id="second-text" class="navbar-text-desktop">
+            {{template "t-access.html" . }}
+          </p>
+        </li>
+      </a>
+      <a href="/data/categories">
+        <li id="third-section" onmouseover="highlightOFF(); categoriesON();" onmouseout="categoriesOFF(); highlightON();">
+          <img src="/static/svg/categories.svg" class="mx-auto d-block" id="third-icon">
+          <p id="third-text" class="navbar-text-desktop">
+            {{template "t-categories.html" . }}
+          </p>
+        </li>
+      </a>
+      {{if eq "admin" .GLOBAL.role }}
+      <a href="/data/villages">
+        <li id="fourth-section" onmouseover="highlightOFF(); villagesON();" onmouseout="villagesOFF(); highlightON();">
+          <img src="/static/svg/tent.svg" class="mx-auto d-block" id="fourth-icon">
+          <p id="fourth-text" class="navbar-text-desktop">
+              {{if eq "english" .GLOBAL.language }}
+              Villages
+          {{else if eq "swahili" .GLOBAL.language}}
+          Vijiji
+          {{else if eq "french" .GLOBAL.language }}
+          Villages
+          {{else if eq "german" .GLOBAL.language }}
+          Dörfer
+          {{else if eq "spanish" .GLOBAL.language }}
+              Pueblos
+          {{end}}
+          </p>
+        </li>
+      </a>
+      {{end}}
+      <a href="/dashboard">
+        <li id="back-section" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+          <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon">
+          <p id="back-text" class="navbar-text-desktop">
+            {{template "t-back.html" .}}
+          </p>
+        </li>
+      </a>
+    </ul>
+  </div>
+  {{if eq "admin" .GLOBAL.role }}
+    <div class="navmenu_mobile five-icons-mobile">
+  {{else}}
+    <div class="navmenu_mobile four-icons-mobile">
+  {{end}}
+    <ul>
+      <a href="/data/all-users">
+        <li id="first-section-mobile" onmouseover="highlightOFF(); usersON();" onmouseout="usersOFF(); highlightON();">
+          <img src="/static/svg/worker.svg" class="mx-auto d-block" id="first-icon-mobile">
+          <p id="first-text-mobile" class="navbar-text-mobile">
+              {{if eq "english" .GLOBAL.language }}
+              Users
+          {{else if eq "swahili" .GLOBAL.language}}
+          Watumiaji
+          {{else if eq "french" .GLOBAL.language }}
+          Utilisatrices
+          {{else if eq "german" .GLOBAL.language }}
+          Benutzer
+          {{else if eq "spanish" .GLOBAL.language }}
+              Usuarios
+          {{end}}
+          </p>
+        </li>
+      </a>
+      <a href="/data/access">
+        <li id="second-section-mobile" onmouseover="highlightOFF(); accessON();" onmouseout="accessOFF(); highlightON();">
+          <img src="/static/svg/access.svg" class="mx-auto d-block" id="second-icon-mobile">
+          <p id="second-text-mobile" class="navbar-text-mobile"> 
+            {{template "t-access.html" . }}</p>
+        </li>
+      </a>
+      <a href="/data/categories">
+        <li id="third-section-mobile" onmouseover="highlightOFF(); categoriesON();" onmouseout="categoriesOFF(); highlightON();">
+          <img src="/static/svg/categories.svg" class="mx-auto d-block" id="third-icon-mobile">
+          <p id="third-text-mobile" class="navbar-text-mobile">
+            {{template "t-categories.html" . }}
+          </p>
+        </li>
+      </a>
+      {{if eq "admin" .GLOBAL.role }}
+      <a href="/data/villages">
+        <li id="fourth-section-mobile" onmouseover="highlightOFF(); villagesON();" onmouseout="villagesOFF(); highlightON();">
+          <img src="/static/svg/tent.svg" class="mx-auto d-block" id="fourth-icon-mobile">
+          <p id="fourth-text-mobile" class="navbar-text-mobile">
+              {{if eq "english" .GLOBAL.language }}
+              Villages
+          {{else if eq "swahili" .GLOBAL.language}}
+          Vijiji
+          {{else if eq "french" .GLOBAL.language }}
+          Villages
+          {{else if eq "german" .GLOBAL.language }}
+          Dörfer
+          {{else if eq "spanish" .GLOBAL.language }}
+              Pueblos
+          {{end}}
+          </p>
+        </li>
+      </a>
+      {{end}}
+      <a href="/dashboard">
+        <li id="back-section-mobile" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+          <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon-mobile">
+          <p id="back-text-mobile" class="navbar-text-mobile">
+            {{template "t-back.html" .}}
+          </p>
+        </li>
+      </a>
+  </div>
+</div>

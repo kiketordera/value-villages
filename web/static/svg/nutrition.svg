@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 271.276 269.103">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #00a3d2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 9px;
+      }
+    </style>
+  </defs>
+  <g id="Group_1763" data-name="Group 1763" transform="translate(0.003 0.003)">
+    <path id="Path_1" data-name="Path 1" class="cls-1" d="M191.2,189.9a85.647,85.647,0,0,0-.2-17.1"/>
+    <path id="Path_2" data-name="Path 2" class="cls-1" d="M94.6,264.6c79.6,0,94.5-48.1,96.6-74.7"/>
+    <path id="Path_3" data-name="Path 3" class="cls-1" d="M4.5,189.9c-.2,26.5,10.5,74.7,90.1,74.7"/>
+    <path id="Path_4" data-name="Path 4" class="cls-1" d="M6.2,172.8a88.567,88.567,0,0,0-1.7,17.1"/>
+    <line id="Line_1" data-name="Line 1" class="cls-1" x2="28.8" transform="translate(6.2 172.8)"/>
+    <line id="Line_2" data-name="Line 2" class="cls-1" x1="156.4" transform="translate(34.7 172.8)"/>
+    <path id="Path_5" data-name="Path 5" class="cls-1" d="M162.9,172.8S152.2,123.2,98,123.2s-63,49.6-63,49.6"/>
+    <g id="Group_1" data-name="Group 1">
+      <path id="Path_6" data-name="Path 6" class="cls-1" d="M74.8,88.9c12.1,29.8,70.6,15.5,73.3-18.9"/>
+      <path id="Path_7" data-name="Path 7" class="cls-1" d="M142.4,54.2c-22.8-25.1-80.5,3-67.6,34.7"/>
+      <line id="Line_3" data-name="Line 3" class="cls-1" x1="100.2" y2="47.1" transform="translate(142.4 7.1)"/>
+      <path id="Path_8" data-name="Path 8" class="cls-1" d="M253.6,34.4C277.9,24.9,265-4.2,242.5,7.1"/>
+      <line id="Line_4" data-name="Line 4" class="cls-1" y1="35.6" x2="105.5" transform="translate(148.1 34.4)"/>
+    </g>
+  </g>
+</svg>

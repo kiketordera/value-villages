@@ -1,0 +1,185 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Actions Service</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+        {{template "nav-service.html" .}}
+  <div class="margin-body">
+    {{template "information-start.html" .}}
+    {{template "i-actions-manager.html" .}}
+    {{template "information-end.html" .}}
+        <br>
+        {{template "service-picker.html" .}}  
+      <br>
+  <div class="row">
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+            <a href="/records/assignments/{{.serviceType.Hex}}">
+            <img src=/static/svg/tools.svg class="img-fluid image-dashboard" />
+           {{if eq "english" .GLOBAL.language }}
+           <p class="dashboard-text" > Asigments </p>
+           {{else if eq "swahili" .GLOBAL.language}}
+           <p class="dashboard-text" > Mgao </p>
+           {{else if eq "french" .GLOBAL.language }}
+           <p class="dashboard-text" > Missions </p>
+           {{else if eq "german" .GLOBAL.language }}
+           <p class="dashboard-text" > Zuordnungen </p>
+           {{else if eq "spanish" .GLOBAL.language }}
+           <p class="dashboard-text" > Asignaciones </p>
+           {{end}}
+          </a>
+      </div>
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/worker-sales/{{.serviceType.Hex}}">
+            <img src=/static/svg/sell-worker.svg class="img-fluid image-dashboard" />
+            <p class="dashboard-text" > {{template "t-sales-to-worker.html" .}} </p>
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/stock-generated/{{.serviceType.Hex}}">
+            <img src=/static/svg/qr-pink.svg class="img-fluid image-dashboard" />
+           <p class="dashboard-text" > {{template "t-stock-generated.html" .}} </p>
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/send-or-receive-delivery/{{.serviceType.Hex}}">
+            <img src=/static/svg/deliveries.png class="img-fluid image-dashboard-van" />
+            <p class="dashboard-text" style="margin-top: 22px;"> {{template "t-deliveries.html" .}}  </p>
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/choose-type-stock/{{.serviceType.Hex}}">
+            <img src=/static/svg/inventory-color.svg class="img-fluid image-dashboard" />
+            {{if eq "english" .GLOBAL.language }}
+            <p class="dashboard-text"> Inventory </p>
+            {{else if eq "swahili" .GLOBAL.language}}
+            <p class="dashboard-text" > Hesabu </p>
+            {{else if eq "french" .GLOBAL.language }}
+            <p class="dashboard-text" > Inventaire </p>
+            {{else if eq "german" .GLOBAL.language }}
+            <p class="dashboard-text" > Inventar </p>
+            {{else if eq "spanish" .GLOBAL.language }}
+            <p class="dashboard-text" > Inventario </p>
+            {{end}}
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/see/payments/{{.serviceType.Hex}}">
+            <img src=/static/svg/payment.svg class="img-fluid image-dashboard" />
+            <p class="dashboard-text"> {{template "t-payments.html" .}} </p>
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/worker-orders/{{.serviceType.Hex}}">
+            <img src=/static/svg/products-hover.svg class="img-fluid image-dashboard" />
+            {{if eq "english" .GLOBAL.language }}
+            <p class="dashboard-text"> Worker Orders </p>
+            {{else if eq "swahili" .GLOBAL.language}}
+            <p class="dashboard-text"> Maagizo ya Wafanyakazi </p>
+            {{else if eq "french" .GLOBAL.language }}
+            <p class="dashboard-text" > Commandes de travailleurs </p>
+            {{else if eq "german" .GLOBAL.language }}
+            <p class="dashboard-text" > Arbeiterorden </p>
+            {{else if eq "spanish" .GLOBAL.language }}
+            <p class="dashboard-text" > Ordenes a trabajadores </p>
+            {{end}}
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/service-orders/{{.serviceType.Hex}}">
+            <img src=/static/svg/records-orders.svg class="img-fluid image-dashboard" />
+            <p class="dashboard-text"> {{template "t-service-orders.html" .}}  </p>
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/check-service/{{.serviceType.Hex}}">
+            <img src=/static/svg/calendar-color.svg class="img-fluid image-dashboard" />
+            {{if eq "english" .GLOBAL.language }}
+            <p class="dashboard-text" > Check-in </p>
+            {{else if eq "swahili" .GLOBAL.language}}
+            <p class="dashboard-text" > Angalia </p>
+            {{else if eq "french" .GLOBAL.language }}
+            <p class="dashboard-text" > Enregistrement </p>
+            {{else if eq "german" .GLOBAL.language }}
+            <p class="dashboard-text" > Check-in </p>
+            {{else if eq "spanish" .GLOBAL.language }}
+            <p class="dashboard-text" > Comprobaciones </p>
+            {{end}}
+          </a>
+      </div>  
+     <!--    <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/slaughterhouse/animals">
+            <img src=/static/svg/goat.svg class="img-fluid image-dashboard" />
+            <p class="dashboard-text" > Animals </p>
+          </a>
+      </div>  
+    <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/service-orders/{{.serviceType.Hex}}">
+            <img src=/static/svg/groups.svg class="img-fluid image-dashboard" />
+            {{if eq "english" .GLOBAL.language }}
+            <p class="dashboard-text" > Check-in </p>
+            {{else if eq "swahili" .GLOBAL.language}}
+            <p class="dashboard-text" > Angalia </p>
+            {{else if eq "french" .GLOBAL.language }}
+            <p class="dashboard-text" > Enregistrement </p>
+            {{else if eq "german" .GLOBAL.language }}
+            <p class="dashboard-text" > Check-in </p>
+            {{else if eq "spanish" .GLOBAL.language }}
+            <p class="dashboard-text" > Comprobaciones </p>
+            {{end}}
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/service-orders/{{.serviceType}}">
+            <img src=/static/svg/plantation.svg class="img-fluid image-dashboard" />
+            {{if eq "english" .GLOBAL.language }}
+            <p class="dashboard-text" > Check-in </p>
+            {{else if eq "swahili" .GLOBAL.language}}
+            <p class="dashboard-text" > Angalia </p>
+            {{else if eq "french" .GLOBAL.language }}
+            <p class="dashboard-text" > Enregistrement </p>
+            {{else if eq "german" .GLOBAL.language }}
+            <p class="dashboard-text" > Check-in </p>
+            {{else if eq "spanish" .GLOBAL.language }}
+            <p class="dashboard-text" > Comprobaciones </p>
+            {{end}}
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/service-orders/{{.serviceType}}">
+            <img src=/static/svg/construction.svg class="img-fluid image-dashboard" />
+            {{if eq "english" .GLOBAL.language }}
+            <p class="dashboard-text" > Check-in </p>
+            {{else if eq "swahili" .GLOBAL.language}}
+            <p class="dashboard-text" > Angalia </p>
+            {{else if eq "french" .GLOBAL.language }}
+            <p class="dashboard-text" > Enregistrement </p>
+            {{else if eq "german" .GLOBAL.language }}
+            <p class="dashboard-text" > Check-in </p>
+            {{else if eq "spanish" .GLOBAL.language }}
+            <p class="dashboard-text" > Comprobaciones </p>
+            {{end}}
+          </a>
+      </div>   -->
+    </div>
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+      {{if ne (len .services) 1 }}
+          document.getElementById('serviceID').value = {{.service.ID.Hex}};
+      {{end}}
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      recordsON()
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      recordsOFF()
+    }    
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>{{template "t-log-in.html" .}}</title>
+  {{template "imports.html"}}
+</head>
+<body  onload="afterLoad()">
+  {{template "nav-home.html" .}}
+  <div class="margin-web">
+    <div class="col-12" style="margin-top: 15vh;">
+      <form onsubmit="return validateForm()" name="myForm" id="myForm" role="form " method="post" enctype="multipart/form-data">
+        <div class="row center">
+        <div class="col">
+          <img src="/static/img/appImages/logo.png" class="product-image log-in-logo scale-in-center">
+        </div>
+      </div>
+      <div class="log-in-form center-objects">
+        <div class=""  data-aos="fade-right">
+          <div class="">
+          <div class="form-group">
+            <input name="username" id="username" onchange="this.value = this.value.toLowerCase()" type="text" required="required"/>
+            <label for="input" class="control-label">  {{template "t-username.html" .}}</label><i class="bar"></i>
+          </div>
+        </div>
+        <div class="">
+          <div class="form-group">
+            <input type="password" name="password" id="password" required="required"/>
+            <label for="input" class="control-label">{{template "t-password.html" .}}</label><i class="bar"></i>
+          </div>
+        </div>
+        </div>
+        <div class="col center"  data-aos="fade-left">
+          <a href="/log-in-worker" style="display: block;">
+                <object data="/static/img/login/Animals_ON/Lion_ON.png" class="image-change-log-in" style="pointer-events: none;" > </object>
+          </a>
+          <div class="col" style="margin-top: 10%;"> <br>
+            <button class="btn btn--green" style="margin-top: -20px;" type="submit">{{template "t-log-in.html" .}}</button>
+          </div>
+        </div>
+      </div>
+    
+        
+      </form>
+    </div>
+  </div>
+</body>
+
+<script>
+  function afterLoad() {
+   highlightON();
+   AOS.init();
+ }
+
+ //Highlight the icon Settings in the navigation Bar
+ function highlightON() {
+   demoON();
+ }
+
+ //Removes the highligh from the navigation bar
+ function highlightOFF() {
+  demoOFF();
+ }
+</script>

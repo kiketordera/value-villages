@@ -1,0 +1,120 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Deliveries Service</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+        {{template "nav-service.html" .}}
+        {{$serviceType := .serviceType}}
+        {{$deliveryType := .deliveryType}}
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+      {{template "i-dashboard.html" .}}
+      {{template "information-search-end.html" .}}
+
+        <div class="row">
+        <div class="col-12">
+          <div class="table-title">
+            <p>  {{if eq "sent" .deliveryType }}
+              Deliveries SENT to a Service
+                   {{else}}
+             Deliveries RECEIVED in the Service
+                   {{end}} </p>
+      </div>
+              <table class="table">
+                <thead class="table-header"> 
+                    <tr> 
+                        <th> &nbsp; {{template "t-service.html" .}}</th> 
+                        <th> {{template "t-date.html" .}} </th> 
+                        <th class="center"> {{template "t-manager.html" .}}</th> 
+                        <th class="center"> {{template "t-manager.html" .}}</th> 
+                        <th class="center">  {{template "t-action.html" .}} </th>
+                      </tr>                                       
+                </thead>                                 
+                <tbody class="table-body"> 
+                    {{range .dPack }}
+                    <tr> 
+                      {{if eq "sent" $deliveryType}}
+                          <td>{{.ServiceReceiverName}}</td> 
+                      {{else}}
+                          <td>{{.ServiceEmitterName}}</td> 
+                      {{end}}
+                      <td>{{.Date}}</td> 
+                      {{if .IsSent }}
+                      <td class="center">Yes</td> 
+                      {{else}}
+                      <td class="center">No</td> 
+                      {{end}}
+                      <td class="center">{{.ManagerName}}</td> 
+                      <td> 
+                          <div class="center"> 
+                           
+                            {{if .IsComplete}}
+                            <a href="/records/check-delivery/{{.ID.Hex}}/{{$serviceType.Hex}}">
+                              <img type="image" src="/static/svg/look.svg" class="icon-table" /> </a>
+                              {{else}}
+                                  {{if eq "sent" $deliveryType}}
+                                      {{if .IsSent}}
+                                      <a href="/deliveries/new-delivery/{{.ServiceReceiverID.Hex}}/{{.ID.Hex}}/{{$serviceType.Hex}}">
+                                        <img type="image" src="/static/svg/look.svg" class="icon-table" /> </a>
+                                      {{else}}
+                                        <a href="/deliveries/new-delivery/{{.ServiceReceiverID.Hex}}/{{.ID.Hex}}/{{$serviceType.Hex}}">
+                                        <img type="image" src="/static/svg/edit.svg" class="icon-table" /> 
+                                      {{end}}
+                                  {{else}}
+                                    <a href="/records/check-delivery/{{.ID.Hex}}/{{$serviceType.Hex}}">
+                                      <img type="image" src="/static/svg/edit.svg" class="icon-table" /> 
+                                  {{end}}
+                            </a>
+                              {{end}}
+                            </a>
+                          </td>
+                      </tr>  
+                     {{end}}                                               
+                </tbody>
+              </table>
+              {{if not .dPack}}
+                    <p class="empty-field center">  You still have no Deliveries in the database. <br/>
+                    <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+                    {{if eq "sent" .deliveryType }}
+                    You can create a new Delivery clicking the button on the right, and then every Delivery created will be display here,<br/> 
+                    where you can search them. </p>   
+                    {{else}}
+                    You can create a new Delivery, you need to send any item from any service to the current service, and then every delivery received will be display here,<br/> 
+                    where you can search them. </p>  
+                    {{end}}
+                
+              {{end}}
+              {{if eq "sent" .deliveryType }}
+                <div class="btn btn--blue">
+                    <a href="/deliveries/choose-service/{{$serviceType.Hex}}">{{template "t-new-delivery.html" .}}</a>
+                </div>
+             {{end}}
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+  function afterLoad(){
+    highlightON();
+  }
+  
+  
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+    recordsON();
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF(){
+    recordsOFF();
+  }
+  </script>
+</body>
+
+</html>

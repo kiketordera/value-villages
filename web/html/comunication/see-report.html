@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>{{.report.Type}}</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()"> 
+          {{template "nav-comunication.html" .}}
+          {{$user := .report.User}}
+
+
+
+
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+      {{template "i-see-report.html" .}}
+      {{template "information-end.html" .}}
+
+      
+          <div class="row">
+            <div class="col-12"> 
+              <h1 class="title">{{.report.Type}}</h1>
+            </div>
+          </div>
+          <div class="row">
+            {{.report.Photo}}
+            {{if .report.Photo}}
+          <div class="product-description col-4 ">
+              <img src="{{.report.Photo}}" class="product-image">
+            </div>
+            {{end}}
+            <div class="col-8 ">
+              <p>{{.report.Text}}</p>
+            </div>
+          </div>
+          <br>
+
+          <form onsubmit="return validateForm();" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+
+                <div class="col-12">
+                    {{range .messages }}
+                    <div class="row">
+                     
+                        <header class="title">   {{.Date}}   </header>
+        
+                        <p class="form-text">{{range .Messages}}</p> 
+        
+                     
+                        <div class="col-12">
+                         {{if .Photo}}   <img src="{{.Photo}}" class="img-fluid image-rounded {{.Class}}" />  {{end}}
+                          {{if .Audio}}    <audio id="myAudio" preload="none"> 
+                              <source src="{{.Audio}}" type="audio/mp3">
+                              Your browser does not support the audio element.
+                            </audio>
+                            <input onclick="playAudio()" type="image" src="/static/svg/listen.svg" style="max-height: 90px; max-width: 90px;"
+                              name="saveForm" class="btTxt submit" id="saveForm" /> 
+                            {{end}}
+                          <br>
+                          <div class="{{.Class}}">
+                            <p class="form-text">  [{{$user}}]    {{.Time}}  {{.Text}}</p>
+                        </div>
+                        </div> 
+                        {{end}} 
+                        
+                      </div><br><br>
+                      {{end}}
+                </div>
+
+                  {{if .report.IsClose}}
+                  <header class="form-text">      THIS REPORT IS CLOSED, YOU CAN NOT SEND MORE MESSAGES </header>
+                  {{else}}
+                  <div class="row">
+                    <div class="col">
+                      <textarea onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" name="message" id="message" placeholder="Answer here to the report" rows="6" required></textarea>
+                    </div>
+                    <br>
+                  </div><br>                   
+                       <div class="row">
+                      <div class="col-6">
+                        {{template "upload-img-no-required.html" .}}
+                      </div>
+                      {{template "upload-audio.html" .}}
+                    </div>
+
+                    {{if eq "admin" .GLOBAL.role }}
+                    <div class="col-12">
+                      <label class="checkbox path">
+                        <div class="text-checkbox-long">
+                       <input type="checkbox" name="closereport" id="closereport"> 
+                       <svg viewBox="0 0 21 21">
+                           <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                       </svg> 
+                     </div>
+                       Mark this Checkbox if you want to <br> close this report
+                   </label>
+                 </div>
+                  {{end}}
+              {{end}}  
+                 <div class="custom-file">
+                  <button type="submit" class="btn btn--green">Send</button>
+                  <div onclick="goBack();" class="btn btn--red btn--animated">   {{template "t-back.html" .}} </div>
+          </div>
+             </form>
+            </div>           
+    </div>
+              </div> </div>
+      </div>
+      </div>
+    
+    
+    <script type="text/javascript">
+
+      function afterLoad(){
+        highlightON();
+      }
+
+
+      //Highlight the icon Settings in the navigation Bar
+      function highlightON() {
+        reportsON();
+      }
+
+      //Removes the highligh from the navigation bar
+      function highlightOFF() {
+        reportsOFF();
+      }    
+
+      
+
+    </script>
+
+  </body>

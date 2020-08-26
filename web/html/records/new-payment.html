@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>   {{template "t-new.html" .}}  {{template "t-payment.html" .}} </title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+   <div class="margin-body">
+    {{template "information-start.html" .}}
+    {{template "i-dashboard.html" .}}
+    {{template "information-end.html" .}}
+    <div class="col-12">
+      <header class="title">
+          {{if eq "english" .GLOBAL.language }}
+          Create a new Payment for the Worker 
+       {{else if eq "swahili" .GLOBAL.language}}
+       Unda malipo mpya kwa Mfanyakazi
+       {{else if eq "french" .GLOBAL.language }}
+       Créer un nouveau paiement pour le travailleur
+         {{else if eq "german" .GLOBAL.language }}
+         Erstellen Sie eine neue Zahlung für den Arbeiter
+         {{else if eq "spanish" .GLOBAL.language }}
+        Crear nuevo paggo al trabajador
+         {{end}}
+      </header>
+      <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+        <p class="form-text">  {{template "t-select-one-worker.html" .}}
+        </p> <br>
+        <div class="row">
+          {{range .workers }}
+          <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+            <div class="col-12">
+              <img id="{{.ID.Hex}}" src="/local/users/{{.Username}}/{{.Photo}}" class="img-fluid image-rounded no-selected image-workers" />
+            </div>
+            <div class="col-12">
+              <label class="form-text">{{.Name}}</label>
+              <br>
+              <input style="margin-top: -90%; display: none" type="radio" onclick="increaseProduct()" name="workerID"
+                id="workers-{{.ID.Hex}}" value="{{.ID.Hex}}">
+            </div>
+          </div>
+          {{end}}
+        </div>
+        <div class="row">
+          <div class="col">
+            {{template "upload-img.html" .}}
+          </div>
+          <div class="col">
+              <input style="min-width: 150px;" placeholder="Enter quantity" class="form-control form-field" type="number" name="quantity" id="quantity" required>
+          </div>
+      </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn--green">
+                {{template "t-create.html" .}}  
+            </button>
+            <div onclick="goBack();" class="btn btn--red">
+                {{template "t-cancel.html" .}}  
+              </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</body>
+<script>
+  function afterLoad() {
+    highlightON();
+  }
+
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON() {
+    recordsON()
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF() {
+    recordsOFF()
+  }
+
+  var countWorker = 0;
+
+  // This function validates the form to not introduce null values
+  function validateForm() {
+    // Validation for worker select
+    if (countWorker == 0) {
+      alert("You should select a Worker for the order!");
+      return false;
+    }
+       // Validation for the field Quantity
+       var x = parseInt(document.forms["myForm"]["quantity"].value);
+    if (x > 10000) {
+      alert("You can not asign more than 10000!");
+      var element = document.getElementById("quantity");
+      element.classList.add("is-invalid");
+      return false;
+    } else {
+      var element = document.getElementById("quantity");
+      element.classList.remove("is-invalid");
+    }
+
+  // Validation for the field Photo
+    var x = document.forms["myForm"]["photo"].value;
+    if (x == "") {
+        alert("Photo must be filled out, can't be empty!");
+        var element = document.getElementById("placeHolderPhoto");
+        element.classList.add("is-invalid");
+        return false;
+    } else {
+        var element = document.getElementById("placeHolderPhoto");
+        element.classList.remove("is-invalid");
+        element.classList.add("text-correct");
+    }
+
+    
+
+    // Validation for the field Quantity
+    var x = document.forms["myForm"]["quantity"].value;
+    if (x == "") {
+      alert("Quantity must be filled out, can't be empty!");
+      var element = document.getElementById("quantity");
+      element.classList.add("is-invalid");
+      return false;
+    } else {
+      var element = document.getElementById("quantity");
+      element.classList.remove("is-invalid");
+    }
+
+  }
+
+  function increaseWorker() {
+    countWorker++;
+  }
+
+  /* Change the selec image if the user clicks the image */
+  $('.image-products').click(function (e) {
+
+    if ($(this).hasClass('no-selected')) {
+      var product = $(this).attr('id');
+      console.log($("#products-" + product));
+      $(".image-products").removeClass("selected");
+      $(".image-products").addClass("no-selected");
+      $("#products-" + product).prop("checked", true);
+      $(this).addClass("selected");
+      $(this).removeClass("no-selected");
+      increaseProduct();
+
+    }
+    else if ($(this).hasClass("selected")) {
+      var product = $(this).attr('id');
+
+      $(this).addClass("no-selected");
+      $("#products-" + product).prop("checked", false);
+      $(this).removeClass("selected");
+
+    }
+
+  });
+  /* Change the selec image if the user clicks the image */
+  $('.image-workers').click(function (e) {
+
+    if ($(this).hasClass('no-selected')) {
+      var product = $(this).attr('id');
+      console.log($("#workers-" + product));
+      $(".image-workers").removeClass("selected");
+      $(".image-workers").addClass("no-selected");
+      $("#workers-" + product).prop("checked", true);
+      $(this).addClass("selected");
+      $(this).removeClass("no-selected");
+      increaseWorker();
+
+    }
+    else if ($(this).hasClass("selected")) {
+      var product = $(this).attr('id');
+
+      $(this).addClass("no-selected");
+      $("#workers-" + product).prop("checked", false);
+      $(this).removeClass("selected");
+    }
+  });
+
+</script>
+</html>

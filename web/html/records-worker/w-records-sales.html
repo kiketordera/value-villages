@@ -1,0 +1,88 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Records Sales </title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{if .fromService}}
+    {{template "nav-service.html" .}}
+    {{else}}
+    {{template "nav-records-worker.html" .}}
+    {{end}}
+  <div class="margin-body" id="app">
+      <div class="row">
+          <div class="col-12">
+            {{template "information-start.html" .}}
+            {{template "i-w-record-sales.html" .}}
+            {{template "information-end.html" .}}
+            <div>
+              <div class="table-title">
+                <p> Records Sales </p>
+          </div>
+            <table class="table">
+                <thead>
+              <tr class="table-header center">
+                  <th @click="sort('videooritemname')">
+                  <img src="/static/svg/item.svg" alt="monthsvg"> <br>
+                  Item
+                </th>
+                <th @click="sort('dateunix')">
+                  <img src="/static/svg/date.svg" alt="shillings"> <br>
+                  Date
+                </th>
+                <th @click="sort('price')">
+                    <img src="/static/svg/money-table.svg" alt="shillings"> <br>
+                    Money
+                </th>
+              </tr>
+            </thead>
+              <tbody class="table-body center">
+                <tr class=" center" v-for="sale in sortedSales">
+                  <td> <img v-bind:src="sale.photo" style="cursor: initial; max-height: 100; max-height: 100px" class="img-fluid image-square-rounded-table">
+                    <br>*((sale.videooritemname))</td>
+                  <td>*((sale.date))</td>
+                  <td>*((sale.price))</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              {{template "pagination.html"}}
+          </div>
+          {{if not .sales}}
+          {{template "empty-worker.html" .}}  
+        {{end}}
+      </div>
+    </body>
+    
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      {{if .fromService}}
+        recordsON();
+      {{else}}
+      recordsSalesON();
+      {{end}}
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      {{if .fromService}}
+        recordsOFF();
+      {{else}}
+      recordsSalesOFF();
+      {{end}}
+    }
+  </script>
+
+
+    <script type="text/javascript">
+      {{template "vue-init.html" .}}
+        c.videooritemname.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+        c.date.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+        c.price.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0))); 
+      {{template "vue-final.html" .}}
+    </script>

@@ -1,0 +1,3 @@
+In this screen you can change the time on the app, you have different options to add or remove days to the date of the system, meaning by that that any change that you make in the app will have the time changed signed buy you.
+
+This is made for testing and development mode only and MUST NOT BE USED in production.

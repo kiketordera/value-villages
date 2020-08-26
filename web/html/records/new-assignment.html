@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Asign tool </title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+  {{template "nav-service.html" .}}
+   <div class="margin-body">
+    {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-end.html" .}}
+    <div class="col-12">
+      <header class="title">  {{template "t-asign-tool.html" .}}</header>
+      <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+        <p class="form-text"> Workers: </p> <br>
+
+        <div class="row">
+            {{range .workers }}
+            <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+              <div class="col-12">
+                <img id="{{.ID.Hex}}" src="/local/users/{{.Username}}/{{.Photo}}" class="img-fluid image-rounded no-selected image-workers" />
+              </div>
+              <div class="col-12">
+                <label class="form-text">{{.Name}}</label>
+                <br>
+                <input style="margin-top: -90%; display: none" type="radio" onclick="increaseProduct()" name="workerID"
+                  id="workers-{{.ID.Hex}}" value="{{.ID.Hex}}">
+              </div>
+            </div>
+            {{end}}
+          </div>
+          <div class="row">]
+            <div class="col">
+             {{template "qr-vue.html" .}}
+            </div>
+              <div class="col" style="margin-top: 70px; min-width: 150px;">
+                  <select class="form-control custom-select form-field" name="stock" id="stock" required>
+                      <option value="" selected disabled hidden>Choose tool from stock</option>
+                      {{range .items}}
+                        {{if ne (len .Stocks) 0 }}
+                          <optgroup label="{{.CategoryName}}">
+                            {{range .Stocks}}
+                                <option value="{{.ID.Hex}}|{{.Quantity}}&{{.UnitType}}">-- {{.Name}} | {{.Quantity}} {{.UnitType}}</option>
+                            {{end}}
+                          </optgroup>
+                        {{end}}
+                      {{end}}
+                  </select>
+              </div>
+              <!-- THIS SHOULD BE THE QR CODE INPUT -->
+           
+            <br>
+           
+          </div>
+
+          <div class="row" id="writeMaterials">
+
+              </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn--green">Asign</button>
+            <div onclick="goBack();" class="btn btn--red">
+              Cancel
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+
+
+
+</body>
+
+
+<script>
+
+  function afterLoad() {
+    highlightON();
+  }
+
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON() {
+    recordsON();
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF() {
+    recordsOFF();
+  }
+
+
+  function increaseMaterial() {
+    countMaterial++;
+  }
+  function increaseWorker() {
+    countWorker++;
+  }
+
+  /* Change the selec image if the user clicks the image */
+  $('.image-workers').click(function (e) {
+
+    if ($(this).hasClass('no-selected')) {
+      var product = $(this).attr('id');
+      console.log($("#workers-" + product));
+      $(".image-workers").removeClass("selected");
+      $(".image-workers").addClass("no-selected");
+      $("#workers-" + product).prop("checked", true);
+      $(this).addClass("selected");
+      $(this).removeClass("no-selected");
+      increaseWorker();
+
+    }
+    else if ($(this).hasClass("selected")) {
+      var product = $(this).attr('id');
+
+      $(this).addClass("no-selected");
+      $("#workers-" + product).prop("checked", false);
+      $(this).removeClass("selected");
+
+    }
+  });
+
+
+</script>
+
+</html>

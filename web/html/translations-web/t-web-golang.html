@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Hii ndio lugha ya programu ambapo teknolojia yote imejengwa. Ni chanzo wazi, iliyoundwa mahsusi kwa maendeleo ya wavuti na kukuzwa na kuwezeshwa na Google.
+{{else if eq "turkana" .GLOBAL.language}}
+Eken erai aluga a aprogram loerai ateknologia daang esubitae, areai asekinet natetem, loasubakinitae itetem ania adukor a awavut ka ayawakin sodi tomin nia google
+{{else if eq "french" .GLOBAL.language }}
+C'est le langage de programmation sur lequel repose toute la technologie. Il s'agit d'un open source, conçu spécifiquement pour le développement web et développé et propulsé par Google
+{{else if eq "german" .GLOBAL.language }}
+Dies ist die Programmiersprache, auf der die gesamte Technologie basiert. Es ist Open Source, speziell für die Webentwicklung konzipiert und von Google entwickelt und betrieben
+{{else if eq "spanish" .GLOBAL.language }}
+Este es el lenguaje de programación en el que se basa toda la tecnología. Es de código abierto, diseñado específicamente para el desarrollo web y desarrollado y potenciado por Google
+{{else}}
+This is the programing language where all the technology is based. It is open-source, designed specifically for web development and developed and empowered by Google
+{{end}}
+

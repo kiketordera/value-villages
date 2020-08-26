@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Deliveries Workshops</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+
+        {{template "nav-service.html" .}}
+ 
+
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+      {{template "i-dashboard.html" .}}
+      {{template "information-search-end.html" .}}
+
+        <div class="row">
+        <div class="col-12">
+              <table class="table">
+                <thead class="table-title"> 
+                  <tr> 
+                      
+                      <th colspan="8"> <p> Stock of {{.itemType}} from {{.serviceType}} </p> </th>
+                  </tr>                                     
+                </thead>
+                <thead class="table-header"> 
+                    <tr> 
+                        <th> &nbsp; Item</th> 
+                        <th > Service</th> 
+                        <th class="center"> Quantity </th>
+                      </tr>                                       
+                </thead>                                 
+                <tbody class="table-body"> 
+                    {{range .stock }}
+                    <tr> 
+                      <td>{{.ItemName}}</td> 
+                      <td>{{.ServiceName}}</td> 
+                      <td class="center">{{.Quantity}}</td> 
+                        </tr>  
+                      {{end}}
+                </tbody>
+              </table>
+        </div>
+        </div>
+
+
+     
+
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function afterLoad(){
+    highlightON();
+  }
+  
+  
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+   recordsON();
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF(){
+    recordsOFF();
+  }
+  </script>
+</body>
+
+</html>

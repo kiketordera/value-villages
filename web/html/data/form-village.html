@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    {{if .edit }}
+    <title>   {{template "t-edit.html" . }}  {{.village.Name}}</title>
+    {{else}}
+    <title>   {{template "t-new.html" . }} {{template "t-village.html" . }}</title>
+    {{end}}
+ {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{template "nav-data.html" . }}
+    <div class="margin-body-form">
+      {{template "information-start.html" .}}
+      {{template "i-form-village.html" .}}
+      {{template "information-end.html" .}}
+        <div class="col-12">
+            {{if not .edit }}
+          <header class="title">
+            {{template "t-create-village.html" .}}
+          </header></div> <br>
+          {{else }}
+          <header class="title">
+              {{if eq "english" .GLOBAL.language }}
+              Edit {{.village.Name}} and Upload it to DataBase 
+           {{else if eq "swahili" .GLOBAL.language}}
+           Hariri {{. .Village.Name}} na Uipakia kwa DataBase
+           {{else if eq "french" .GLOBAL.language }}
+           Éditez {{.village.Name}} et chargez-le dans la base de données
+             {{else if eq "german" .GLOBAL.language }}
+             Bearbeiten Sie {{.village.Name}} und laden Sie es in die Datenbank hoch
+             {{else if eq "spanish" .GLOBAL.language }}
+            Edita {{.village.Name}} y actualízalo en la Base de Datos
+             {{end}}
+
+          </header></div> <br>
+          {{end}}
+          <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data"> 
+            <div class="row">
+              <div class="col-6">
+              <div class="form-group">
+                <input name="name" id="name" onchange="this.value = capitalizeFirstLetter(this.value)" type="text" required="required"/>
+                <label for="input" class="control-label"> {{template "t-name.html" .}}</label><i class="bar"></i>
+              </div>  
+              </div>
+              {{if not .edit }}
+              <div class="col-6">
+              <div class="form-group">
+                <input id="prefix" name="prefix" onchange="this.value = this.value.toUpperCase()" type="text" required="required"/>
+                <label for="input" class="control-label"> {{template "t-prefix.html" .}}</label><i class="bar"></i>
+              </div>  
+            </div>  
+              {{end}}
+            </div>
+            <div class="col-12">
+              {{if not .edit }}
+            <button type="submit" class="btn btn--green btn--animated">
+                    {{template "t-create.html" .}}
+            </button>
+            {{else}}
+            <button type="submit" class="btn btn--green btn--animated">
+              {{template "t-update.html" .}}
+            </button>
+            {{end}}
+            <div onclick="goBack();" class="btn btn--red btn--animated">
+                
+                {{template "t-cancel.html" .}}
+        </div>
+          </form>                     
+        </div>
+<script type="text/javascript">
+  function afterLoad(){
+    highlightON();
+    {{if .edit }}
+      fillData();
+    {{end}}
+  }
+  
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+    villagesON()
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF(){
+    villagesOFF()
+  }
+
+  {{if .edit }}
+    function fillData(){
+        var name = document.getElementById("name");
+        name.value = {{.village.Name}};
+        var price = document.getElementById("prefix");
+        price.value = {{.village.Prefix}};
+      }
+      {{end}}
+        </script>
+      </body>
+      </html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Actions</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+        {{template "nav-service.html" .}}
+  <div class="margin-body">
+    {{template "information-start.html" .}}
+    {{template "i-actions-worker.html" .}}
+    {{template "information-end.html" .}}
+        <br>
+        {{template "service-picker.html" .}}
+      <br>
+  <div class="row">
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/wk-sales/{{.serviceType.Hex}}">
+            <img src=/static/svg/qr-pink.svg class="img-fluid image-dashboard" />
+           <p class="dashboard-text" > {{template "t-stock-generated.html" .}} </p>
+          </a>
+      </div>  
+      
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/wk/payments/{{.serviceType.Hex}}">
+            <img src=/static/svg/payment.svg class="img-fluid image-dashboard" />
+            <p class="dashboard-text"> {{template "t-payments.html" .}} </p>
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/wk/orders/{{.serviceType.Hex}}">
+            <img src=/static/svg/products-hover.svg class="img-fluid image-dashboard" />
+            {{if eq "english" .GLOBAL.language }}
+            <p class="dashboard-text"> Worker Orders </p>
+            {{else if eq "swahili" .GLOBAL.language}}
+            <p class="dashboard-text"> Maagizo ya Wafanyakazi </p>
+            {{else if eq "french" .GLOBAL.language }}
+            <p class="dashboard-text" > Commandes de travailleurs </p>
+            {{else if eq "german" .GLOBAL.language }}
+            <p class="dashboard-text" > Arbeiterorden </p>
+            {{else if eq "spanish" .GLOBAL.language }}
+            <p class="dashboard-text" > Ordenes a trabajadores </p>
+            {{end}}
+          </a>
+      </div>  
+
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/wk/index/{{.serviceType.Hex}}">
+            <img src=/static/svg/type.svg class="img-fluid image-dashboard" />
+            <p class="dashboard-text" >
+                {{template "t-type.html" .}}
+            </p>
+          </a>
+      </div>  
+    </div>
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      recordsON()
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      recordsOFF()
+    }    
+  </script>
+</body>
+</html>

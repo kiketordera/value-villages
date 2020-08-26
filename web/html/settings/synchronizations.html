@@ -1,0 +1,114 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <title>Syncs</title>
+    {{template "imports.html"}}
+  </head>
+  <body onload="afterLoad()">
+      {{template "nav-activity.html" . }}
+      <div class="margin-body" >
+        <div id="app">
+        {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-search-end.html" .}}
+          <!-- VUE STARTS -->
+          <div >
+            <div class="table-title">
+              <p> {{if eq "export" .opt}}
+                Exports
+            {{else}}
+                Imports
+            {{end}} 
+          </p>
+        </div>
+              <table class="table">
+                  <thead>
+                <tr class="table-header center">
+                    <th @click="sort('date')"> &nbsp; 
+                        {{template "t-date.html" .}}
+                    </th> 
+                    <th @click="sort('villageemitername')"> 
+                        Village from
+                    </th> 
+                    <th @click="sort('villagereceiverame')"> 
+                      Village to
+                  </th> 
+                  <th @click="sort('villagereceiverame')"> 
+                    Is done?
+                </th> 
+                    <th @click="sort('admin')">
+                        User
+                    </th> 
+                    <th class="center"> 
+                        Download
+                      </th>
+                </tr>
+              </thead>
+                <tbody class="table-body center">
+                  <tr class=" center" v-for="sale in sortedSales">
+                      <td> *((sale.date))  </td>
+                    <td > *((sale.villageemitername)) </td>
+                    <td > *((sale.villagereceiverame)) </td>
+                    <td > *((sale.isdone)) </td>
+                    <td > *((sale.admin)) </td>
+                    <td>
+                        <a v-bind:href="sale.path"> 
+                        <img type="image" src="/static/svg/download.svg" class="icon-table" /> 
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+                  {{template "pagination.html" }}
+                </div>
+              </div>
+     {{if eq "export" .opt}}
+                {{if not .syncs}}
+                <p class="empty-field center">  You still have no Exports in the database. <br/>
+                <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+                You can create a new Exports clicking the button on the right, and then every export created will be display here,<br/> 
+                where you can search  and edit them. </p>    
+              {{end}}
+     {{else}}
+     {{if not .syncs}}
+     <p class="empty-field center">  You still have no Imports in the database. <br/>
+     <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+     You can create a new Import clicking the button on the right, and then every import created will be display here,<br/> 
+     where you can search  and edit them. </p>    
+   {{end}}
+     {{end}}
+
+     
+                 <div class="normal-button">
+                    {{if eq "export" .opt}}
+                  <a href="/settings/choose-village-to-sync" class="btn btn--blue btn--animated">  {{template "t-new-export.html" .}} </a>
+                    {{else}}
+                    <a href="/settings/new-import" class="btn btn--blue btn--animated"> {{template "t-new-import.html" .}}</a>
+                    {{end}}
+                  </div>
+     </div>
+     <!-- HERE WE TELL VUE THE PARAMETERS TO SEARCH IN THE TABLE -->
+     <script type="text/javascript">
+     {{template "vue-init.html" .}}
+        c.date.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+        c.admin.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0  || 
+        c.village.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)); 
+     {{template "vue-final.html" .}}
+    </script>
+  </body>
+  <script type="text/javascript">
+        function afterLoad() {
+          highlightON();
+        }
+
+        //Highlight the icon Settings in the navigation Bar
+        function highlightON() {
+          syncON();
+        }
+
+        //Removes the highligh from the navigation bar
+        function highlightOFF() {
+          syncOFF();
+        }
+  </script>
+</html>

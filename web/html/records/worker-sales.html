@@ -1,0 +1,92 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Worker Sales</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+  <div class="margin-body">
+  <div class="row">
+    <div class="col-12" id="app">
+      {{template "information-start.html" .}}
+      {{template "i-worker-sale.html" .}}
+      {{template "information-search-end.html" .}}
+
+      <div class="table-title">
+        <p> Worker Sales </p>
+  </div>
+
+      <table class="table">
+        <thead class="table-header">
+          <tr>
+            <th class="center">
+              Item
+            </th>
+            <th class="center">
+                {{if eq "english" .GLOBAL.language }}
+                User 
+             {{else if eq "swahili" .GLOBAL.language}}
+             Mtumiaji
+             {{else if eq "french" .GLOBAL.language }}
+             Utilisateur
+               {{else if eq "german" .GLOBAL.language }}
+               Nutzer
+               {{else if eq "spanish" .GLOBAL.language }}
+              Usuario
+               {{end}}
+            </th>
+            <th class="center">
+              {{template "t-quantity.html" .}}  
+          </th>
+            <th class="center">
+                {{template "t-date.html" .}}  
+            </th>
+          </tr>
+        </thead>
+        <tbody class="table-body center">
+          <tr class=" center" v-for="sale in sortedSales">
+            <td> *((sale.categoryname)):  *((sale.itemname))</td>
+            <td>*((sale.username))</td>
+            <td>*((sale.quantity))</td>
+            <td>*((sale.date))</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+      {{if not .ordersHTML}}
+      <p class="empty-field center">  You still have no Worker Sales in the database. <br/>
+      <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+      You can create a new Worker Sale clicking the button on the right, and then every sale created will be display here,<br/> 
+      where you can search  and edit them. </p>    
+    {{end}}
+        <div class="btn btn--blue">
+          <a href="/records/new-worker-sale/{{.serviceType.Hex}}">
+            {{template "t-new-worker-sale.html" .}}
+          </a>
+        </div>
+      </div>
+  </div>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      recordsON();
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      recordsOFF();
+    }    
+  </script>
+    <script type="text/javascript">
+      {{template "vue-init.html" .}}
+         c.categoryname.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0  || 
+         c.username.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0  || 
+        c.username.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0))); 
+      {{template "vue-final.html" .}}
+     </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{{if eq "swahili" .GLOBAL.language }}
+Kwa msaada wa
+{{else if eq "french" .GLOBAL.language }}
+Avec le soutien de
+{{else if eq "german" .GLOBAL.language }}
+Mit der Unterstützung von
+{{else if eq "spanish" .GLOBAL.language }}
+Con el apoyo de
+{{else}}
+With the support of
+{{end}}
+
+

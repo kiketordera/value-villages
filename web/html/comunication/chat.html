@@ -1,0 +1,143 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Items to {{.service.Name}}</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-comunication.html" .}}
+    {{$sent := .sent}}
+    {{$numberusers := len (.users)}}
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+        {{template "i-chat.html" .}}
+        {{template "information-end.html" .}}
+        <div class="col-12">
+            <header class="title">Conversation with: </header>
+            <div class="row">
+                {{range .users }}
+                <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                    <img src="{{.Photo}}" class="img-fluid image-rounded" />
+                  <br>
+                  <p class="">{{.Name}} {{.Surname}}</p>
+                </div>
+                {{end}}
+              </div>
+        </div>
+
+
+        <div class="col-12">
+            {{range .messages }}
+            <div class="row">
+                <header class="title">   {{.Date}}  </header>
+
+                <header class="title">{{range .Messages}}</header> 
+
+             
+                <div class="col-12">
+                 {{if .Photo}}   <img src="{{.Photo}}" class="img-fluid image-square-rounded {{.Class}}" />  {{end}}
+                  {{if .Audio}}    <audio id="myAudio" preload="none"> 
+                      <source src="{{.Audio}}" type="audio/mp3">
+                      Your browser does not support the audio element.
+                    </audio>
+                    <input onclick="playAudio()" type="image" src="/static/svg/listen.svg" style="max-height: 90px; max-width: 90px;"
+                      name="saveForm" class="btTxt submit" id="saveForm" /> 
+                    {{end}}
+                  <br>
+                  <div class="{{.Class}}">
+                      <p>
+                       {{if gt $numberusers 2 }}
+
+                        [{{.User}}] 
+                        {{end}}
+                        {{.Time}}  {{.Text}}</p>
+                </div>
+                </div> 
+                {{end}} 
+              </div><br><br>
+              {{end}}
+        </div>
+
+
+
+
+    <form onsubmit="return validateForm();" style="margin-top: 100px;" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+           
+        <div class="row" >
+                <div id="down" class="col-12">
+                  <textarea  onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field"
+                  name="message" id="message" placeholder="Write here your message" rows="6" required></textarea>
+                   
+            </div>
+          </div>  
+
+<br>
+<div class="row">
+  <div class="col-6">
+    {{template "upload-img-no-required.html" .}}
+  </div>
+  {{template "upload-audio.html" .}}
+</div>
+          
+          <div class="custom-file">
+                <button type="submit" class="btn btn--green">Send</button>
+                <a href="/comunication/conversations" >
+                  <div href="" class="btn btn--red">
+                    {{template "t-back.html" .}}
+ 
+                      </div></a>
+</div>
+
+            </div>
+    </form>
+
+        
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+  function afterLoad(){
+    highlightON();
+    scrollBottom();
+  }
+
+  function scrollBottom() {
+    document.getElementById('down').scrollIntoView();
+    window.setTimeout( function () { top(); }, 2000 );
+};
+  
+  
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON() {
+      conversationsON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      conversationsOFF()
+    }    
+
+  function validateForm() {
+      //Validation for the field Name
+      var x = document.forms["myForm"]["message"].value;
+      if (x == "") {
+        alert("Message must be filled out, can't be empty!");
+        var element = document.getElementById("message");
+        element.classList.add("is-invalid");
+        return false;
+      } else {
+        var element = document.getElementById("message");
+        element.classList.remove("is-invalid");
+      }
+   }
+
+  </script>
+</body>
+
+</html>

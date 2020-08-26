@@ -1,0 +1,164 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title> {{template "t-log-in.html" .}}</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+
+  {{template "nav-home.html" .}}
+  <div class="row" style="margin-top: 50px;">
+      <div class="col-6 offset-1" style="margin-bottom:-35px;">
+          <a href="/log-in" style="display: block; z-index: 1;">
+                <object data="/static/svg/log-in.svg" width="65px;" class="image-change-log-in" style="z-index: -1; pointer-events: none;" > </object>
+          </a>
+        </div>
+  </div>
+  <div class="margin-body-log-in-worker ">
+    <div class="col-12">
+      <form onsubmit="return validateForm()" name="myForm" id="myForm" role="form " method="post" enctype="multipart/form-data">
+        <br><br>
+        <div class="row"> {{range .workers }}
+          <div class="col-6 col-sm-4 col-lg-3 center">
+            <div class="col-12">
+              <img id="{{.ID.Hex}}" src="/local/users/{{.Username}}/{{.Photo}}" class=" image-rounded no-selected img-zoom-min" />
+            </div>
+            <div class="col-12">
+              <label class="form-text">{{.Name}}</label>
+              <input style=" display: none" type="radio" onclick="increaseProduct()" name="workerID"
+                id="worker-{{.ID.Hex}}" value="{{.ID.Hex}}">
+            </div>
+          </div>
+          {{end}}
+
+        </div>
+        <form onsubmit="return validateForm()" name="myForm" id="myForm" role="form " method="post" enctype="multipart/form-data">
+          <input type="password" style="margin-top: 10px; display: none;" name="password" id="password" class="form-control form-field"
+            placeholder="Password" readonly="true">
+          <div id="workerPassword">
+            <div class="row swing-in-top-fwd" style=" margin-top: 4%;">
+              <div class="center-objects">
+                <img src="/static/svg/interrogation.svg" class=" icons-password-write" id="interrogation1">
+                <img src="/static/svg/interrogation.svg" class=" icons-password-write" id="interrogation2">
+                <img src="/static/svg/interrogation.svg" class=" icons-password-write" id="interrogation3">
+                <img src="/static/svg/interrogation.svg" class=" icons-password-write" id="interrogation4">
+            </div>
+            </div>
+            <div class=""  class="slide-in-fwd-center">
+            <div class="row center" style="margin-top: 4%;">
+              <div class="center-objects">
+                <img src="/static/img/login/Animals_OFF/Lion_OFF.png" onclick="lionClick()" class=" icons-worker-password img-zoom-min scale-9" id="lion">
+                <img src="/static/img/login/Animals_OFF/Giraffe_OFF.png" onclick="giraffeClick()" class=" icons-worker-password img-zoom-min" id="giraffe">
+                <img src="/static/img/login/Animals_OFF/Snake_OFF.png" onclick="snakeClick()" class=" icons-worker-password img-zoom-min"
+                  id="snake">
+                  </div>
+            </div>
+            <div class="row center" style="margin-top: 1%;">
+              <div class="center-objects">
+                <img src="/static/img/login/Animals_OFF/Rhino_OFF.png" onclick="rhinoClick()"
+                  class=" icons-worker-password img-zoom-min" id="rhino">
+                <img src="/static/img/login/Animals_OFF/Elephant_OFF.png"
+                  onclick="elephantClick()" class=" icons-worker-password img-zoom-min" id="elephant">
+                <img src="/static/img/login/Animals_OFF/Cow_OFF.png"
+                  onclick="cowClick()" class=" icons-worker-password img-zoom-min" id="cow">
+              </div>
+            </div>
+            <div class="row center" style="margin-top: 1%;">
+              <div class="center-objects">
+                <img  src="/static/img/login/Animals_OFF/Camel_OFF.png"
+                  onclick="camelClick()" class=" icons-worker-password img-zoom-min" id="camel">
+                <img src="/static/img/login/Animals_OFF/Panther_OFF.png" onclick="pantherClick()" class=" icons-worker-password img-zoom-min"
+                  id="panther">
+                <img src="/static/img/login/Animals_OFF/Monkey_OFF.png" onclick="monkeyClick()" class=" icons-worker-password img-zoom-min"
+                  id="monkey">
+              </div>
+            </div>
+
+            <div class="row center" style="margin-top: 4vw;">
+              <div class="center-objects">
+                <img src="/static/svg/problem.svg"
+                onclick="deleteClick()" class=" icons-worker-password img-zoom-min" style="margin-right: 55px;" id="deleteButton">
+                <input type="image" style="float: right;" class="icons-worker-password img-zoom-min"  src="/static/svg/go.svg" id="button">
+
+              </div>
+            </div>
+
+            </div>
+           
+          </div>
+          <div class="row center" id="passwordShow">
+          </div>
+        </form>
+      </form>
+    </div>
+  </div>
+  <script type="text/javascript">
+      var countItem = 0
+    
+        function increaseItem(){
+            countItem++;
+          }
+
+          var countPass = 0
+    
+    function increasePass(){
+      countPass++;
+      }
+   
+    /* Change the selec image if the user clicks the image */
+    $('.image-rounded').click(function (e) {
+      if ($(this).hasClass('no-selected')) {
+        var product = $(this).attr('id');
+        console.log($("#products-" + product));
+        $(".image-rounded").removeClass("selected");
+        $(".image-rounded").addClass("no-selected");
+        $("#worker-" + product).prop("checked", true);
+        $(this).addClass("selected");
+        $(this).removeClass("no-selected");
+        increaseItem();
+      }
+      else if ($(this).hasClass("selected")) {
+        var product = $(this).attr('id');
+        $(this).addClass("no-selected");
+        $("#worker-" + product).prop("checked", false);
+        $(this).removeClass("selected");
+      }
+    });
+
+    $('.icons-worker-password').click(function (e) {
+      increasePass();
+    }  );
+
+    function validateForm() {
+    // Validation for product select
+    if (countItem==0) {
+      alert("You should select a User for log in!");
+      return false;
+    }
+
+    if (countPass < 4) {
+        alert("The password should be 4 characters!");
+        return false;
+      }
+    }
+    
+
+  function afterLoad() {
+   highlightON();
+ }
+
+ //Highlight the icon Settings in the navigation Bar
+ function highlightON() {
+   demoON();
+ }
+
+ //Removes the highligh from the navigation bar
+ function highlightOFF() {
+  demoOFF();
+ }
+</script>
+</body>
+
+</html>

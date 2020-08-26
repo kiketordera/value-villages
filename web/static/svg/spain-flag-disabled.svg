@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.3;
+      }
+
+      .cls-2 {
+        fill: #ffda44;
+      }
+
+      .cls-3 {
+        fill: #d80027;
+      }
+    </style>
+  </defs>
+  <g id="spain-flag" class="cls-1">
+    <path id="Path_1109" data-name="Path 1109" class="cls-2" d="M0,256a255.45,255.45,0,0,0,15.923,89.043L256,367.3l240.077-22.261a256.93,256.93,0,0,0,0-178.086L256,144.7,15.923,166.957A255.45,255.45,0,0,0,0,256Z"/>
+    <g id="Group_2148" data-name="Group 2148">
+      <path id="Path_1110" data-name="Path 1110" class="cls-3" d="M496.077,166.957C459.906,69.473,366.071,0,256,0S52.094,69.473,15.923,166.957Z"/>
+      <path id="Path_1111" data-name="Path 1111" class="cls-3" d="M15.923,345.043C52.094,442.527,145.929,512,256,512s203.906-69.473,240.077-166.957Z"/>
+    </g>
+  </g>
+</svg>

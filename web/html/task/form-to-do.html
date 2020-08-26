@@ -1,0 +1,260 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <title>New To do</title>
+    {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+        {{template "nav-to-do.html" .}}
+    <div class="margin-body-form">   
+        {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-end.html" .}}
+        <div class="col-12">
+                {{if .edit }}
+            <header class="title">
+                   Edit a To-do
+            </header>
+            {{else}}
+            <header class="title">
+                    Create a new To-do
+            </header>
+            {{end}}
+            <form onsubmit="return validateForm()" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+                <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <input name="name" id="name" onchange="this.value = capitalizeFirstLetter(this.value)" type="text" required="required"/>
+                        <label for="input" class="control-label"> {{template "t-name.html" .}}</label><i class="bar"></i>
+                      </div>               </div>
+            <div class="col">
+                <select class="custom-select form-control form-field" name="timechecking" id="timechecking" required>
+                    <option value="" disabled selected> {{template "t-check-every.html" .}}</option>
+                    <option value="once">Only once</option>
+                    <option value="monthly">Every month</option>
+                    <option value="weekly">Every week</option>
+                    <option value="daily">Every day</option>
+                  </select>
+                </div>
+
+        </div>
+                <p class="form-text">  {{template "t-select-user.html" .}} </p><br>
+                <div class="row" style="margin-bottom: 20px;">
+                        {{range .users }}
+                        <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid ">
+                          <div class="col-12">
+                            <img id="{{.ID.Hex}}" src="/local/users/{{.Username}}/{{.Photo}}" class="img-fluid image-rounded no-selected image-workers" />
+                          </div>
+                          <div class="col-12">
+                            <label class="form-text">{{.Name}}</label>
+                            <br>
+                            <input style="margin-top: -90%; display: none" type="radio" onclick="increaseProduct()" name="workerID"
+                              id="ID-{{.ID.Hex}}" value="{{.ID.Hex}}">
+                          </div>
+                        </div>
+                        {{end}}
+                      </div>
+                      <textarea onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field"
+                      name="description" id="description" rows="6" placeholder="Describe here what are you going to track" required="required"></textarea>
+            
+                    <!-- DESCRIPTIONS -->
+                        <div class="field" >
+                            <div id="add-description"> 
+                                <img  src="/static/svg/add-component.svg" class="img-zoom-min add-img-form-to-do" id="deleteButton">
+                            </div>
+                            <h2 class=""> Text descriptions </h2>
+                        </div>
+                        <div id="description-fields">
+                        </div>
+                            <hr>
+                    <!-- CHECKBOXES -->
+                    <div class="field" >
+                        <div id="add-checkbox"> 
+                            <img  src="/static/svg/add-component.svg" class="img-zoom-min add-img-form-to-do" id="deleteButton">
+                        </div>
+                        <h2 class=""> Checkboxes </h2>
+                    </div>
+                    <div id="checkbox-fields">
+                    </div>
+                        <hr>
+
+                        <!-- Numbers -->
+                    <div class="field" >
+                        <div id="add-number"> 
+                            <img  src="/static/svg/add-component.svg" class="img-zoom-min add-img-form-to-do" id="deleteButton">
+                        </div>
+                        <h2 class=""> Numbers </h2>
+                    </div>
+                    <div id="number-fields">
+                    </div>
+                        <hr>
+                    <!-- Photos -->
+                    <div class="field" >
+                        <div id="add-photo"> 
+                            <img  src="/static/svg/add-component.svg" class="img-zoom-min add-img-form-to-do" id="deleteButton">
+                        </div>
+                        <h2 class=""> Photos (introduce 1 by 1) </h2>
+                    </div>
+                    <div id="photo-fields">
+                    </div>
+                        <hr>
+
+
+
+                        <div class="row">
+                        <div class="col-6">
+                            {{template "qr-vue.html"}}
+                        </div>
+                        <div class="col-6" style="margin-top: 30px;">
+                            <label class="checkbox path">
+                              <div class="text-checkbox-long">
+                             <input type="checkbox" name="istrackable" value="istrackable" id="istrackable"> 
+                             <svg style="margin-left: 0px; width: auto" viewBox="0 0 21 21">
+                                 <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                             </svg> 
+                           </div>
+                           {{template "t-checkbox-track-QR.html" .}}
+                         </label>
+                       </div>
+                       
+                    </div>
+                   
+                    <div class="col-12">
+                                  {{if .edit }}
+                                  <button type="submit" class="btn btn--green">
+                                        {{template "t-update.html" .}}
+                                  </button>
+                                  {{else}}
+                                  <button type="submit" class="btn btn--green">
+                                        {{template "t-create.html" .}}
+                                  </button>
+                                  {{end}}
+                                  <div onclick="goBack();" class="btn btn--red">
+                                    {{template "t-cancel.html" .}}
+                                  </div>
+
+                </div>
+                </div><br><br><br><br> 
+                <br><br><br><br>
+        </div>
+        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+
+        function afterLoad() {
+            highlightON();
+            {{if .edit }}
+                fillData();
+            {{end}}
+        }
+        
+        {{if .edit }}
+        function fillData(){
+            var title = document.getElementById("title");
+            title.value = {{.step.Title}};
+            var ind = document.getElementById("indexOrder");
+            ind.value = {{.step.IndexOrder}};
+            var dd = document.getElementById("description");
+            dd.innerHTML = {{.step.Description}};
+        }
+        {{end}}
+        
+    </script>
+
+    <script type="text/javascript">
+        //Highlight the icon Settings in the navigation Bar
+        function highlightON() {
+            calendarON();
+        }
+        //Removes the highligh from the navigation bar
+        function highlightOFF() {
+            calendarOFF();
+        }
+
+        var countProduct = 0;
+
+        function increaseProduct() {
+            countProduct++;
+        }
+       
+        function validateForm() {
+            // Validation for product select
+            if (countProduct == 0) {
+                alert("You should select a User for the To do!");
+                return false;
+            }
+            
+            if (document.getElementById("istrackable").checked == true) {
+                if (document.getElementById("qr").value == "") {
+                    alert("You should scan a QR of type Task!");
+                    return false;
+                }
+            }
+        }
+
+        $("#add-description").click(function() {
+            $("#description-fields").append('<div class="container-field-form" id="description-field"><div class="container-field-form__img remove"><img  src="/static/svg/problem.svg" class="icon-to-do-form img-zoom-min " id="deleteButton"></div><div class="container-field-form__field form-field"><textarea onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field"  name="descriptionfield" id="descriptionfield" rows="3" placeholder="Enter the description"></textarea></div></div>')
+        });
+
+        $("#add-checkbox").click(function() {
+            $("#checkbox-fields").append('<div class="container-field-form" id="checkbox-field"><div class="container-field-form__img remove"><img  src="/static/svg/problem.svg" class="icon-to-do-form img-zoom-min " id="deleteButton"></div><div class="container-field-form__field form-field"><textarea onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" name="checkboxes" id="checkboxes" rows="3" placeholder="Mark this checkbox if..."></textarea></div></div>')
+        });
+
+        $("#add-number").click(function() {
+            $("#number-fields").append('<div class="container-field-form" id="number-field"><div class="container-field-form__img remove"><img  src="/static/svg/problem.svg" class="icon-to-do-form img-zoom-min " id="deleteButton"></div><div class="container-field-form__field form-field"><textarea onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" name="numbers" id="numbers" rows="3" placeholder="How many...? How much...? Count the numbers of..."></textarea></div></div>')
+        });
+
+        $("#add-photo").click(function() {
+            $("#photo-fields").append('<div class="container-field-form" id="photo-field">  <div class="container-field-form__img remove"> <img  src="/static/svg/problem.svg" class="icon-to-do-form img-zoom-min " id="deleteButton"> </div> <div class="container-field-form__field form-field"> <textarea onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" name="phototitle" id="phototitle" rows="3" placeholder="Describe what should be photographed"></textarea> </div> <div class="upload-col-form-to-do"> <input type="file" class="input-photo-form-to-do" onchange="readURL(this);" accept="image/*" name="photo" id="photo" required /> <img src="#" alt="your image" class="image-square-rounded photo-form-to-do" /> </div>  </div>')
+        });
+
+
+  /* Change the selec image if the user clicks the image */
+  $('.image-workers').click(function (e) {
+
+    if ($(this).hasClass('no-selected')) {
+    var product = $(this).attr('id');
+    console.log($("#workers-" + product));
+    $(".image-workers").removeClass("selected");
+    $(".image-workers").addClass("no-selected");
+    $("#ID-" + product).prop("checked", true);
+    $(this).addClass("selected");
+    $(this).removeClass("no-selected");
+    increaseProduct();
+}
+else if ($(this).hasClass("selected")) {
+  var product = $(this).attr('id');
+
+  $(this).addClass("no-selected");
+  $("#ID-" + product).prop("checked", false);
+  $(this).removeClass("selected");
+
+}
+});
+
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // $('#blah')
+                    $('div#photo-fields div.container-field-form:last img.photo-form-to-do')                   
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $('html').on("click", "div.remove", function() {
+            $(this).parent().remove();
+        });
+
+    </script>
+</body>
+</html>

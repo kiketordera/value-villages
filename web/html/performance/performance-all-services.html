@@ -1,0 +1,139 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>{{template "t-performance.html" .}}</title>
+  {{template "imports.html"}}
+  <script src="/static/js/charts.js" type="text/javascript" language="javascript"></script>
+  <style type="text/css">
+    .increase-text {
+        width: 1.9em;
+        height: 1.9em;
+    }
+</style>
+</head>
+<body onload="afterLoad()">
+  {{template "nav-service.html" .}}
+  {{$serviceType := .serviceType}}
+  {{$role := .GLOBAL.role}}
+      <div class="margin-body">
+        {{template "information-start.html" .}}
+        {{template "i-performance-services.html" .}}
+        {{template "information-end.html" .}}
+      <div class="row">
+        {{range .villages }}
+        <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+          <a href="/performance/service/{{.ID.Hex}}/{{$serviceType}}">
+            <img src="{{.Photo}}" class="img-fluid image-square-rounded img-zoom-min" /> </a>
+          <br>
+          <label class="body-text">  {{if eq "admin" $role }} {{.Village}}:  {{end}}{{.Name}}</label>
+        </div>
+        {{end}}
+      </div>
+      <br><br>
+
+      <div class="row">
+      	<div class="col-xs-4 col-4">
+      		<div class="row">
+      			<div class="col-xs-6 col-6">
+      				<img src="/static/svg/increase.svg" class="img-fluid " />
+      			</div>
+      			<div class="col-6">
+      				<div class="first_number">
+                {{.increase}}
+            	</div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="performance-symbols">
+                    <ul id="first111">
+                    </ul>
+                    <ul id="second111">
+                    </ul>
+                    <ul id="third111">
+                    </ul>
+                    <script type="text/javascript">
+                      putSymbols({{.increase}}, 111);
+                    </script>
+                  </div>
+          			</div>
+              </div>
+            </div>
+      		</div>
+      	</div>
+      	<div class="col-xs-4 col-4">
+      		<div class="row">
+      			<div class="col-6">
+      				<img src="/static/svg/decrease.svg" class="img-fluid " />
+      			</div>
+      			<div class="col-6">
+      				<div class="second_number">
+              	{{.decrease}}
+            	</div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="performance-symbols">
+                    <ul id="first222">
+                    </ul>
+                    <ul id="second222">
+                    </ul>
+                    <ul id="third222">
+                    </ul>
+                    <script type="text/javascript">
+                      putSymbols({{.decrease}}, 222);
+                    </script>
+                  </div>
+                </div>
+              </div>
+      			</div>
+      		</div>
+      	</div>
+      	<div class="col-xs-4 col-4">
+      		<div class="row">
+      			<div class="col-6">
+      				<img src="/static/svg/total.svg" class="img-fluid " />
+      			</div>
+      			<div class="col-6">
+      				<div class="third_number">
+                {{.total}}
+            	</div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="performance-symbols">
+                    <ul id="first333">
+                    </ul>
+                    <ul id="second333">
+                    </ul>
+                    <ul id="third333">
+                    </ul>
+                    <script type="text/javascript">
+                      putSymbols({{.total}}, 333);
+                    </script>
+                  </div>
+                </div>
+              </div>
+      			</div>
+      		</div>
+      	</div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      performanceON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      performanceOFF()
+    }    
+  </script>
+</body>
+
+</html>

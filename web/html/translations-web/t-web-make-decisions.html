@@ -1,0 +1,13 @@
+{{if eq "swahili" .GLOBAL.language }}
+Fanya <span style="color: #63B190">maamuzi</span> na <span style="color: #63B190">data</span> kwenye meza
+{{else if eq "turkana" .GLOBAL.language}}
+Tosub <span style="color: #63B190">atiakun</span> aka <span style="color: #63B190">adata</span> ania emeza
+{{else if eq "french" .GLOBAL.language }}
+Prendez des <span style="color: #63B190">décisions</span> avec toutes les <span style="color: #63B190">données</span> sur la table
+{{else if eq "german" .GLOBAL.language }}
+ <span style="color: #63B190">Entscheidungen</span> mit den <span style="color: #63B190">Daten</span> auf dem Tisch treffen
+{{else if eq "spanish" .GLOBAL.language }}
+Toma <span style="color: #63B190">decisiones</span> con los <span style="color: #63B190">datos</span> en la mesa
+{{else}}
+Make <span style="color: #63B190">decisions</span> with the <span style="color: #63B190">data</span> on the table
+{{end}}

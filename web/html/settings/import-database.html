@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Import DataBase</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+{{template "nav-activity.html" . }}
+<div class="margin-body">
+  {{template "information-start.html" .}}
+  {{template "i-import-db.html" .}}
+  {{template "information-end.html" .}}
+    <form onsubmit="return validateForm()" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+              <div class="row">
+                  <div class="col-12 center">
+                      <div class="image-upload">
+                          <label for="zip">
+                              <img id="FRONT" src="/static/svg/import-database.svg"
+                              class="img-fluid image-square-rounded no-selected image-tactil" />
+                              <p class="text-services">Import Database</p>
+                            <input type="file" class="custom-file-input" id="zip" name="zip" accept=".zip" required>
+                          </label>  
+                        </div>   
+                  </div> 
+          </div>
+
+          <button type="submit" class="btn btn--green btn--animated">
+            Import
+      </button>
+      <div onclick="goBack();" class="btn btn--red btn--animated">
+        {{template "t-cancel.html" .}}
+      </div>
+</form>
+</div>
+    <script type="text/javascript">
+
+      function afterLoad(){
+        highlightON();
+      }
+
+
+      //Highlight the icon Settings in the navigation Bar
+      function highlightON() {
+        syncON();
+      }
+
+      //Removes the highligh from the navigation bar
+      function highlightOFF() {
+        syncOFF();
+      }    
+
+       $('.image-tactil').click(function (e) {
+            if ($(this).hasClass('no-selected')) {
+                var product = $(this).attr('id');
+                console.log($("#workers-" + product));
+                $("#ID-" + product).prop("checked", true);
+                $(this).addClass("selected");
+                $(this).removeClass("no-selected");
+                console.log("Entramos en no-selected");
+            }
+            else if ($(this).hasClass("selected")) {
+                var product = $(this).attr('id');
+                $(this).addClass("no-selected");
+                $("#ID-" + product).prop("checked", false);
+                $(this).removeClass("selected");
+                console.log("Entramos en selected");
+            }
+        });
+
+
+      function validateForm() {
+        var x = document.forms["myForm"]["zip"].value;
+        if (x == "") {
+            alert("ZIP file must be filled out, can't be empty!");
+            var element = document.getElementById("zip");
+            element.classList.add("is-invalid");
+            return false;
+        } else {
+            var element = document.getElementById("zip");
+            element.classList.remove("is-invalid");
+        }
+      }
+
+    </script>
+  </body>

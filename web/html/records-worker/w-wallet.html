@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Records Wallet </title>
+  {{template "imports.html"}}
+
+</head>
+
+<body onload="afterLoad()">
+  {{template "nav-records-worker.html"}}
+  <div class="margin-body" id="app">
+
+
+      <div class="row">
+          <div class="col-12">
+            {{template "information-start.html" .}}
+        {{template "i-wallet.html" .}}
+        {{template "information-end.html" .}}
+    
+    
+        <div >
+          <div class="table-title">
+            <p> Records Wallet </p>
+      </div>
+            <table class="table">
+                <thead>
+              <tr class="table-header center">
+                  <th @click="sort('itemName')">
+                  <img src="/static/svg/item.svg" alt="monthsvg"> <br>
+                  Item
+                </th>
+                <th @click="sort('dateunix')">
+                  <img src="/static/svg/date.svg" alt="shillings"> <br>
+                  Date
+                </th>
+                <th @click="sort('dateunix')">
+                    <img src="/static/svg/date.svg" alt="shillings"> <br>
+                    Service
+                  </th>
+                <th @click="sort('quantity')">
+                  <div class="col-8">
+                    <img src="/static/svg/money-table.svg" alt="shillings"> <br>
+                    Quantity
+                  </div>
+                </th>
+                <th @click="sort('quantity')">
+                    <div class="col-8">
+                      <img src="/static/svg/money-table.svg" alt="shillings"> <br>
+                      Balance
+                    </div>
+                  </th>
+              </tr>
+            </thead>
+              <tbody class="table-body center">
+                <tr class=" center" v-for="sale in sortedSales">
+                  <td> <img v-bind:src="sale.itemphoto" style="cursor: initial; max-height: 100; max-height: 100px" class="img-fluid image-square-rounded-table">
+                    <br>*((sale.itemname))</td>
+                  <td>*((sale.date))</td>
+                  <td>*((sale.servicename))</td>
+                  <td>*((sale.price))</td>
+                  <td>*((sale.balance))</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              {{template "pagination.html"}}
+          </div>
+          {{if not .wallet}}
+          {{template "empty-worker.html" .}}  
+        {{end}}
+
+          </div>
+      </div>
+
+  </div>
+  </div>
+</body>
+<script type="text/javascript">
+  {{template "vue-init.html" .}}
+    c.itemname.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+    c.servicename.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+    c.date.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+    c.price.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+    c.balance.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0))); 
+  {{template "vue-final.html" .}}
+</script>
+  <script type="text/javascript">
+    function afterLoad() {
+    highlightON();
+    }
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      walletON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      walletOFF()
+    }
+
+  </script>
+
+</body>

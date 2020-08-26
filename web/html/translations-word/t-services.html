@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+    Services 
+{{else if eq "swahili" .GLOBAL.language}}
+    Huduma
+    {{else if eq "turkana" .GLOBAL.language}}
+    Ang'arasit
+{{else if eq "french" .GLOBAL.language }}
+    Prestations de service
+{{else if eq "german" .GLOBAL.language }}
+    Dienstleistungen
+{{else if eq "spanish" .GLOBAL.language }}
+    Servicios
+{{end}}

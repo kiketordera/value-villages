@@ -1,0 +1,3 @@
+Here you can see all the information related with the report, the messages, photos and audios send, and if the report is still open, you can send new messages.
+
+If the report is close, you won't be able to send new messages.

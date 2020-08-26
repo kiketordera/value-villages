@@ -1,0 +1,49 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Records</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+        {{template "nav-to-do.html" .}}
+  <div class="margin-body">
+    {{template "information-start.html" .}}
+    {{template "i-task-user.html" .}}
+    {{template "information-end.html" .}}
+        <br>
+
+      <br>
+    {{if .todosHTML}}
+
+      <header class="title">Items to check</header>
+        <div class="row">
+            {{range .todosHTML}}
+              <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+                  <a href="/to-do/make-to-do/{{.ID.Hex}}">
+                    <img src=/static/svg/calendar-color.svg class="img-fluid image-dashboard" />
+                  <p class="dashboard-text" > {{.TitleToDo}} </p>
+                  </a>
+              </div>  
+            {{end}}
+        </div>
+    {{else}}
+   ENHORABUENA! hast terminado toas tus tareas!
+    {{end}}
+
+
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      calendarON()
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      calendarOFF()
+    }    
+  </script>
+</body>
+</html>

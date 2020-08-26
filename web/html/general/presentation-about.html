@@ -1,0 +1,213 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>About</title>
+  {{template "imports.html"}}
+  <style>
+    svg:not(:root) {
+      overflow: hidden;
+      width:100%;
+      max-width: 100%;
+      align-items: center;
+      align-self: center;
+      vertical-align: top;
+      margin-bottom: 0px;
+      margin-left: 0px;
+    }
+  </style>
+</head>
+<body onload="afterLoad()" >
+  {{template "nav-home.html"}}
+  <div class="margin-web">
+    <div class="center logo-home">
+      <img src="/static/img/home/vv-logo.png" class="product-image scale-in-center">
+    </div>
+    <p class="title-big a-expand"> {{template "t-web-wellcome.html" .}}</p>
+    <p class="title-normal a-title-appear-down">
+      {{template "t-web-open-source.html" .}}
+    </p>
+      <div class="img-background center">
+        {{template "animated-log-in.html"}}
+      </div>
+      <p class="title-mid-small">
+        {{template "t-web-all-necessary.html" .}}
+        </p>
+        <div class="flex-center mod-home-container center">
+          <div class="flex-center-col mod-home"><img src="/static/svg/workshop.png" alt=""> <p class="web-text">{{template "t-web-workshop-icon.html" .}}</p> </div>
+          <div class="flex-center-col mod-home"><img src="/static/svg/performance-color.svg" alt=""> <p class="web-text">{{template "t-web-performance-icon.html" .}}</p> </div>
+          <div class="flex-center-col mod-home"><img src="/static/svg/wifi.svg" alt=""> <p class="web-text">{{template "t-web-wifi-icon.html" .}}</p> </div>
+        </div>
+        <div class="flex-center" data-aos="zoom-out-up">
+          <p class="features-container-text">
+            {{template "t-web-most-ngo.html" .}}
+          </div>    
+  </div>
+  <div class="gradient gradient-color-1">
+    <div class="gradient-item">
+      <div class="text-container-gradient">
+        {{template "t-web-reinvent-login.html" .}}
+      </div>
+      <img src="/static/img/home/log-in.png" alt="" class="img-background">
+    </div>
+    <div class="gradient-item">
+      <img src="/static/img/home/dashboard.png" alt="" class="img-background">
+      <div class="text-container-gradient">
+        {{template "t-web-your-dashboard.html" .}}
+      </div>
+    </div>
+    <div class="gradient-item go-out">
+      <div class="text-container-gradient">
+        {{template "t-web-beautiful-numbers.html" .}}
+      </div>
+      <img src="/static/img/home/performance.png" alt="" class="img-background">
+    </div>
+    <div class="gradient-item go-out">
+      <img src="/static/img/home/products.png" alt="" class="img-background">
+      <div class="text-container-gradient">
+        {{template "t-web-watch-do.html" .}}
+      </div>
+    </div>
+  </div>
+
+
+  <p class="title-normal">{{template "t-web-icons-included.html" .}} </p>
+  {{template "carrousel-order.html"}}
+
+  <div class="gradient gradient-color-2">
+    <div class="gradient-item go-out">
+      <div class="text-container-gradient">
+        {{template "t-web-mind-your-step.html" .}}
+      </div>
+      <img src="/static/img/home/video.png" alt="" class="img-background">
+    </div>
+    <div class="gradient-item">
+      <img src="/static/img/home/transcations.png" alt="" class="img-background">
+      <div class="text-container-gradient">
+        {{template "t-web-your-production.html" .}}
+      </div>
+    </div>
+    <div class="gradient-item">
+      <div class="text-container-gradient"><br>
+        {{template "t-web-numerical.html" .}}
+      </div>
+      <img src="/static/img/home/index.png" alt="" class="img-background">
+    </div>
+    <div class="gradient-item go-out">
+      <img src="/static/img/home/track.png" alt="" class="img-background">
+      <div class="text-container-gradient">
+        {{template "t-web-controlled.html" .}}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="title-container-features">
+    <img src="/static/svg/qr-pink.svg" alt="" class="features-icon">
+    <p class="title-features" style="margin-left: 10px;">
+      {{template "t-web-track-system.html" .}}
+    </p>
+  </div>
+  <div class="extra-margin">
+  <div class="flex-center" data-aos="zoom-out-up">
+    <p class="features-container-text">
+      {{template "t-web-you-can-track.html" .}}
+</div>    
+</div>    
+
+<div class="center packaging">
+       <img src="/static/img/home/box.png"  class="img-packaging">
+</div>
+  <div class="extra-margin">
+  <p class="title-big" style="margin-top: 20px;">
+    {{template "t-web-with-love.html" .}}
+  </p>
+  <div class="flex-center-team mod-home-container center">
+    <div class="flex-center-col-team mod-home"  data-aos="zoom-out-up">
+      <div class="">
+        <a href="https://kike.me" target="_blank">  
+      <img src="/static/img/team/kike.jpeg" class="image-rounded-team img-zoom" alt=""> 
+        </a>
+        <p class="title-team">Kike Tordera</p>
+        <p class="area-team"> {{template "t-web-developer.html" .}} </p>
+        <p class="web-text text-person">{{template "t-web-kike.html" .}} </div>
+          <div class="social">
+         <a href="https://www.linkedin.com/in/kiketordera/" target="_blank"> <img src="/static/svg/linkedin.svg" alt=""> </a>
+         <a href="https://kike.me" target="_blank">   <img src="/static/svg/web.svg" alt="">  </a>
+         <a href="mailto:kiketordera@gmail.com" target="_blank">   <img src="/static/svg/mail.svg" alt="">  </a>
+       </div>
+        </div>
+        <div class="flex-center-col-team mod-home"  data-aos="zoom-out-up">
+          <a href="https://www.linkedin.com/in/obadiah-edamoe-ekiru-670721166/" target="_blank">
+          <img src="/static/img/team/bambu.jpeg" class="image-rounded-team img-zoom" alt=""> 
+          </a>
+            <p class="title-team">Obadiah Ekiru </p>
+            <p class="area-team"> {{template "t-web-graphic.html" .}}<br></p>
+            <p class="web-text text-person">
+              {{template "t-web-bambu.html" .}}            </p> 
+            <div class="social">
+              <a href="https://www.linkedin.com/in/obadiah-edamoe-ekiru-670721166/" target="_blank"> <img src="/static/svg/linkedin.svg" alt=""> </a>
+              <a href="https://www.linkedin.com/in/obadiah-edamoe-ekiru-670721166/" target="_blank">   <img src="/static/svg/web.svg" alt="">  </a>
+              <a href="mailto:ekiruobadiah@gmail.com" target="_blank">   <img src="/static/svg/mail.svg" alt="">  </a>
+            </div>
+          </div>
+            <div class="flex-center-col-team mod-home"  data-aos="zoom-out-up">
+              <a href="http://gabirocha.com" target="_blank">
+              <img src="/static/img/team/gabi.jpg" class="image-rounded-team img-zoom" alt=""> 
+              </a>
+                <p class="title-team">Gabi Rocha</p>
+                <p class="area-team"> {{template "t-web-disenadora.html" .}}<br></p>
+
+                <p class="web-text text-person">
+                  {{template "t-web-gabi.html" .}}
+                                </p> 
+                <div class="social">
+                  <a href="https://www.linkedin.com/in/gabirochadesign/" target="_blank"> <img src="/static/svg/linkedin.svg" alt=""> </a>
+                  <a href="http://gabirocha.com" target="_blank">   <img src="/static/svg/web.svg" alt="">  </a>
+                  <a href="mailto:gabriela@gabirocha.com" target="_blank">   <img src="/static/svg/mail.svg" alt="">  </a>
+                </div> 
+              </div>
+  </div>
+  
+  <p class="title-big"> {{template "t-web-awards.html" .}}</p>
+  <div class="flex-center-team"  data-aos="zoom-out-up">
+      <p class="web-text" style="max-width: 400px;">
+        {{template "t-web-competition.html" .}}
+      </p> 
+        <div class="flex">
+          <a href="https://blogthinkbig.com" target="_blank">   <img src="/static/img/team/think-big.jpeg" class="think-big" > </a>
+          <a href="https://www.fundaciontelefonica.com" target="_blank">    <img src="/static/img/team/telefonica.png" class="telefonica"  >  </a>
+    </div>
+</div>
+
+<p class="title-big"> {{template "t-web-support.html" .}}</p>
+<div class="flex-support " style="margin-bottom: 70px;">
+  <a href="https://thetotem.studio" target="_blank"> <img src="/static/img/team/logo-totem.png" class="img-support tt-big" > </a>
+  <a href="https://www.hn-bavaria.org" target="_blank"> <img src="/static/img/team/hn.jpg" class="img-support hn " > </a>
+  <a href="https://thetotem.studio" target="_blank"> <img src="/static/img/team/logo-totem.png" class="img-support tt-small" > </a>
+  <a href="https://www.upv.es" target="_blank"> <img src="/static/svg/upv.svg" class="img-support " >  </a>
+    <a href="https://www.learninglions.org" target="_blank"> <img src="/static/img/team/ll.png" class="img-support " >  </a>
+</div>
+
+<p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a  target="_blank" rel="cc:attributionURL" href="https://kike.me/projects/en/value-villages/about"><span rel="dct:title">Value Villages Open Soruce Web App</span></a> by <a  target="_blank" rel="cc:attributionURL" href="www.Kike.me"><span rel="cc:attributionName">Kike Tordera, Gabi Rocha and Obadiah Ekiru</span></a> is licensed under CC BY 4.0<a  target="_blank" href="https://creativecommons.org/licenses/by/4.0"><img style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="/static/svg/copy-right/by.svg" /><img  style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="/static/svg/copy-right/cc.svg" /></a></p>
+</div>
+
+  <script>
+         function afterLoad() {
+          highlightON();
+          AOS.init();
+        }
+
+        //Highlight the icon Settings in the navigation Bar
+        function highlightON() {
+          aboutON();
+        }
+
+        //Removes the highligh from the navigation bar
+        function highlightOFF() {
+          aboutOFF();
+        }
+  </script>
+</body>
+</html>

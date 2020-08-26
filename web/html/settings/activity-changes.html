@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <title>Settings</title>
+    {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-activity.html" .}}
+    <div class="margin-body">
+        {{template "information-start.html" .}}
+        {{template "i-activity-changes.html" .}}
+        {{template "information-end.html" .}}
+        <div class="row">
+            <div class="col-12">
+                <div class="table-title">
+                    <p> {{if .changes}}
+                        Changes
+                  {{else}}
+                        Values
+                  {{end}} </p>
+              </div>
+                <table class="table">
+                    <thead class="table-header">
+                        <tr>
+                            {{if .changes}}
+                                <th> &nbsp; Atribute that was changed</th>
+                                <th>Value Before the change</th>
+                                <th>Value After the change</th>
+                            {{else}}
+                                <th>&nbsp; Atribute</th>
+                                <th>Value</th>
+                            {{end}}
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        {{if .changes}}
+                            {{range .changes}}
+                            <tr>
+                                <td> {{.NameAttribute}} </td>
+                                <td> {{.Before}} </td>
+                                <td> {{.After}} </td>
+                            </tr>
+                            {{end}}
+                        {{else}}
+                        {{range $key, $value := .informationobject }}
+                            <tr>
+                                <td> {{$key}} </td>
+                                <td> {{$value}} </td>
+                            </tr>
+                            {{end}}
+                        {{end}}
+                    </tbody>
+                </table>
+
+               
+
+            <script type="text/javascript">
+                function afterLoad() {
+                    highlightON();
+                }
+
+                //Highlight the icon Settings in the navigation Bar
+                function highlightON() {
+                activityON()
+                }
+
+                //Removes the highligh from the navigation bar
+                function highlightOFF() {
+                activityOFF()
+                }    
+
+
+            </script>
+</body>
+
+</html>

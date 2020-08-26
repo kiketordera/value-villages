@@ -1,0 +1,177 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Records Materials </title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+
+  {{template "nav-records-worker.html"}}
+  <div class="margin-body">
+    
+      <div class="row">
+          <div class="col-12">
+            {{template "information-start.html" .}}
+            {{template "i-dashboard.html" .}}
+            {{template "information-end.html" .}}
+
+        <div id="app">
+            <table class="table" style=" min-width:650px;">
+                <input type="search" class="search-field" v-model="filter" placeholder="Filter ">
+                <thead>
+                <tr class="table-title">
+  
+                    <th colspan="5">
+                      <p>
+                        Records Materials </p>
+                    </th>
+                  </tr>
+              <tr class="table-header center">
+                  <th @click="sort('itemname')">
+                  <img src="/static/svg/workshop-table.svg" alt="monthsvg"> <br>
+                  Item
+                </th>
+                <th @click="sort('dateunix')">
+                  <img src="/static/svg/date.svg" alt="shillings"> <br>
+                  Date
+                </th>
+                <th @click="sort('price')">
+                  <div class="col-8">
+                    <img src="/static/svg/money-table.svg" alt="shillings"> <br>
+                    Money
+                  </div>
+                </th>
+              </tr>
+            </thead>
+              <tbody class="table-body center">
+                <tr class=" center" v-for="sale in sortedSales">
+                  <td> <img v-bind:src="sale.itemphoto" style="cursor: initial; max-height: 100; max-height: 100px" class="img-fluid image-square-rounded-table">
+                    <br>*((sale.itemname))</td>
+                  <td>*((sale.date))</td>
+                  <td >
+                      <div class="col-8 price">
+                        <div class="money-icons" >
+                          <div class="margin-left">*((sale.price)) </div>
+        
+                          <ul v-bind:id="'f'+'sale.id'">
+                          </ul>
+                          <ul  v-bind:id="'s'+'sale.id'">
+                           
+                          </ul>
+                          <ul  v-bind:id="'t'+'sale.id'">
+                          
+                          </ul>
+                         
+                          
+                        
+                     </div>
+                      </div>
+                    </td>
+                    
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              {{template "pagination.html"}}
+          </div>
+          {{if not .sales}}
+          {{template "empty-worker.html" .}}  
+        {{end}}
+          </div>
+      </div>
+    </body>
+
+<!-- this is vue   -->
+    <script type="text/javascript">
+
+      const app = new Vue({
+      el:'#app',
+      data:{
+        cats:JSON.parse({{.JSON}}),
+        currentSort:'name',
+        currentSortDir:'asc',
+        pageSize:1,
+        currentPage:1,
+        productPhoto: '',
+        id: '',
+        filter:'',
+      },
+      delimiters: ['*((', '))'],
+      methods:{
+        sort:function(s) {
+          //if s == current sort, reverse
+          if(s === this.currentSort) {
+            this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
+          }
+          this.currentSort = s;
+        },
+        nextPage:function() {
+          if((this.currentPage*this.pageSize) < this.cats.length) this.currentPage++;
+        },
+        prevPage:function() {
+          if(this.currentPage > 1) this.currentPage--;
+        },
+        loadPage:function(n) {
+          this.currentPage = n;
+        }
+
+      },
+      computed:{
+
+        sortedSales:function() {
+          let _cats = this.cats;
+          // filter
+          if(this.filter !== '') {
+            _cats = _cats.filter(c => (c.itemname.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || c.date.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || c.price.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0);
+          }
+          return _cats.sort((a,b) => {
+            let modifier = 1;
+            if(this.currentSortDir === 'desc') modifier = -1;
+            if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+            if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+            return 0;
+          }).filter((row, index) => {
+            let start = (this.currentPage-1)*this.pageSize;
+            let end = this.currentPage*this.pageSize;
+            if(index >= start && index < end) return true;
+          });
+        },
+        showPrevious:function() {
+          return this.currentPage > 1;
+        },
+        showNext:function() {
+          return (this.currentPage*this.pageSize) < this.cats.length;
+        },
+
+        pages:function() {
+          // how many pages do we have?
+          let p = [];
+          let totalPages = Math.ceil(this.cats.length / this.pageSize);
+          console.log('totalPages',totalPages);
+          for(let i=0;i<totalPages;i++) p.push(i+1);
+          return p;
+        }
+      }
+    })
+
+</script>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      materialsON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      materialsOFF()
+    }
+  </script>
+
+
+</html>

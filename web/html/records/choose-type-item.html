@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Choose type item</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+
+    {{template "nav-service.html" .}}
+
+  <div class="margin-body">
+
+
+        <br>
+
+      
+  
+
+      <br>
+  <div class="row">
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/see-stock/tool/{{.serviceType.Hex}}">
+            <img src=/static/svg/tools.svg class="img-fluid image-dashboard" />
+           <p class="dashboard-text"> Tools </p>
+          </a>
+      </div>
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/see-stock/primarymaterial/{{.serviceType.Hex}}">
+            <img src=/static/svg/workshop.png class="img-fluid image-dashboard" />
+            <p class="dashboard-text"> Materials</p>
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/see-stock/serviceproduct/{{.serviceType.Hex}}">
+            <img src=/static/svg/qr-pink.svg class="img-fluid image-dashboard" />
+            <p class="dashboard-text"> Products</p>
+          </a>
+      </div> 
+      
+    </div>
+
+
+
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      recordsON()
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      recordsOFF()
+    }    
+  </script>
+</body>
+
+</html>

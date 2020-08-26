@@ -1,0 +1,22 @@
+         <!-- THIS IS FOR The Services picker **************************************** -->
+         {{if ne (len .services) 1 }}
+         <br>
+           <form  name="myForm" role="form" method="post" enctype="multipart/form-data">
+            <div class="row" style="margin-left: 20px;">
+               <div class="col">
+                 <select class="form-control custom-select form-field" name="serviceID" id="serviceID" required>
+                  <option value="" selected disabled> Services available </option>
+                   {{range .services}}
+                   <option value="{{.ID.Hex}}"> {{.Village}}, {{.Type}}: {{.Name}} </option>
+                   {{end}}
+                 </select>
+               </div>
+                 <div class="col">
+                   <button type="submit" class="btn btn--green reduced-8">  {{template "t-change-views.html" .}}</button>
+                 </div>
+                </div>
+
+           </form>
+         <br>
+     {{end}}
+   <!-- END  -->

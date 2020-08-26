@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Kutumikia vijiji na jamii tofauti, kuna lugha 6 pamoja, ambayo inakupa chanjo kubwa juu ya ramani ya ulimwengu:
+{{else if eq "turkana" .GLOBAL.language}}
+Akingarakin adakar ka ngitela lugela, eyei ngalesia 6 wapei luikiinakinakinete echanjo loapolon kidiami nakopin
+{{else if eq "french" .GLOBAL.language }}
+Pour servir les différents villages et communautés, il y a 6 langues incluses, ce qui vous donne une couverture énorme sur la carte du monde :
+{{else if eq "german" .GLOBAL.language }}
+Um den verschiedenen Dörfern und Gemeinschaften zu dienen, sind 6 Sprachen enthalten, was Ihnen eine große Abdeckung auf der Weltkarte ermöglicht:
+{{else if eq "spanish" .GLOBAL.language }}
+Para servir a las diferentes aldeas y comunidades, hay 6 idiomas incluidos, lo que le da una enorme cobertura sobre el mapa del mundo:
+{{else}}
+To serve the different villages and communities, there are 6 languages included, what gives you a huge coverage over the world map:
+{{end}}
+

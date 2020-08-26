@@ -1,0 +1,59 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Choose delivery mode</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+
+    {{template "nav-service.html" .}}
+
+  <div class="margin-body">
+
+    {{template "information-start.html" .}}
+    {{template "i-dashboard.html" .}}
+    {{template "information-end.html" .}}
+
+        <br>
+
+      
+  
+
+      <br>
+  <div class="row">
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/deliveries-sent/{{.serviceType.Hex}}">
+            <img src=/static/svg/deliveries-mirror.png class="img-fluid image-dashboard-van" />
+           <p class="dashboard-text" style="margin-top: 22px;"> {{template "t-sent.html" .}} </p>
+          </a>
+      </div>
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/records/deliveries-received/{{.serviceType.Hex}}">
+            <img src=/static/svg/deliveries.png class="img-fluid image-dashboard-van" />
+            <p class="dashboard-text" style="margin-top: 22px;"> {{template "t-received.html" .}}</p>
+          </a>
+      </div>  
+      
+    </div>
+
+
+
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      recordsON()
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      recordsOFF()
+    }    
+  </script>
+</body>
+
+</html>

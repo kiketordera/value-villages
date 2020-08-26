@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Mfumo huu wa mwisho wa mwisho hutumiwa kutoa utendaji fulani kwa kiufundi bila kujiburudisha ukurasa: kuchagua meza kwa safu, habari ya utaftaji, na upagawaji.
+{{else if eq "turkana" .GLOBAL.language}}
+Emfumo loko loesal itumianario alemun ngasubetea adio ania epundienu eroko asubakin akurasa: aseun emeza ania esilling, anam a asakun, ka ariekin
+{{else if eq "french" .GLOBAL.language }}
+Ce Front-end Framework est utilisé pour donner certaines fonctionnalités à l'interface sans avoir besoin de rafraîchir la page : ordre des tableaux par colonne, informations de recherche et pagination.
+{{else if eq "german" .GLOBAL.language }}
+Dieses Front-End-Framework wird verwendet, um der Benutzeroberfläche einige Funktionen zur Verfügung zu stellen, ohne dass die Seite aktualisiert werden muss: Tabellen nach Spalten ordnen, Suchinformationen und Paginierung.
+{{else if eq "spanish" .GLOBAL.language }}
+Este front-end framework se utiliza para dar cierta funcionalidad a la interfaz sin necesidad de refrescar la página: ordenar las tablas por columna, la información de búsqueda y la paginación.
+{{else}}
+This front-end framework is used to give some functionality to the interface without having to refresh the page: sorting tables by column, search information, and pagination.
+{{end}}
+

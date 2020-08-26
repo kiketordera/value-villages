@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+    Kazi mpya
+{{else if eq "turkana" .GLOBAL.language}}
+    Ekas lokitetet
+{{else if eq "french" .GLOBAL.language }}
+    Nouvelle tâche
+{{else if eq "german" .GLOBAL.language }}
+    Neue Aufgabe
+{{else if eq "spanish" .GLOBAL.language }}
+    Nueva tarea
+{{else}}
+    New task
+{{end}}
+

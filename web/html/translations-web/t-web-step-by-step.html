@@ -1,0 +1,15 @@
+{{if eq "swahili" .GLOBAL.language }}
+<span style="color: #CF1F26"> Step </span> by <span style="color: #CF1F26"> step</span> guided <span style="color: #CF1F26">tutorials</span>  
+{{else if eq "french" .GLOBAL.language }}
+Des<span style="color: #CF1F26"> tutoriels </span> guidés <span style="color: #CF1F26"> pas</span> à <span style="color: #CF1F26">pas</span>  
+
+{{else if eq "german" .GLOBAL.language }}
+<span style="color: #CF1F26"> Schrittweise </span> geführte <span style="color: #CF1F26"> Tutorials</span>   
+
+{{else if eq "spanish" .GLOBAL.language }}
+<span style="color: #CF1F26"> Tutoriales </span> guiados <span style="color: #CF1F26"> paso</span> a <span style="color: #CF1F26">paso</span>  
+
+{{else}}
+<span style="color: #CF1F26"> Step </span> by <span style="color: #CF1F26"> step</span> guided <span style="color: #CF1F26">tutorials</span>  
+
+{{end}}

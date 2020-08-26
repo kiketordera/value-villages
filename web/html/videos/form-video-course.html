@@ -1,0 +1,186 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    {{if .edit }}
+    <title>Edit {{.product.Name}}</title>
+    {{else}}
+  <title>New Video Tutorial</title>
+    {{end}}
+    {{template "imports.html"}}
+  </head>
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+      {{template "i-dashboard.html" .}}
+      {{template "information-end.html" .}}
+    <div class="col-12">
+        {{if .edit }}
+      <header class="title">
+          {{if eq "english" .GLOBAL.language }}
+          Edit {{.product.Name}} and update it to DataBase 
+       {{else if eq "swahili" .GLOBAL.language}}
+       Hariri {{.product.Name}} na uisasishe kwa DataBase
+       {{else if eq "french" .GLOBAL.language }}
+       Éditez {{.product.Name}} et mettez-le à jour dans DataBase
+         {{else if eq "german" .GLOBAL.language }}
+         Bearbeiten Sie {{.product.Name}} und aktualisieren Sie es auf DataBase
+         {{else if eq "spanish" .GLOBAL.language }}
+        Editar {{.product.Name}} y actualizar la Base de Datos
+         {{end}}
+      </header>
+      {{else}}
+      <header class="title">
+        {{template "t-create-video.html" .}}
+      </header>
+      {{end}}
+      <form onsubmit="return validateForm()" name="myForm" method="post" enctype="multipart/form-data">
+        <div class="row">
+          <div class="col">
+            <input placeholder="Enter name" onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" id="name" type="text" name="name" required><br>
+          </div>
+          <div class="col">
+            <input placeholder="Enter the final price" class="form-control form-field" id="price" type="number" name="price" required>
+          </div>
+        </div>
+        <textarea placeholder="Enter the Description" onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" name="description" id="description" rows="5" required></textarea>
+  
+        
+        {{template "upload-img.html" .}}
+
+
+          <!-- SERVICES -->
+          <div class="row">
+              <div class="col">
+                <p class="form-text"> {{template "t-services-with-access.html" .}}</p>
+   
+               <div class="row">
+                 
+                    {{range .sType}}
+                    <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                        <img id="{{.ID.Hex}}" src={{.Icon}}
+                            class="img-fluid image-square-rounded no-selected image-tactil" />
+                            <input style="margin-top: -90%; display: none;" type="checkbox" id="ID-{{.ID.Hex}}" name="service" value="{{.ID.Hex}}" capture>                      
+                                <p class="text-services">{{.Name}}</p>
+                    </div>
+                    {{end}}
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-12">
+              
+                {{if .edit }}
+                <button type="submit" class="btn btn--green">
+                    {{template "t-update.html" .}}
+                </button>
+                {{else}}
+                <button type="submit" class="btn btn--green">
+                    {{template "t-create.html" .}}
+                </button>
+                {{end}}
+                <div onclick="goBack();" class="btn btn--red">
+                  {{template "t-cancel.html" .}}
+                </div>
+                {{if ne 0 .steps}}
+                <a href="/videos/edit-step/{{.product.ID.Hex}}/0/{{.serviceType.Hex}}" style="margin-top: 40px;">
+                  <button  type="button" style="float: left;" class="btn btn--green" id="buttonSteps">
+                    
+                    {{if eq "english" .GLOBAL.language }}
+                    Edit steps 
+                 {{else if eq "swahili" .GLOBAL.language}}
+                 Hariri hatua
+                 {{else if eq "french" .GLOBAL.language }}
+                 Modifier les étapes
+                   {{else if eq "german" .GLOBAL.language }}
+                   Schritte bearbeiten
+                   {{else if eq "spanish" .GLOBAL.language }}
+                  Editar pasos
+                   {{end}}
+                  </button>
+                </a>
+                {{end}}
+          </div>
+        </div>
+      </form>
+     
+    </div>
+  </div>
+  
+
+  <script type="text/javascript">
+
+    {{if .edit }}
+    function fillData(){
+        var name = document.getElementById("name");
+        name.value = {{.product.Name}};
+        var price = document.getElementById("price");
+        price.value = {{.product.Price}};
+        var description = document.getElementById("description");
+        description.value = {{.product.Description}}
+      }
+      {{end}}
+
+      function afterLoad() {
+        highlightON();
+        {{if .edit }}
+        fillData();
+        {{end}}
+      }
+
+
+    function validateForm() {
+       //Validation for product select
+       if (countProduct == 0) {
+          alert("You should select at least one Service for the report!");
+          return false;
+        }
+    }
+
+    
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      videosON();
+     
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      videosOFF();
+    }
+
+    var countProduct = 0;
+
+function increaseProduct() {
+    countProduct++;
+    console.log("Esto es contProduct: ")
+    console.log(countProduct)
+  }
+
+
+
+    $('.image-tactil').click(function (e) {
+            if ($(this).hasClass('no-selected')) {
+                var product = $(this).attr('id');
+                console.log($("#workers-" + product));
+                $("#ID-" + product).prop("checked", true);
+                $(this).addClass("selected");
+                $(this).removeClass("no-selected");
+                console.log("Entramos en no-selected");
+                increaseProduct();
+            }
+            else if ($(this).hasClass("selected")) {
+                var product = $(this).attr('id');
+                $(this).addClass("no-selected");
+                $("#ID-" + product).prop("checked", false);
+                $(this).removeClass("selected");
+                console.log("Entramos en selected");
+            }
+        });
+  </script>
+</body>
+
+</html>

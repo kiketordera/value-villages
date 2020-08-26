@@ -1,0 +1,34 @@
+<!-- ALL VUE FOR QR -->
+<div class="col"  id="app">
+  <p class="qr-text">  Scan Code </p>
+  <div class=" qr-icon">
+    <qrcode-capture @decode="onDecode"></qrcode-capture>
+  </div> 
+  <input :value="qra" style="margin-top: 10px;" class="form-control qr-value" type="text"  name="qr" id="qr" readonly="true" required>
+</div>
+
+<script>
+const app = new Vue({
+  el:'#app',
+  data:{
+    qr: null,
+  },
+  delimiters: ['*((', '))'],
+  methods: {
+    onDecode (decodedString) {
+      console.log(decodedString);
+      this.qr = decodedString;
+    }
+  },
+  computed: {
+    qra() {
+      if(qr !== null) {
+        return this.qr;
+      } else {
+        return "QR";
+      }
+    }
+  }
+});
+</script>
+<!-- ALL VUE FOR QR END -->

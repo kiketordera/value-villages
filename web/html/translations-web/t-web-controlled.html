@@ -1,0 +1,28 @@
+{{if eq "swahili" .GLOBAL.language }}
+<p class="title-gradient">Kudhibitiwa na salama</p> 
+<p class="text-gradient">Tengeneza hesabu za vitu vyako kwa urahisi.</p>
+
+{{else if eq "turkana" .GLOBAL.language}}
+<p class="title-gradient">Akidibit ka esalam</p> 
+<p class="text-gradient">Tosub akimaret a ngiboro lukon ania ebebenut.</p>
+
+{{else if eq "french" .GLOBAL.language }}
+<p class="title-gradient">Contrôlée et sûre</p> 
+<p class="text-gradient">Faites facilement des inventaires périodiques de vos affaires, en créant un formulaire personnalisé avec la possibilité de prendre des photos de l'objet et même de le suivre avec un code QR.</p>
+
+{{else if eq "german" .GLOBAL.language }}
+<p class="title-gradient">Kontrolliert und sicher</p> 
+<p class="text-gradient">Erstellen Sie einfach regelmäßige Inventare Ihres Materials, indem Sie ein benutzerdefiniertes Formular mit der Möglichkeit erstellen, Bilder dem Gegestand zu machen und ihn sogar mit einem QR-Code zu verfolgen.</p>
+
+{{else if eq "spanish" .GLOBAL.language }}
+<p class="title-gradient">Controlado y seguro</p> 
+<p class="text-gradient">Realiza fácilmente inventarios periódicos de tus cosas, creando un formulario personalizado con la posibilidad de tomar fotos del artículo e incluso de rastrearlo con un código QR.</p>
+
+{{else}}
+<p class="title-gradient">Controlled and safe</p> 
+<p class="text-gradient">Easily make periodic inventories of your things, creating a custom form with the possibility to take photos of the item and even to 
+    track it with a QR code</p>
+
+{{end}}
+
+

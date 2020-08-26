@@ -1,0 +1,181 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <title>Orders in {{.service.Name}}</title>
+    {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{$role := .GLOBAL.role }}
+    {{$serviceType := .serviceType }}
+    {{template "nav-service.html" .}}
+    <div class="margin-body" >
+        <div class="row" id="app">
+            <div class="col-12">    
+              {{template "information-start.html" .}}
+        {{template "i-service-orders.html" .}}
+        {{template "information-search-end.html" .}}
+                <div class="table-title-reduced">
+                    <p>  {{.service.Name}} Orders </p>
+              </div>           
+                <table class="table">
+                    <thead class="table-header">
+                        <tr>
+                            <th>  &nbsp;Video </th>
+                            <th>
+                              {{template "t-manager.html" .}}
+                            </th>
+                            <th>
+                                    {{if eq "english" .GLOBAL.language }}
+                                    Deadline 
+                                 {{else if eq "swahili" .GLOBAL.language}}
+                                 Tarehe ya mwisho
+                                 {{else if eq "french" .GLOBAL.language }}
+                                 Date limite
+                                   {{else if eq "german" .GLOBAL.language }}
+                                   Frist
+                                   {{else if eq "spanish" .GLOBAL.language }}
+                                  Fecha límite
+                                   {{end}}
+                            </th>
+                            <th>
+                                    {{if eq "english" .GLOBAL.language }}
+                                    Window period 
+                                 {{else if eq "swahili" .GLOBAL.language}}
+                                 Kipindi cha Window
+                                 {{else if eq "french" .GLOBAL.language }}
+                                 Période de fenêtre
+                                   {{else if eq "german" .GLOBAL.language }}
+                                   Fensterperiode
+                                   {{else if eq "spanish" .GLOBAL.language }}
+                                  Periodo ventana
+                                   {{end}}
+                            </th>
+                            <th class="center">
+                                    {{template "t-quantity.html" .}}  
+                            </th>
+                            <th class="center">
+                                    {{if eq "english" .GLOBAL.language }}
+                                    Assigned 
+                                 {{else if eq "swahili" .GLOBAL.language}}
+                                 Iliyotumwa
+                                 {{else if eq "french" .GLOBAL.language }}
+                                 Attribué
+                                   {{else if eq "german" .GLOBAL.language }}
+                                   Zugewiesen
+                                   {{else if eq "spanish" .GLOBAL.language }}
+                                  Asignadas
+                                   {{end}}
+                            </th>
+                            <th class="center">
+                                    {{if eq "english" .GLOBAL.language }}
+                                     Made 
+                                 {{else if eq "swahili" .GLOBAL.language}}
+                                 Made
+                                 {{else if eq "french" .GLOBAL.language }}
+                                 Fait
+                                   {{else if eq "german" .GLOBAL.language }}
+                                    Gemacht
+                                   {{else if eq "spanish" .GLOBAL.language }}
+                                  Realizadas
+                                   {{end}}
+                            </th>
+                            <th class="center">
+                                    {{if eq "english" .GLOBAL.language }}
+                                    Status 
+                                 {{else if eq "swahili" .GLOBAL.language}}
+                                     Hali
+                                 {{else if eq "french" .GLOBAL.language }}
+                                 Statut
+                                   {{else if eq "german" .GLOBAL.language }}
+                                   Status
+                                   {{else if eq "spanish" .GLOBAL.language }}
+                                  Estado
+                                   {{end}}
+                            </th>
+              {{if eq "admin" $role }}          <th class="right">
+                    {{template "t-edit.html" .}}  
+              </th> {{end}}
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        <tr  v-for="sale in sortedSales">
+                          <td> *((sale.productname)) </td>
+                          <td> *((sale.workshopname)) </td>
+                          <td> *((sale.deadline)) </td>
+                          <td> *((sale.window)) </td>
+                          <td> *((sale.quantity)) </td>
+                          <td> *((sale.assigned)) </td>
+                          <td> *((sale.alreadyMade)) </td>
+                          <td> *((sale.status)) </td>
+                          <td>
+                              <a v-bind:href="'/records/edit-service-order/' + sale.id + '/{{.serviceType.Hex}}'"> 
+                              <img type="image" src="/static/svg/edit.svg" class="icon-table" /> 
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                </table>
+            </div>
+        </div>
+                {{if not .wOrders}}
+      <p class="empty-field center">  You still have no Service Orders in the database. <br/>
+      <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+      You can create a new Service Order clicking the button on the right, and then every order created will be display here,<br/> 
+      where you can search and visualize them. </p>    
+    {{end}}
+                {{if eq "admin" $role }}   
+                <div>
+                    <div class="btn btn--blue">
+                        <a href="/records/new-service-order/{{.serviceType.Hex}}">
+                            {{if eq "english" .GLOBAL.language }}
+                            New Service Order 
+                         {{else if eq "swahili" .GLOBAL.language}}
+                         Agizo mpya la huduma
+                         {{else if eq "french" .GLOBAL.language }}
+                         Nouvel ordre de service
+                           {{else if eq "german" .GLOBAL.language }}
+                           Neuer Serviceauftrag
+                           {{else if eq "spanish" .GLOBAL.language }}
+                          Nueva orden a servicio
+                           {{end}} 
+                        </a>
+                    </div>
+                </div>
+                {{end}}
+                <!-- Toggle button section end -->
+                <br>
+                <br>
+            </div>
+            <script type="text/javascript">
+                {{template "vue-init.html" .}}
+                  c.productname.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+                  c.workshopname.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+                  c.deadline.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+                  c.window.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+                  c.quantity.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+                  c.alreadyMade.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+                  c.assigned.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0))); 
+                {{template "vue-final.html" .}}
+              </script>
+            <script type="text/javascript">
+                function afterLoad() {
+                    highlightON();
+                    if(performance.navigation.type == 2){
+                        location.reload(true);
+                        console.log("Reload after back?");
+                    }
+                }
+
+                //Highlight the icon Orders in the navigation Bar
+                function highlightON() {
+                    recordsON();
+                }
+
+                //Removes the highligh from the navigation bar
+                function highlightOFF() {
+                    recordsOFF();
+                }
+
+            </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Dashboard</title>
+  {{template "imports.html"}}
+  {{$prev_year:=0}}
+</head>
+<body>
+  <div class="margin-body-log-in-worker " >
+      <div>
+          {{template "information-start.html" .}}
+          {{template "i-dashboard.html" .}}
+          {{template "information-end.html" .}}
+          <div class="row ">
+          <div class="col-12 " > 
+             <a href="change-language/english" >
+              {{if eq "english" .GLOBAL.language }}
+              <img src="/static/svg/uk-flag.svg" style="margin-right: 2vw;" class="languages-icon img-fluid">
+              {{else}}
+              <img src="/static/svg/uk-flag-disabled.svg" style="margin-right: 2vw;" class="languages-icon">
+              {{end}}
+            </a>
+            <a href="change-language/swahili" >
+              {{if eq "swahili" .GLOBAL.language }}
+              <img src="/static/svg/kenya-flag.svg" href="/swahili"  class="languages-icon">
+              {{else}}
+              <img src="/static/svg/kenya-flag-disabled.svg" href="/swahili" class="languages-icon">
+              {{end}}
+            </a>
+            <a href="change-language/french" >
+              {{if eq "french" .GLOBAL.language }}
+              <img src="/static/svg/france-flag.svg" href="/german"  class="languages-icon">
+              {{else}}
+              <img src="/static/svg/france-flag-disabled.svg" href="/german" class="languages-icon">
+              {{end}}
+            </a>
+            <a href="change-language/german" >
+              {{if eq "german" .GLOBAL.language }}
+              <img src="/static/svg/germany-flag.svg" href="/german"  class="languages-icon">
+              {{else}}
+              <img src="/static/svg/germany-flag-disabled.svg" href="/german"  class="languages-icon">
+              {{end}}
+            </a>
+            <a href="change-language/spanish" >
+              {{if eq "spanish" .GLOBAL.language }}
+              <img src="/static/svg/spain-flag.svg" href="/german"   class="languages-icon">
+              {{else}}
+              <img src="/static/svg/spain-flag-disabled.svg" href="/german"  class="languages-icon">
+              {{end}}
+            </a>
+        </div>
+          </div>
+      </div>
+      <!-- END  -->
+  
+      <p class="dashboard-text" style="margin-top: 0px;">    {{template "t-services.html" .}} </p>
+        <div class="row " >
+          {{range .services}}
+          <div class="col-4 col-sm-4 col-md-3 col-xl-2 center " data-aos="zoom-out">
+              <a href="{{.Link}}">
+                <img src={{.Icon}} class="img-fluid image-dashboard" />
+                <p class="dashboard-text" > {{.Name}} </p>
+              </a>
+          </div>
+          {{end}}
+        {{if eq "worker" .GLOBAL.role }}
+        <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid" data-aos="zoom-out">
+            <a href="/videos/see-all-videos">
+              <img src=/static/svg/video-color.svg class="img-fluid image-dashboard" />
+              <p class="dashboard-text">   {{template "t-all-videos.html" .}} </p>
+            </a>
+        </div>
+        {{else}}
+        {{if lt (len .services) 4 }}
+        <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid" data-aos="zoom-out">
+          <a href="/data/new-service-type">
+            <img src=/static/svg/add-color.svg class="img-fluid image-dashboard" />
+            <p class="dashboard-text"> {{template "t-add-service-type.html" .}} </p>
+          </a>
+      </div>
+        {{end}}
+        {{end}}
+      </div>
+        <hr class="line"/>
+        <br> <br>  <br>  <br>
+        <p class="dashboard-text" >    {{template "t-actions.html" .}} </p>
+          <div class="row"> 
+              <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid " data-aos="zoom-out">
+                  {{if eq "admin" .GLOBAL.role }}
+                  <a href="/to-do/what-to-check">
+                    {{else}}
+                    <a href="/to-do/to-dos-user">
+                    {{end}}
+                    <img src=/static/svg/calendar-color.svg class="img-fluid image-dashboard " />
+                    <p class="dashboard-text" >  {{template "t-task.html" .}}  </p>
+                  </a>
+              </div>
+              {{if ne "worker" .GLOBAL.role }}
+          <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid" data-aos="zoom-out">
+              <a href="/deliveries/stock-created">
+                <img src=/static/svg/deliveries.png class="img-fluid image-dashboard-van" />
+                <p class="dashboard-text" style="margin-top: 22px;"> 
+                  {{template "t-deliveries.html" .}} </p>
+              </a>
+          </div>
+          <div class="col-4 col-sm-4 col-md-3 col-xl-2 center" data-aos="zoom-out">
+              <a href="/data/all-users">
+                <img src=/static/svg/data.png class="img-fluid image-dashboard" />
+                <p class="dashboard-text" >  {{template "t-data.html" .}} </p>
+              </a>
+          </div>        
+         
+          {{end}}
+          {{if eq "worker" .GLOBAL.role }}
+          <div class="col-4 col-sm-4 col-md-3 col-xl-2 center" data-aos="zoom-out" >
+              <a href="/records/wk/sales">
+                <img src=/static/svg/records-color.svg class="img-fluid image-dashboard" />
+                <p class="dashboard-text" > {{template "t-records.html" .}} </p>
+              </a>
+          </div> 
+          {{end}}
+          <div class="col-4 col-sm-4 col-md-3 col-xl-2 center" data-aos="zoom-out">
+              <a href="/comunication/conversations">
+                <img src=/static/svg/speak.png class="img-fluid image-dashboard" />
+                <p class="dashboard-text" >   {{template "t-comunication.html" .}} </p>
+              </a>
+          </div>
+          {{if eq "admin" .GLOBAL.role }}
+          <div class="col-4 col-sm-4 col-md-3 col-xl-2 center" data-aos="zoom-out">
+              <a href="/development/show-current-time">
+                <img src=/static/svg/development.png class="img-fluid image-dashboard" />
+                <p class="dashboard-text" >  {{template "t-development.html" .}}  </p>
+              </a>
+          </div>  
+          <div class="col-4 col-sm-4 col-md-3 col-xl-2 center" data-aos="zoom-out">
+              <a href="/reports/show-qr-codes">
+                <img src=/static/svg/report-PDF.svg class="img-fluid image-dashboard" />
+                <p class="dashboard-text" >  {{template "t-reports.html" .}}  </p>
+              </a>
+          </div>  
+
+          {{end}}
+          <div class="col-4 col-sm-4 col-md-3 col-xl-2 center" data-aos="zoom-out">
+              <a href="/settings/activity">
+                <img src=/static/svg/settings-color.svg class="img-fluid image-dashboard" />
+                <p class="dashboard-text" >   {{template "t-settings.html" .}} </p>
+           
+              </a>
+          </div>
+          </div>
+          <hr class="line">
+          <br>
+          <div class="row"> 
+          <div class="col center" data-aos="zoom-out">
+              <a href="/log-out">
+                <img src=/static/svg/lock-color.svg class="img-fluid image-dashboard-exit" />
+                <p class="dashboard-text" >  {{template "t-exit.html" .}} </p>
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script>
+   
+     AOS.init();
+  
+  </script>
+
+
+</body>
+
+</html>

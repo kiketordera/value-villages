@@ -1,0 +1,30 @@
+{{if eq "swahili" .GLOBAL.language }}
+<p class="title-gradient">Dashibodi yako</p> 
+<p class="text-gradient">Dashibodi inayowezekana na huduma za kawaida, vitendo, na mipangilio. Zote katika lugha 6.<br>
+    Imewekwa moja kwa moja kwenye sanduku!</p>
+{{else if eq "turkana" .GLOBAL.language}}
+<p class="title-gradient">Adashbod nakon</p> 
+<p class="text-gradient">Adashbod niiwesekin ka etic lopeleng, ngarosea, ka ng’aresekinet. Daang ania eluga 6.<br>
+Ewakin apei nia apei ania nisaduku!</p>
+{{else if eq "french" .GLOBAL.language }}
+<p class="title-gradient">Votre tableau de bord</p> 
+<p class="text-gradient">Tableau de bord personnalisable avec services, actions et paramètres personnalisés. Le tout en 6 langues.<br>
+    Tout est prêt à l'emploi!</p>
+{{else if eq "german" .GLOBAL.language }}
+<p class="title-gradient">Ihr Dashboard</p> 
+<p class="text-gradient">Personalisierbares Dashboard mit Diensten, Aktionen und Einstellungen. Alle in 6 Sprachen.
+<br>
+  Alles ist einsatzbereit!</p>
+{{else if eq "spanish" .GLOBAL.language }}
+<p class="title-gradient">Tu panel de control</p> 
+<p class="text-gradient">Tablero de control personalizable con servicios, acciones y ajustes personalizados. Todo en 6 idiomas.
+  <br>
+  ¡Todo ya preparado para su uso!</p>
+{{else}}
+<p class="title-gradient">Your Dashboard</p> 
+<p class="text-gradient">Customizable dashboard with custom services, actions, and settings.
+  All in 6 languages.<br>
+  Full set right out of the box!</p>
+{{end}}
+
+

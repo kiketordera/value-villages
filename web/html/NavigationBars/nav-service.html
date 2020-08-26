@@ -1,0 +1,98 @@
+<div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12 navbar_section">
+  <div class="navmenu four-icons">
+    <ul>
+        {{if eq "admin" .GLOBAL.role }}
+            <a href="/performance/all/{{.serviceType.Hex}}">
+        {{else if eq "Manager" .GLOBAL.role }}
+            <a href="/performance/local/{{.serviceType.Hex}}">
+        {{else if eq "worker" .GLOBAL.role }}
+        <a href="/performance/self/{{.serviceType.Hex}}">
+        {{end}}
+          <li id="first-section" onmouseover="highlightOFF(); performanceON();" onmouseout="performanceOFF(); highlightON();">
+            <img src="/static/svg/performance.svg" class="mx-auto d-block" id="first-icon">
+            <p id="first-text" class="navbar-text-desktop">
+              {{template "t-performance.html" .}}
+            </p>
+          </li>
+        </a>
+        {{if eq "admin" .GLOBAL.role }}
+        <a href="/videos/see-list/{{.serviceType.Hex}}">
+        {{else }}
+            <a href="/videos/see-videos/{{.serviceType.Hex}}">
+        {{end}}
+          <li id="second-section" onmouseover="highlightOFF(); videosON();" onmouseout="videosOFF(); highlightON();">
+            <img src="/static/svg/video-blue.svg" class="mx-auto d-block" id="second-icon">
+            <p id="second-text" class="navbar-text-desktop">Videos</p>
+          </li>
+        </a>
+        {{if eq "worker" .GLOBAL.role }}
+        <a href="/records/see/actions-worker/{{.serviceType.Hex}}">
+        {{else  }}
+            <a href="/records/see/actions-manager/{{.serviceType.Hex}}">
+        {{end}}
+        <li id="third-section" onmouseover="highlightOFF(); recordsON();" onmouseout="recordsOFF(); highlightON();">
+          <img src="/static/svg/records.svg" class="mx-auto d-block" id="third-icon">
+          <p id="third-text" class="navbar-text-desktop">
+            {{template "t-records.html" .}}
+          </p>
+        </li>
+      </a>
+      <a href="/dashboard">
+        <li id="back-section" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+          <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon">
+          <p id="back-text" class="navbar-text-desktop">
+            {{template "t-back.html" .}}
+          </p>
+        </li>
+      </a>
+    </ul>
+  </div>
+  <div class="navmenu_mobile four-icons-mobile">
+    <ul>
+            {{if eq "admin" .GLOBAL.role }}
+            <a href="/performance/all/{{.serviceType.Hex}}">
+        {{else if eq "Manager" .GLOBAL.role }}
+            <a href="/performance/local/{{.serviceType.Hex}}">
+        {{else if eq "worker" .GLOBAL.role }}
+        <a href="/performance/self/{{.serviceType.Hex}}">
+        {{end}}
+          <li id="first-section-mobile" onmouseover="highlightOFF(); performanceON();" onmouseout="performanceOFF(); highlightON();">
+            <img src="/static/svg/performance.svg" class="mx-auto d-block" id="first-icon-mobile">
+            <p id="first-text-mobile" class="navbar-text-mobile">
+              {{template "t-performance.html" .}}
+            </p>
+          </li>
+        </a>
+      </a>
+      {{if eq "admin" .GLOBAL.role }}
+      <a href="/videos/see-list/{{.serviceType.Hex}}">
+  {{else }}
+      <a href="/videos/see-videos/{{.serviceType.Hex}}">
+  {{end}}
+    <li id="second-section-mobile" onmouseover="highlightOFF(); videosON();" onmouseout="videosOFF(); highlightON();">
+      <img src="/static/svg/video-blue.svg" class="mx-auto d-block" id="second-icon-mobile">
+      <p id="second-text-mobile" class="navbar-text-mobile">Videos</p>
+    </li>
+  </a>
+      {{if eq "worker" .GLOBAL.role }}
+      <a href="/records/see/actions-worker/{{.serviceType.Hex}}">
+      {{else  }}
+          <a href="/records/see/actions-manager/{{.serviceType.Hex}}">
+      {{end}}
+      <li id="third-section-mobile" onmouseover="highlightOFF(); recordsON();" onmouseout="recordsOFF(); highlightON();">
+        <img src="/static/svg/records.svg" class="mx-auto d-block" id="third-icon-mobile">
+        <p id="third-text-mobile" class="navbar-text-mobile">
+          {{template "t-records.html" .}}
+        </p>
+      </li>
+    </a>
+    <a href="/dashboard">
+      <li id="back-section-mobile" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+        <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon-mobile">
+        <p id="back-text-mobile" class="navbar-text-mobile">
+          {{template "t-back.html" .}}
+        </p>
+      </li>
+    </a>
+  </div>
+</div>

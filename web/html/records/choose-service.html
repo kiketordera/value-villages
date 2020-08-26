@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Choose service</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="highlightON()">
+
+  
+        {{template "nav-service.html" .}}
+
+  <div class="margin-body-form">
+    <div class="col-12">
+      {{template "information-start.html" .}}
+      {{template "i-choose-service.html" .}}
+      {{template "information-end.html" .}}
+
+
+      <br><br>
+      <header class="title"> {{template "t-need-choose-service.html" .}}</header>
+      <form  name="myForm" role="form" method="post" enctype="multipart/form-data">
+
+      
+
+
+
+        <div class="row">
+          {{if .services}}
+          <div class="col-8 offset-2" style="margin-top: 15%;">
+            <select class="form-control custom-select form-field" name="serviceID" id="serviceID" required>
+              <option value="" selected disabled> Select a service from the list </option>
+              {{range .services}}
+              <option value="{{.ID.Hex}}"> {{.Village}}:  {{.Name}} </option>
+              {{end}}
+            </select><div class="col-12" style="margin-top: 25%;">
+            <button type="submit" class="btn btn--green">Choose</button>
+            <div onclick="goBack();" class="btn btn--red">
+              Cancel
+            </div>
+          </div> 
+          </div>
+          {{else}}
+        </div>
+      </div> 
+          <p class="empty-field center">  You still have no Services in the database. <br/>
+            <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+            You can create a new User clicking the button on the right, and then every user created will be display here,<br/> 
+            where you can search  and edit them. </p>   
+            
+            <a href="/data/new-service" class="btn btn--blue btn--animated"> {{template "t-new.html" . }} {{template "t-service.html" . }}</a>
+
+            
+          {{end}}
+         
+          </div>
+          
+      </form>
+
+
+
+      <script>
+       // Highlight the icon Settings in the navigation Bar
+        function highlightON() {
+          recordsON();
+        }
+
+        // Removes the highligh from the navigation bar
+        function highlightOFF() {
+          recordsOFF();
+        }    
+
+      </script>
+
+</body>
+
+</html>

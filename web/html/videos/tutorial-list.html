@@ -1,0 +1,128 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>List Tutorials</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{$serviceType := .serviceType}}
+    {{template "nav-service.html" .}}
+    <div class="margin-body">
+      <div id="app">
+        {{template "information-start.html" .}}
+        {{template "i-tutorials-list.html" .}}
+        {{template "information-search-end.html" .}}
+    <!-- VUE STARTS -->
+          <div >
+            <div class="table-title">
+              <p>  {{template "t-tutorials.html" .}}  </p>
+        </div>
+              <table class="table">
+                <thead>
+                <tr class="table-header ">
+                    <th @click="sort('name')"> &nbsp;  &nbsp;
+                        {{template "t-photo.html" .}}
+                    </th> 
+                    <th @click="sort('name')"> 
+                        {{template "t-name.html" .}}
+                    </th> 
+                    <th class="center" @click="sort('price')">
+                        {{template "t-price.html" .}}
+                    </th> 
+                    <th class="center" @click="sort('steps')"> 
+                      {{template "t-steps.html" .}}
+                    </th> 
+                    <th class="center"> 
+                      {{template "t-add-step.html" .}}
+                    </th> 
+                    <th class="center"> 
+                        {{template "t-edit.html" .}}
+                      </th>
+                </tr>
+              </thead>
+                <tbody class="table-body">
+                  <tr  v-for="sale in sortedSales">
+                      <td > 
+                          <a v-bind:href="'/videos/description-video-course/' + sale.id + '/{{$serviceType.Hex}}'">
+                            <img v-bind:src="sale.photos" class="img-fluid image-square-rounded-table img-zoom-min">
+                          </a>
+                      </td>
+                    <td> *((sale.name))  </td>
+                    <td class="center"> *((sale.price)) </td>
+                    <td class="center"> *((sale.numbersteps)) </td>
+                    <td class="center" >
+                        <a v-bind:href="'/videos/new-step/' + sale.id + '/{{$serviceType.Hex}}'">
+                          <img src="/static/svg/add-step.svg" style="max-height: 35px; max-width: 40px;" />
+                        </a>
+                    </td>
+                    <td class="center">
+                        <a v-bind:href="'/videos/edit-video-course/' + sale.id + '/{{$serviceType.Hex}}'"> 
+                        <img type="image" src="/static/svg/edit.svg" class="icon-table" /> 
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                  {{template "pagination.html" }}
+           </div>
+      </div>
+           {{if not .videos}}
+                  <p class="empty-field center">  You still have no Video Courses in the database. <br/>
+                  <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+                  You can create a new Video Course clicking the button on the right, and then every video course created will be display here,<br/> 
+                  where you can search  and edit them. </p>    
+                {{end}}
+           <div class="row">
+    <div class="col-12">
+        <div class="btn btn--blue"  style="margin-left: 25px;">
+          <a href="/videos/new-video-course/{{.serviceType.Hex}}">
+            {{template "t-new-tutorial.html" .}}
+          </a>
+        </div>
+      <div class="btn btn--blue">
+        <a href="/videos/see-videos/{{.serviceType.Hex}}">
+          {{if eq "english" .GLOBAL.language }}
+          See tutorials 
+           {{else if eq "swahili" .GLOBAL.language}}
+           Tazama mafunzo
+           {{else if eq "french" .GLOBAL.language }}
+           Voir les tutoriels
+             {{else if eq "german" .GLOBAL.language }}
+             Siehe Tutorials
+             {{else if eq "spanish" .GLOBAL.language }}
+            Ver tutoriales
+             {{end}}
+        </a>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
+   <!-- HERE WE TELL VUE THE PARAMETERS TO SEARCH IN THE TABLE -->
+   <script type="text/javascript">
+{{template "vue-init.html" .}}
+    c.name.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+    c.price.toString().toLowerCase().indexOf(this.filter.toLowerCase())  >= 0));
+{{template "vue-final.html" .}}
+</script>
+  <script type="text/javascript">
+    function afterLoad() {
+    highlightON();
+    }
+
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      videosON();
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      videosOFF();
+    }    
+  </script>
+</body>
+
+</html>

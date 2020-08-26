@@ -1,0 +1,15 @@
+{{if eq "swahili" .GLOBAL.language }}
+Inaweza kusanikishwa katika kifaa chochote kama seva, pamoja na RaspberryPI ya maeneo ya mbali bila muunganisho wa mtandao
+{{else if eq "turkana" .GLOBAL.language}}
+Emin kusanikishwa ania ibore adio ikoni seva, kaapei ka RaspberryPI a adakar anakalunon emam akisiriam a mtandao
+{{else if eq "french" .GLOBAL.language }}
+Peut être installé dans n'importe quel appareil comme un serveur, y compris un RaspberryPI pour les zones éloignées sans connexion réseau
+{{else if eq "german" .GLOBAL.language }}
+Kann auf jedem Gerät installiert werden, einschließlich RaspberryPI für abgelegene Gebiete ohne Netzwerkverbindung
+{{else if eq "spanish" .GLOBAL.language }}
+Puede ser instalado en cualquier dispositivo, incluyendo RaspberryPI para áreas remotas sin conexión a la red
+{{else}}
+Can be installed in any device as a server, including a RaspberryPI for remotes areas without network connection
+{{end}}
+
+

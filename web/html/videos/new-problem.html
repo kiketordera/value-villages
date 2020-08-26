@@ -1,0 +1,154 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+ <title>Add Transaction</title>
+ {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+    <div class="margin-body-form">
+      {{template "information-start.html" .}}
+      {{template "i-dashboard.html" .}}
+      {{template "information-end.html" .}}
+      <div class="row">
+        <div class="col-12">
+          <header class="title">
+              {{if eq "english" .GLOBAL.language }}
+              Add problem to {{.video.Name}} 
+           {{else if eq "swahili" .GLOBAL.language}}
+           Ongeza shida kwa {{.video.Name}}
+           {{else if eq "french" .GLOBAL.language }}
+           Ajouter un problème à {{.video.Name}}
+             {{else if eq "german" .GLOBAL.language }}
+             Füge ein Problem zu {{.video.Name}} hinzu
+             {{else if eq "spanish" .GLOBAL.language }}
+             Añadir problema a {{.video.Name}}
+             {{end}}
+          </header>
+          <div class="col-12 center" style="cursor: initial;">
+              <img style="cursor: initial;" src="/local/video-courses/{{.video.Name}}/{{.video.Photo}}" class="img-fluid image-square-rounded" />
+              <br>
+          </div>
+          <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+            <p class="form-text"> 
+              {{template "t-worker-made-problem.html" .}}
+            </p>
+            <br>
+            <div class="row">
+              {{range .workers }}
+              <div class="col-6 col-sm-4 col-lg-3 center">
+                <div class="col-12">
+                  <img id="{{.ID.Hex}}" src="/local/users/{{.Username}}/{{.Photo}}" class="img-fluid image-rounded no-selected image-products" />
+                </div>
+                <div class="col-12">
+                  <label class="form-text">{{.Name}}</label>
+                  
+                  <input style="margin-top: -90%; display: none" type="radio" onclick="increaseProduct()" name="workerID" id="products-{{.ID.Hex}}"
+                    value="{{.ID.Hex}}">
+                </div>
+              </div>
+              {{end}}
+            </div>
+
+            
+      <div class="row">
+        <div class="col">
+          <textarea onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" name="problemText" id="problemText" placeholder="Explain here the problem" rows="6" required></textarea>
+        </div>
+        <br>
+      </div><br>
+                                  
+      <div class="row">
+        <div class="col-6 center">
+          {{template "upload-img.html" .}}
+        </div>
+        {{template "upload-audio.html" .}}
+      </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn--green">
+                        {{template "t-create.html" .}}
+                    </button>
+                    <div onclick="goBack();" class="btn btn--red">
+                      {{template "t-cancel.html" .}}
+                  </div>
+                  </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var countItem = 0
+    /* Change the selec image if the user clicks the image */
+          $('.image-products').click(function (e) {
+
+            if ($(this).hasClass('no-selected')) {
+              var product = $(this).attr('id');
+              console.log($("#products-" + product));
+              $(".image-products").removeClass("selected");
+              $(".image-products").addClass("no-selected");
+              $("#products-" + product).prop( "checked", true );
+              $(this).addClass("selected");
+              $(this).removeClass("no-selected");
+              increaseItem();
+
+            }
+            else if($(this).hasClass("selected")) {
+              var product = $(this).attr('id');
+
+              $(this).addClass("no-selected");
+              $("#products-" + product).prop( "checked", false );
+              $(this).removeClass("selected");
+
+            }
+
+          });
+
+          function afterLoad() {
+          highlightON();
+      }
+
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      videosON();
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      videosOFF();
+    }    
+
+    var checked = false;
+
+
+        function increaseItem(){
+          countItem++;
+        }
+
+        
+// FOR THE PHOTO
+var btnUpload = $("#photo"),
+btnOuter = $(".button_outer");
+btnUpload.on("change", function(e){
+var ext = btnUpload.val().split('.').pop().toLowerCase();
+// if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+//   $(".error_msg").text("Not an Image...");
+// } else {
+  $(".error_msg").text("");
+  btnOuter.addClass("file_uploading");
+  setTimeout(function(){
+    btnOuter.addClass("file_uploaded");
+  },3000);
+  var uploadedFile = URL.createObjectURL(e.target.files[0]);
+  setTimeout(function(){
+    $("#uploaded_view").append('<img src="'+uploadedFile+'" />').addClass("show");
+  },3500);
+// }
+});
+
+      </script>
+    </body>
+    </html>

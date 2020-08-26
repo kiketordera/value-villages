@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Kwa maeneo ya mbali bila muunganisho, hii ni Mfumo wa Uendeshaji ambao unadhibiti vifaa. Itaendesha programu isiyosimamishwa na kuanza tena moja kwa moja programu imekataliwa kutoka kwa nguvu.L
+{{else if eq "turkana" .GLOBAL.language}}
+Ania adakar anakalunon emam akiriem, yeken erai emfumo a ameare loithibitishae ngiboro. imee aprogram lopenyoweikinio ka akisiekin nabo apei nia apei aprogram anger ebunit angikilingaa.
+{{else if eq "french" .GLOBAL.language }}
+Pour les régions éloignées hors connexion, c'est le système opérationnel qui contrôle le hardware. Il exécutera l'application sans s'arrêter et redémarrera automatiquement le software s'il est déconnecté du courant.
+{{else if eq "german" .GLOBAL.language }}
+Für entfernte Offline-Gebiete ist dies das Betriebssystem, das die Hardware steuert. Er führt die Anwendung aus, ohne sie zu unterbrechen, und startet die Software automatisch neu, wenn sie von der Stromversorgung getrennt wird.
+{{else if eq "spanish" .GLOBAL.language }}
+Para las áreas remotas sin conexión, este es el Sistema Operativo que controla el hardware. Ejecutará la aplicación sin parar y reiniciará automáticamente el software se desconecta de la corriente.
+{{else}}
+For the remote areas without connection, this is the Operative System that controls the hardware. It will run the app non-stop and restart automatically the software is disconnected from the power.
+{{end}}
+

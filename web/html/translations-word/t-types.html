@@ -1,0 +1,11 @@
+{{if eq "english" .GLOBAL.language }}
+                  Types 
+               {{else if eq "swahili" .GLOBAL.language}}
+               Aina
+               {{else if eq "french" .GLOBAL.language }}
+                Types
+                 {{else if eq "german" .GLOBAL.language }}
+                 Typen
+                 {{else if eq "spanish" .GLOBAL.language }}
+                Tipos
+                 {{end}}

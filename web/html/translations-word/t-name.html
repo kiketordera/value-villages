@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+    Name 
+{{else if eq "swahili" .GLOBAL.language}}
+    Jina
+    {{else if eq "turkana" .GLOBAL.language}}
+    Ekiro
+{{else if eq "french" .GLOBAL.language }}
+    Prénom
+{{else if eq "german" .GLOBAL.language }}
+     Name
+{{else if eq "spanish" .GLOBAL.language }}
+    Nombre
+{{end}}

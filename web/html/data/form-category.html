@@ -1,0 +1,226 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    {{if not .edit }}
+    <title>New Category</title>
+    {{else}}
+    <title>Edit {{.category.Name}}</title>
+    {{end}}
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{template "nav-data.html" . }}
+  <div class="margin-body-form">
+    {{template "information-start.html" .}}
+    {{template "i-form-category.html" .}}
+    {{template "information-end.html" .}}
+    <div class="col-12">
+        {{if not .edit }}
+        <header class="title"> {{template "t-create-category.html" .}} </header>
+        {{else}}
+        <header class="title">
+            {{if eq "english" .GLOBAL.language }}
+            Edit {{.category.Name}} and upload it to DataBase 
+         {{else if eq "swahili" .GLOBAL.language}}
+         Hariri {{.category.Name}} na upakie kwa DataBase
+         {{else if eq "french" .GLOBAL.language }}
+         Éditez {{.category.Name}} et chargez-le dans la base de données
+           {{else if eq "german" .GLOBAL.language }}
+           Bearbeiten Sie {{.category.Name}} und laden Sie es in die Datenbank hoch
+           {{else if eq "spanish" .GLOBAL.language }}
+           Editar {{.category.Name}} y actualizar la Base de Datos
+           {{end}}
+        </header>
+        {{end}}
+    </div> <br>
+    <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+      <div class="row" >
+        <div class="col-12 col-lg-6">
+          <div class="row" >
+            <div class="col-6">
+              <div class="form-group">
+                <input name="name" id="name" onchange="this.value = capitalizeFirstLetter(this.value)" type="text" required="required"/>
+                <label for="input" class="control-label"> {{template "t-name.html" .}}</label><i class="bar"></i>
+              </div>         </div>
+        <div class="col-6">
+            <select  class="custom-select form-control form-field" name="timechecking" id="timechecking" required>
+              <option value="" disabled selected>  {{template "t-check-every.html" .}}</option>
+              <option value="never">Never</option>
+              <option value="monthly">Every month</option>
+              <option value="weekly">Every week</option>
+              <option value="daily">Every day</option>
+              <option value="changevillage">Change village</option>
+            </select>
+        </div>
+        </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="row" >
+            <div class="col-6">
+          <select class="custom-select form-control form-field" name="type" id="type" required>
+            <option value="" disabled selected>  
+              {{template "t-select-category-type.html" .}}
+            </option>
+            {{range .types}}
+            <option value="{{.ID.Hex}}">{{.Name}}</option>
+            {{end}}
+          </select>
+          </div>
+     
+      {{if lt (len .types) 3}}
+      <div class="col-6">
+        <a href="/data/new-type" class="btn btn--blue btn--animated" style="font-size: 1.2rem; margin-top: 2.2rem;"> New Category Type </a>
+    </div>
+    {{end}}
+      </div>
+      </div>
+    </div>
+      
+      <br>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <textarea  rows="6" name="description" id="description" onchange="this.value = capitalizeFirstLetter(this.value)" required="required"></textarea>
+            <label for="textarea" class="control-label"> {{template "t-description.html" .}}</label><i class="bar"></i>
+          </div>        </div>
+        <br>
+        </div>
+        <!-- SERVICES -->
+        <div>
+          <p class="form-text"> {{template "t-services-with-access.html" .}} </p>
+         <br>
+         <div class="row">
+           
+              {{range .sType}}
+              <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                  <img id="{{.ID.Hex}}" src={{.Icon}}
+                      class="img-fluid image-square-rounded no-selected image-tactil img-zoom" />
+                      <input style="margin-top: -90%; display: none;" type="checkbox" id="ID-{{.ID.Hex}}" name="service" value="{{.ID.Hex}}">                      
+                          <p class="text-services">{{.Name}}</p>
+              </div>
+              {{end}}
+        </div>
+      </div>
+      <br>
+       <div class="custom-file">
+           <div class="row">
+              <div class="col-6">
+                {{template "upload-img.html" .}}
+              </div>
+            <div class="col-6">
+                <select class="custom-select form-control form-field" name="itemtype" id="itemtype" required>
+                  <option value="" disabled selected>   {{template "t-item-type.html" .}} </option>
+                  <option value="serviceproduct">Service Product</option>
+                  <option value="primarymaterial">Primary Material</option>
+                  <option value="tool">Tool</option>
+                </select>
+            </div>
+          <br><br><br>
+          </div>
+        </div>
+        <br>
+        <br></p> 
+
+         
+            <div class="col-12">
+               <label class="checkbox path">
+                 <div class="text-checkbox-long">
+                <input type="checkbox" name="istrackable" id="istrackable"> 
+                <svg style="margin-left: 0px; width: auto" viewBox="0 0 21 21">
+                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                </svg> 
+              </div>
+              {{template "t-checkbox-track-QR.html" .}}
+            </label>
+          </div>
+          
+          
+      
+          <div class="col" style="margin-top: 10rem;">
+            {{if not .edit }}
+            <button type="submit" class="btn btn--green btn--animated">
+                    {{template "t-create.html" .}}
+            </button>
+            {{else}}
+            <button type="submit" class="btn btn--green btn--animated">
+              {{template "t-update.html" .}}
+            </button>
+            {{end}}
+            <div onclick="goBack();" class="btn btn--red btn--animated">
+                
+                {{template "t-cancel.html" .}}
+        </div>
+       
+    </form>
+  </div>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+      {{if .edit }}
+          fillData();
+      {{end}}
+    }
+
+    {{if .edit }}
+        function fillData(){
+          var perf = document.getElementById("name");
+          perf.value = {{.category.Name}}
+          var perf2 = document.getElementById("description");
+          perf2.value = {{.category.Description}}
+          var perf2 = document.getElementById("timechecking");
+          perf2.value = {{.category.TimeChecking}}
+          var perf2 = document.getElementById("type");
+          perf2.value = {{.category.Type}}
+          var tpe = document.getElementById("itemtype");
+          tpe.value = {{.category.TypeOfItem}}
+        }
+    {{end}}
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+        categoriesON();
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      categoriesOFF();
+    }
+
+    var countService = 0;
+
+    // This function validates the form to not introduce null values
+    function validateForm() {
+        // Validation for product select
+        if (countService == 0) {
+        alert("You must select a service for the Category!");
+        return false;
+        }
+    }
+
+
+        function increaseService() {
+          countService++;
+        }
+
+
+$('.image-tactil').click(function (e) {
+            if ($(this).hasClass('no-selected')) {
+                var product = $(this).attr('id');
+                console.log($("#workers-" + product));
+                $("#ID-" + product).prop("checked", true);
+                $(this).addClass("selected");
+                $(this).removeClass("no-selected");
+                console.log("Entramos en no-selected");
+                increaseService();
+            }
+            else if ($(this).hasClass("selected")) {
+                var product = $(this).attr('id');
+                $(this).addClass("no-selected");
+                $("#ID-" + product).prop("checked", false);
+                $(this).removeClass("selected");
+                console.log("Entramos en selected");
+            }
+        });
+  </script>
+</body>
+</html>

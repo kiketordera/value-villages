@@ -1,0 +1,3 @@
+Here you can see all the reports that you have made in the time, you can open a new report or you can see and send new messages to the reports that you have already created, as long as they are open. 
+
+When a report is closed by the Admin of the System, you can not send more messages.

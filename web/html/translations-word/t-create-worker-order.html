@@ -1,0 +1,13 @@
+{{if eq "swahili" .GLOBAL.language }}
+    Unda Agizo mpya la Mfanyakazi
+{{else if eq "turkana" .GLOBAL.language}}
+    Tosub akiroit nakitetet a ekepany a etich
+{{else if eq "french" .GLOBAL.language }}
+    Créer un ordre pour le travailleur
+{{else if eq "german" .GLOBAL.language }}
+    Ein neuer Auftrag für den Arbeiter erstellen
+{{else if eq "spanish" .GLOBAL.language }}
+    Crear un pedido para el trabajador
+{{else}}
+    Create a new Order for the Worker
+{{end}}

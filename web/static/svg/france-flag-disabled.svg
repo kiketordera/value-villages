@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.3;
+      }
+
+      .cls-2 {
+        fill: #f0f0f0;
+      }
+
+      .cls-3 {
+        fill: #d80027;
+      }
+
+      .cls-4 {
+        fill: #0052b4;
+      }
+    </style>
+  </defs>
+  <g id="france" class="cls-1">
+    <circle id="Ellipse_28" data-name="Ellipse 28" class="cls-2" cx="256" cy="256" r="256"/>
+    <path id="Path_1112" data-name="Path 1112" class="cls-3" d="M512,256c0-110.071-69.472-203.906-166.957-240.077V496.078C442.528,459.906,512,366.071,512,256Z"/>
+    <path id="Path_1113" data-name="Path 1113" class="cls-4" d="M0,256C0,366.071,69.473,459.906,166.957,496.077V15.923C69.473,52.094,0,145.929,0,256Z"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+{{if eq "swahili" .GLOBAL.language }}
+Habari imehifadhiwa kwa mafanikio
+{{else if eq "turkana" .GLOBAL.language}}
+Ekoi ewakin ania
+{{else if eq "french" .GLOBAL.language }}
+L'information a été sauvegardée avec succès
+{{else if eq "german" .GLOBAL.language }}
+Die Information wurde erfolgreich gespeichert
+{{else if eq "spanish" .GLOBAL.language }}
+La información se guardó satisfactoriamente
+{{else}}
+The information was saved successfully
+{{end}}

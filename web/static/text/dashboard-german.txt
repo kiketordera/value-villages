@@ -1,0 +1,10 @@
+Dies ist die Dashboard-Seite. Auf dieser Hauptseite starten Sie die Anwendung.
+
+
+Die ersten Symbole sind die Stadtdienste, auf die Sie Zugriff haben. Dort können Sie die Aktionen der Dienste ausführen.
+
+
+Der zweite Satz von Symbolen sind die eigenen Aktionen, die sich allgemein auf die Anwendung beziehen.
+
+
+Das letzte Symbol dient zum Beenden der Anwendung.

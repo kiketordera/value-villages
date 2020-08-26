@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <title>QR Codes</title>
+    {{template "imports.html"}}
+</head>
+<body onload="afterLoad()" >
+        {{template "nav-reports.html" .}}
+    <div class="margin-body">
+      <div id="app">
+        {{template "information-start.html" .}}
+        {{template "i-qr.html" .}}
+        {{template "information-search-end.html" .}}
+        <!-- VUE STARTS -->
+              <div>
+                <div class="table-title">
+                  <p> QR </p>
+            </div>
+                  <table class="table">
+                      <thead>
+                    <tr class="table-header">
+                        <th @click="sort('date')"> &nbsp; 
+                            {{template "t-date.html" .}}
+                        </th> 
+                        <th @click="sort('typeofitem')"> 
+                            {{template "t-type.html" .}}
+                        </th> 
+                        <th class="center" @click="sort('pages')">
+                            {{if eq "english" .GLOBAL.language }}
+                            Pages 
+                         {{else if eq "swahili" .GLOBAL.language}}
+                          Kurasa
+                         {{else if eq "french" .GLOBAL.language }}
+                         Pages
+                           {{else if eq "german" .GLOBAL.language }}
+                              Seiten
+                           {{else if eq "spanish" .GLOBAL.language }}
+                          Páginas
+                           {{end}}
+                        </th> 
+                        <th class="center"> 
+                            {{template "t-edit.html" .}}
+                          </th>
+                    </tr>
+                  </thead>
+                    <tbody class="table-body ">
+                      <tr v-for="sale in sortedSales">
+                          <td> *((sale.date))  </td>
+                        <td>*((sale.typeofitem))</td>
+                        <td class="center" > *((sale.pages)) </td>
+                        <td class="center">
+                            <a v-bind:href="'/reports/show-pdf/' + sale.id + '.pdf'"> 
+                            <img type="image" src="/static/svg/look.svg" class="icon-table" /> 
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>
+                      {{template "pagination.html" .}}
+                    </div>
+                  </div>
+                    {{if not .PDFQR}}
+          <p class="empty-field center">  You still have no QR in the database. <br/>
+          <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+          You can create a new QR clicking the button on the right, and then every QR created will be display here,<br/> 
+          where you can search  and edit them. </p>    
+        {{end}}
+
+        <a href="/reports/new-qr" class="btn btn--blue btn--animated">  {{if eq "english" .GLOBAL.language }}
+          New QR 
+       {{else if eq "swahili" .GLOBAL.language}}
+       QR mpya
+       {{else if eq "french" .GLOBAL.language }}
+       Nouvel QR
+         {{else if eq "german" .GLOBAL.language }}
+         Neuer QR
+       {{else if eq "spanish" .GLOBAL.language }}
+       Nuevo QR  
+         {{end}}</a>
+        </div>
+      </div>
+    </div>
+      <!-- HERE WE TELL VUE THE PARAMETERS TO SEARCH IN THE TABLE -->
+      <script type="text/javascript">
+{{template "vue-init.html" .}}
+      c.date.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+      c.typeofitem.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+      c.pages.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 )); 
+{{template "vue-final.html" .}}
+</script>
+            <script type="text/javascript">
+                function afterLoad() {
+                    highlightON();
+                }
+
+                //Highlight the icon Orders in the navigation Bar
+                function highlightON() {
+                    qrON()
+                }
+
+                //Removes the highligh from the navigation bar
+                function highlightOFF() {
+                    qrOFF()
+                }
+
+
+            </script>
+</body>
+
+</html>

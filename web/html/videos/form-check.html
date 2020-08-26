@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+        {{if not .edit }}
+        <title>Add Check</title>
+        {{else }}
+        <title>Edit Check</title>
+        {{end}}
+        {{template "imports.html"}}
+    </head>
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+    <div class="margin-body">
+        {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-end.html" .}}
+
+            {{if not .edit }}
+            <header class="title">
+                    {{if eq "english" .GLOBAL.language }}
+                    Add Check to {{.product.Name}} 
+                 {{else if eq "swahili" .GLOBAL.language}}
+                 Ongeza Angalia kwa {{.product.Name}}
+                 {{else if eq "french" .GLOBAL.language }}
+                 Ajouter un chèque à {{.product.Name}}
+                   {{else if eq "german" .GLOBAL.language }}
+                   Check zu {{.product.Name}} hinzufügen
+                   {{else if eq "spanish" .GLOBAL.language }}
+                   Añadir Check a {{.product.Name}}
+                   {{end}}
+            </header>
+            {{else }}
+            <header class="title">
+                    {{if eq "english" .GLOBAL.language }}
+                    Edit Check to {{.product.Name}} 
+                 {{else if eq "swahili" .GLOBAL.language}}
+                 Hariri Angalia kwa {{.product.Name}}
+                 {{else if eq "french" .GLOBAL.language }}
+                 Modifier le chèque à {{.product.Name}}
+                   {{else if eq "german" .GLOBAL.language }}
+                   Check bearbeiten auf {{.product.Name}}
+                   {{else if eq "spanish" .GLOBAL.language }}
+                   Editar Check a {{.product.Name}}
+                   {{end}}
+            </header>
+            {{end}}
+        <form onsubmit="return validateForm()" name="myForm" id="myForm" role="form" method="post"
+            enctype="multipart/form-data">
+
+
+
+
+            <div class="row">
+                <div class="col">
+                  <textarea onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" name="description" id="description" placeholder="Explain here very clearly what need to be check and how" rows="6" required></textarea>
+                </div>
+                <br>
+              </div><br>
+                                          
+              <div class="row">
+                <div class="col-6">
+                  {{template "upload-img.html" .}}
+                </div>
+                {{template "upload-audio.html" .}}
+              </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn--green">
+                        {{template "t-create.html" .}}
+                </button>
+                
+                <div onclick="goBack();" class="btn btn--red">
+                    {{template "t-cancel.html" .}}
+              </div>
+    </div><br><br><br><br>
+    <br><br><br><br>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+        function afterLoad() {   
+            highlightON();
+            {{ if .edit }}
+            fillData();
+            {{ end }}
+        }
+
+        {{ if .edit }}
+        function fillData() {
+            var title = document.getElementById("description");
+            title.value = {{.check.Description }};
+        }
+        {{ end }}
+
+    </script>
+    <script type="text/javascript">
+        //Highlight the icon Settings in the navigation Bar
+        function highlightON() {
+            videosON();
+        }
+        //Removes the highligh from the navigation bar
+        function highlightOFF() {
+            videosOFF();
+        }
+        
+    </script>
+</body>
+</html>

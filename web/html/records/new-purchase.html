@@ -1,0 +1,206 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+ <title>New purchase</title>
+ {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()" >
+    {{template "nav-service.html" .}}
+    <div class="margin-body-form">
+      {{template "information-start.html" .}}
+      {{template "i-dashboard.html" .}}
+      {{template "information-end.html" .}}
+  
+      <div class="row">
+        <div class="col-12">
+          {{if .user.Name}}
+          <header class="title">Purchase from {{.user.Name}}</header>
+          <div class="col-12 center" style="cursor: initial;">
+              <img style="cursor: initial;" src="/local/users/{{.user.Username}}/{{.user.Photo}}" class="img-fluid image-rounded" />
+              <br>
+          </div>
+          {{else}}
+          <header class="title"> {{template "t-free-purchase.html" .}}</header>
+          {{end}}
+          
+          <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+
+
+            {{if not .user.Name}}
+                <p class="form-text"> Workers: </p>
+                <br>
+                <div class="row">
+                  {{range .workers }}
+                  <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                    <div class="col-12">
+                      <img id="{{.ID.Hex}}" src="{{.Photo}}" class="img-fluid image-rounded no-selected image-workers" />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-text">{{.Name}}</label>
+                      <input style="margin-top: -90%; display: none" type="radio" onclick="increaseProduct()" name="workerID" id="workers-{{.ID.Hex}}"
+                        value="{{.ID.Hex}}">
+                    </div>
+                  </div>
+                  {{end}}
+                </div>
+            {{end}}
+
+            {{if .orders }}
+            <p class="form-text"> Products from Orders: </p>
+            <br>
+            <div class="row">
+              {{range .orders }}
+              <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                <div class="col-12">
+                  <img id="{{.ID.Hex}}" src="{{.Photo}}" class="img-fluid image-square-rounded no-selected image-products" />
+                </div>
+                <div class="col-12">
+                  <label style="margin-top: -30px;" class="form-text">{{.ItemName}}</label>
+                  
+                  <input style="margin-top: -90%; display: none" type="radio" onclick="increaseProduct()" name="orderID" id="products-{{.ID.Hex}}"
+                    value="{{.ID.Hex}}">
+                </div>
+              </div>
+              {{end}}
+            </div>
+            {{end}}
+
+            {{if .videos }}
+            <p class="form-text"> From Video: </p>
+            <br>
+            <div class="row">
+              {{range .videos }}
+              <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                <div class="col-12">
+                  <img id="{{.VideoCourseID.Hex}}" src="{{.Photo}}" class="img-fluid image-square-rounded no-selected image-products" />
+                </div>
+                <div class="col-12">
+                  <label class="form-text">{{.VideoCourseName}}</label>
+                  <input style="margin-top: -90%; display: none" type="radio" onclick="increaseProduct()" name="videoID" id="products-{{.VideoCourseID.Hex}}"
+                    value="{{.VideoCourseID.Hex}}">
+                </div>
+              </div>
+              {{end}}
+            </div>
+            {{end}}
+
+
+            {{if .items}}
+              <p class="form-text"> Items: </p>
+              <br>
+              <div class="row">
+                {{range .items }}
+
+
+                <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                  <div class="col-12">
+                    <img id="{{.ID.Hex}}" src="{{.Photo}}" class="img-fluid image-square-rounded no-selected image-products" />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-text">{{.Name}}</label>
+                    <input style="margin-top: -90%; display: none" type="radio" onclick="increaseProduct()" name="itemID" id="products-{{.ID.Hex}}"
+                      value="{{.ID.Hex}}">
+                  </div>
+                </div>
+                {{end}}
+              </div>
+          
+        {{end}}
+
+
+        <div class="row">
+
+            <div class="col" style="margin-top: 65px;">
+              {{template "upload-img.html" .}}
+            </div> 
+            <div class="col">
+              {{template "qr-vue.html" .}}
+            </div> 
+
+<br>
+         
+           
+          
+                <div class="col-12">
+                    <button type="submit" class="btn btn--green">Create</button>
+                    <div onclick="goBack();" class="btn btn--red">
+                      Cancel
+                    </div>
+                  </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var countItem = 0
+    /* Change the selec image if the user clicks the image */
+          $('.image-products').click(function (e) {
+            if ($(this).hasClass('no-selected')) {
+              var product = $(this).attr('id');
+              console.log($("#products-" + product));
+              $(".image-products").removeClass("selected");
+              $(".image-products").addClass("no-selected");
+              $("#products-" + product).prop( "checked", true );
+              $(this).addClass("selected");
+              $(this).removeClass("no-selected");
+              increaseItem();
+            }
+            else if($(this).hasClass("selected")) {
+              var product = $(this).attr('id');
+              $(this).addClass("no-selected");
+              $("#products-" + product).prop( "checked", false );
+              $(this).removeClass("selected");
+            }
+          });
+        
+          /* Change the selec image if the user clicks the image */
+          $('.image-workers').click(function (e) {
+          if ($(this).hasClass('no-selected')) {
+            var product = $(this).attr('id');
+            console.log($("#workers-" + product));
+            $(".image-workers").removeClass("selected");
+            $(".image-workers").addClass("no-selected");
+            $("#workers-" + product).prop( "checked", true );
+            $(this).addClass("selected");
+            $(this).removeClass("no-selected");
+            increaseItem();
+          }
+          else if($(this).hasClass("selected")) {
+            var product = $(this).attr('id');
+            $(this).addClass("no-selected");
+            $("#workers-" + product).prop( "checked", false );
+            $(this).removeClass("selected");
+          }
+          });
+          function afterLoad() {
+          highlightON();
+      }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      recordsON()
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      recordsOFF()
+    }    
+
+    function validateForm() {
+        // Validation for product select
+        if (countItem==0) {
+          alert("You should select a Product for the purchase!");
+          return false;
+        }
+    }
+
+        function increaseItem(){
+          countItem++;
+        }
+
+      </script>
+    </body>
+
+    </html>

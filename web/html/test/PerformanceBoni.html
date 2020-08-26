@@ -1,0 +1,447 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>{{template "t-performance.html" .}}</title>
+  
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="manifest" href="site.webmanifest">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/normalize.css">
+<script src="js/jquery-3.3.1.min.js"></script>
+
+
+
+<link rel="stylesheet" href="css/new.css">
+<script src="js/functionality.js" type="text/javascript" language="javascript"></script>
+<link rel="stylesheet" href="css/correctionNavigation.css">
+
+
+  <script src="js/charts.js" type="text/javascript" language="javascript"></script>
+
+</head>
+
+<body onload="afterLoad()">
+
+  
+  <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12 navbar_section">
+  <div class="navmenu workwhop-admin">
+    <ul>
+        <a href="/workshop/performance">
+          <li id="performance-section" onmouseover="highlightOFF(); performanceON();" onmouseout="performanceOFF(); highlightON();">
+            <img src="svg/performance.svg" class="mx-auto d-block" id="performance-icon">
+            <p id="performance-text" class="navbar-text-desktop">Perfomance</p>
+          </li>
+        </a>
+      <a href="/workshop/list-produts">
+        <li id="products-section" onmouseover="highlightOFF(); productsON();" onmouseout="productsOFF(); highlightON();">
+          <img src="svg/products.svg" class="mx-auto d-block" id="products-icon">
+          <p id="products-text" class="navbar-text-desktop">Products</p>
+        </li>
+      </a>
+      <a href="/workshop/records">
+        <li id="records-section" onmouseover="highlightOFF(); recordsON();" onmouseout="recordsOFF(); highlightON();">
+          <img src="svg/records.svg" class="mx-auto d-block" id="records-icon">
+          <p id="records-text" class="navbar-text-desktop">Records</p>
+        </li>
+      </a>
+      <a href="/workshop/orders">
+        <li id="orders-section" onmouseover="highlightOFF(); ordersON();" onmouseout="ordersOFF(); highlightON();">
+          <img src="svg/orders.svg" class="mx-auto d-block" id="orders-icon">
+          <p id="orders-text" class="navbar-text-desktop">Orders</p>
+        </li>
+      </a>
+      <a href="/dashboard">
+        <li id="back-section" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+          <img src="svg/back.svg" class="mx-auto d-block" id="back-icon">
+          <p id="back-text" class="navbar-text-desktop">Back</p>
+        </li>
+      </a>
+    </ul>
+  </div>
+  <div class="navmenu_mobile workwhop-admin-mobile">
+    <ul>
+        <a href="/workshop/performance">
+          <li id="performance-section-mobile" onmouseover="highlightOFF(); performanceON();" onmouseout="performanceOFF(); highlightON();">
+            <img src="svg/performance.svg" class="mx-auto d-block" id="performance-icon-mobile">
+            <p id="performance-text-mobile" class="navbar-text-mobile">Perfomance</p>
+          </li>
+        </a>
+      </a>
+      <a href="/workshop/list-produts">
+        <li id="products-section-mobile" onmouseover="highlightOFF(); productsON();" onmouseout="productsOFF(); highlightON();">
+          <img src="svg/products.svg" class="mx-auto d-block" id="products-icon-mobile">
+          <p id="products-text-mobile" class="navbar-text-mobile">Products</p>
+        </li>
+      </a>
+      <a href="/workshop/records">
+        <li id="records-section-mobile" onmouseover="highlightOFF(); recordsON();" onmouseout="recordsOFF(); highlightON();">
+
+          <img src="svg/records.svg" class="mx-auto d-block" id="records-icon-mobile">
+          <p id="records-text-mobile" class="navbar-text-mobile">Records</p>
+        </li>
+      </a>
+      <a href="/workshop/orders">
+        <li id="orders-section-mobile" onmouseover="highlightOFF(); ordersON();" onmouseout="ordersOFF(); highlightON();">
+          <img src="svg/orders.svg" class="mx-auto d-block" id="orders-icon-mobile">
+          <p id="orders-text-mobile" class="navbar-text-mobile">Orders</p>
+        </li>
+      </a>
+      <a href="/dashboard">
+        <li id="back-section-mobile" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+          <img src="svg/back.svg" class="mx-auto d-block" id="back-icon-mobile">
+          <p id="back-text-mobile" class="navbar-text-mobile">Back</p>
+        </li>
+      </a>
+  </div>
+</div>
+  
+
+  
+
+      <div class="margin-body">
+
+
+
+      
+      <div class="row">
+        
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 center">
+          <a href="/workshop/performance/worker/">
+            <img src="img/users/" class="img-fluid image-rounded" /> </a>
+          <br>
+          <label class=""> </label>
+        </div>
+        
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 center">
+          <a href="/workshop/performance/worker/5c71586bda5bae0b73f0322c">
+            <img src="img/users/Jackie%20Lomana.png" class="img-fluid image-rounded" /> </a>
+          <br>
+          <label class="">Joana Fos</label>
+        </div>
+        
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 center">
+          <a href="/workshop/performance/worker/5c715f4bda5bae0ce28c18f3">
+            <img src="img/users/Lara%20Ngipreyo.png" class="img-fluid image-rounded" /> </a>
+          <br>
+          <label class="">Greta Ngitopa</label>
+        </div>
+        
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 center">
+          <a href="/workshop/performance/worker/5c72e04dda5bae2742d9cf78">
+            <img src="img/users/Jackie%20Lomana.png" class="img-fluid image-rounded" /> </a>
+          <br>
+          <label class="">Jackie Lomana</label>
+        </div>
+        
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 center">
+          <a href="/workshop/performance/worker/5c72e140da5bae2742d9cf7d">
+            <img src="img/users/Lana%20lipo.png" class="img-fluid image-rounded" /> </a>
+          <br>
+          <label class="">Lana Lipo</label>
+        </div>
+        
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 center">
+          <a href="/workshop/performance/worker/5c72e169da5bae2742d9cf7f">
+            <img src="img/users/Creta%20Ngitopa.png" class="img-fluid image-rounded" /> </a>
+          <br>
+          <label class="">Greta Ngitemo</label>
+        </div>
+        
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 center">
+          <a href="/workshop/performance/worker/5c73cb25da5bae2e20df80d1">
+            <img src="img/users/1551092577533908982232.jpg" class="img-fluid image-rounded" /> </a>
+          <br>
+          <label class="">Sarah Ileny</label>
+        </div>
+        
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 center">
+          <a href="/workshop/performance/worker/5c74e3b3da5bae049e555261">
+            <img src="img/users/image.jpg" class="img-fluid image-rounded" /> </a>
+          <br>
+          <label class="">Paulina Esinyen</label>
+        </div>
+        
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 center">
+          <a href="/workshop/performance/worker/5c74ef9fda5bae049e555268">
+            <img src="img/users/image.jpg" class="img-fluid image-rounded" /> </a>
+          <br>
+          <label class="">Magrate Akal</label>
+        </div>
+        
+      </div>
+
+      <!-- bonface code -->
+      <div class="row">
+      	<div class="col-xs-4 col-4">
+      		<div class="row">
+      			<div class="col-xs-6 col-6">
+      				<img src="svg/increase.svg" class="img-fluid " />
+      			</div>
+      			<div class="col-6">
+      				<div class="first_number">
+              	5878
+            	</div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="performance-symbols">
+                    <ul id="first111">
+                    </ul>
+                    <ul id="second111">
+                    </ul>
+                    <ul id="third111">
+                    </ul>
+                    <script type="text/javascript">
+                      putSymbols(5878, 111);
+                    </script>
+                  </div>
+          			</div>
+              </div>
+            </div>
+      		</div>
+      	</div>
+
+      	<div class="col-xs-4 col-4">
+      		<div class="row">
+      			<div class="col-6">
+      				<img src="svg/decrease.svg" class="img-fluid " />
+      			</div>
+      			<div class="col-6">
+      				<div class="second_number">
+              	3367
+            	</div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="performance-symbols">
+                    <ul id="first222">
+                    </ul>
+                    <ul id="second222">
+                    </ul>
+                    <ul id="third222">
+                    </ul>
+                    <script type="text/javascript">
+                      putSymbols(3367, 222);
+                    </script>
+                  </div>
+                </div>
+              </div>
+      			</div>
+      		</div>
+      	</div>
+
+      	<div class="col-xs-4 col-4">
+      		<div class="row">
+      			<div class="col-6">
+      				<img src="svg/total.svg" class="img-fluid " />
+      			</div>
+      			<div class="col-6">
+      				<div class="third_number">
+              	2511
+            	</div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="performance-symbols">
+                    <ul id="first333">
+                    </ul>
+                    <ul id="second333">
+                    </ul>
+                    <ul id="third333">
+                    </ul>
+                    <script type="text/javascript">
+                      putSymbols(2511, 333);
+                    </script>
+                  </div>
+                </div>
+              </div>
+      			</div>
+      		</div>
+      	</div>
+      </div>
+      <!-- end of bonface code -->
+
+      <!-- <div class="row">
+
+        
+         <div class="col-4 right">
+          <div class="row">
+            <div  class="col-6">
+              <img src="svg/increase.svg" class="img-fluid " />
+            </div>
+            <div  class="col-6">
+            <div class="row increase-text">
+              5878
+            </div>
+            <div class="performance-symbols">
+              <ul id="first111">
+              </ul>
+              <ul id="second111">
+              </ul>
+              <ul id="third111">
+              </ul>
+              <script type="text/javascript">
+                putSymbols(5878, 111);
+              </script>
+            </div>
+          </div>
+          </div>
+        </div> 
+        
+         
+        <div class="col-4 right">
+            <div class="row">
+              <div  class="col-6">
+                <img src="svg/decrease.svg" class="img-fluid " />
+              </div>
+              <div  class="col-6">
+              <div class="row decrease-text">
+                  3367
+              </div>
+              <div class="performance-symbols">
+                <ul id="first222">
+                </ul>
+                <ul id="second222">
+                </ul>
+                <ul id="third222">
+                </ul>
+                <script type="text/javascript">
+                  putSymbols(3367, 222);
+                </script>
+              </div>
+            </div>
+            </div>
+          </div> 
+          
+
+            
+         <div class="col-4 right">
+            <div class="row">
+              <div  class="col-6">
+                <img src="svg/total.svg" class="img-fluid " />
+              </div>
+              <div  class="col-6">
+              <div class="row total-text">
+                  2511
+              </div>
+              <div class="performance-symbols">
+                <ul id="first333">
+                </ul>
+                <ul id="second333">
+                </ul>
+                <ul id="third333">
+                </ul>
+                <script type="text/javascript">
+                  putSymbols(2511, 333);
+                </script>
+              </div>
+            </div>
+            </div>
+          </div>
+          
+
+      </div>
+ -->
+      <div class="row"> 
+        
+  <div class="col-7" id="chart_div">
+          <div id="columnchart_material" style=" width: 100%; min-height: 450px;"></div>
+        </div>
+        <div class="col-5">
+          Performance: 0 <br>
+          Balance: 0
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.setOnLoadCallback(drawChart1);
+
+
+
+    function drawChart1() {
+      var data = google.visualization.arrayToDataTable([
+        ['Week', 'N. Products bought', 'Money to Workers', 'Money recover'],
+        [7,0,0,0],
+    { {.secondWeek } },
+    { {.firstWeek } }
+
+          ]);
+
+
+
+
+    var options = {
+      chart: {
+        title: 'Performance',
+        subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+      }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+    function resize() {
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+
+    window.onload = resize;
+    window.onresize = resize;
+      }
+    $(window).resize(function () {
+      drawChart1();
+      
+    });
+  </script>
+
+  <script type="text/javascript">
+    function validateForm() {
+      
+      var x = document.forms["myForm"]["name"].value;
+      if (x == "") {
+        alert("Name must be filled out, can't be empty!");
+        var element = document.getElementById("name");
+        element.classList.add("is-invalid");
+        return false;
+      } else {
+        var element = document.getElementById("name");
+        element.classList.remove("is-invalid");
+      }
+      
+      var x = document.forms["myForm"]["surname"].value;
+      if (x == "") {
+        alert("Surname must be filled out, can't be empty!");
+        var element = document.getElementById("surname");
+        element.classList.add("is-invalid");
+        return false;
+      } else {
+        var element = document.getElementById("surname");
+        element.classList.remove("is-invalid");
+      }
+    }
+
+    function afterLoad() {
+      highlightON();
+    }
+
+
+    
+    function highlightON() {
+      performanceON()
+    }
+
+    
+    function highlightOFF() {
+      performanceOFF()
+    }    
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Tasks</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-to-do.html" .}}
+    {{$serviceType := .serviceType.Hex}}
+    <div class="margin-body">
+      <div id="app">
+        {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-search-end.html" .}}
+      <div class="table-title">
+        <p> Tasks </p>
+  </div>
+
+      <div class="row">
+        <div class="col-12">
+          <table class="table">
+            <thead class="table-header">
+              <tr>
+                <th> &nbsp; {{template "t-title.html" .}}</th>
+                <th> User</th>
+                <th> {{template "t-village.html" .}}</th>
+                <th> {{template "t-time-checking.html" .}}</th>
+                <th>{{template "t-see.html" .}}</th>
+
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              <tr v-for="sale in sortedSales">
+                  <td> *((sale.titletodo))  </td>
+                <td>*((sale.nameuser))</td>
+                <td>*((sale.namevillage))</td>
+                <td > *((sale.timecheking)) </td>
+                <td>
+                    <a v-bind:href="'/reports/show-pdf/' + sale.id + '.pdf'"> 
+                    <img type="image" src="/static/svg/look.svg" class="icon-table" /> 
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {{template "pagination.html"}}
+      </div>
+      
+          {{if not .todosHTML}}
+          <p class="empty-field center">  You still have no deliveries in the database. <br/>
+          <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+          You can create a new Delivery clicking the button on the right, and then every delivery created will be display here,<br/> 
+          where you can search  and edit them. </p>    
+        {{end}}
+          <!-- Toggle button section start -->
+          <div class="row">
+            <div class="col-12">
+                <div class="btn btn--blue"  style="margin-left: 25px;">
+                  <a href="/to-do/new-to-do"> {{template "t-new-task.html" .}}</a>
+                </div>
+            </div>
+          </div>
+          <!-- Toggle button section end -->
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script type="text/javascript">
+    {{template "vue-init.html" .}}
+          c.titletodo.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+          c.nameuser.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+          c.namevillage.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+          c.timecheking.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 )); 
+    {{template "vue-final.html" .}}
+    </script>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+
+    // Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      calendarON()
+    }
+
+    // Removes the highligh from the navigation bar
+    function highlightOFF() {
+      calendarOFF()
+    }    
+  </script>
+</body>
+
+</html>

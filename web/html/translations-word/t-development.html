@@ -1,0 +1,13 @@
+{{if eq "swahili" .GLOBAL.language }}
+Maendeleo
+{{else if eq "turkana" .GLOBAL.language}}
+    Adukor
+{{else if eq "french" .GLOBAL.language }}
+Développement
+{{else if eq "german" .GLOBAL.language }}
+Entwicklung
+{{else if eq "spanish" .GLOBAL.language }}
+Desarrollo
+{{else}}
+Development
+{{end}}

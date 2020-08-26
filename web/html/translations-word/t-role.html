@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+    Role 
+{{else if eq "swahili" .GLOBAL.language}}
+    Jukumu
+    {{else if eq "turkana" .GLOBAL.language}}
+    Etic
+{{else if eq "french" .GLOBAL.language }}
+    Rôle
+{{else if eq "german" .GLOBAL.language }}
+    Rolle
+{{else if eq "spanish" .GLOBAL.language }}
+    Rol
+{{end}}

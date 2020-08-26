@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+    Balance 
+{{else if eq "swahili" .GLOBAL.language}}
+    Usawa
+    {{else if eq "turkana" .GLOBAL.language}}
+    Kiterian 
+{{else if eq "french" .GLOBAL.language }}
+    Équilibre
+{{else if eq "german" .GLOBAL.language }}
+    Balance
+{{else if eq "spanish" .GLOBAL.language }}
+    Balance
+{{end}}

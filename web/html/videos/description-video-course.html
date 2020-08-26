@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Step {{.numberNoURL}} {{.product.Name}}</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()"> 
+          {{$product := .product}} 
+          {{$role := .GLOBAL.role}} 
+          {{$serviceType := .serviceType}} 
+          {{template "nav-service.html" .}}
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+      {{template "i-description-video.html" .}}
+      {{template "information-end.html" .}}
+          <div class="row">
+            <div class="col-12"> 
+              <h1 class="title">{{.product.Name}}</h1>
+            </div>
+          </div>
+          <div class="row">
+          <div class="product-description col-4 ">
+              <img src="/local/video-courses/{{.product.Name}}/{{.product.Photo}}" class="product-image">
+            </div>
+            <div class="col-8 ">
+              <p>{{.product.Description}}</p>
+            </div>
+          </div>
+          <div class="row" style="padding-top: 0;">
+            <div class="center-objects">
+               <a href="/videos/video-course-problems/{{.product.ID.Hex}}/{{.serviceType.Hex}}">
+                      <button type="button" class="btn btn--blue reduced-8">        {{template "t-see-problems.html" .}} </button>
+                    </a>
+                   
+                   
+                    
+                    {{if eq "admin" .GLOBAL.role }}
+                    <a href="/videos/video-course-new-problem/{{.product.ID.Hex}}/{{.serviceType.Hex}}">
+                      <button type="button" class="btn btn--green reduced-8">{{template "t-new-problem.html" .}}</button>
+                    </a>
+                    <a href="/videos/new-check/{{.product.ID.Hex}}/{{.serviceType.Hex}}">
+                      <button type="button" class="btn btn--green reduced-8" id="buttonSteps">{{template "t-new-check.html" .}}</button>
+                    </a>
+                    {{end}}
+                    <a href="/videos/step-video-course/{{.product.ID.Hex}}/0/{{.serviceType.Hex}}">
+                      <button type="button" class="btn btn--blue reduced-8" id="buttonSteps">{{template "t-see-steps.html" .}}</button>
+                    </a>
+                  </div>
+        </div>
+          <div class="row">
+              <div class="col-12"> 
+                <h1 class="title">Check List</h1>
+              </div>
+            </div>
+            {{range .list}}
+            <div class="row">
+                <div class="col-4"> 
+                    <img src="/local/video-courses/{{$product.Name}}/checks/{{.Photo}}" class="product-image">
+                </div>
+                <div class="col-6 form-text"> 
+                  {{.Description}}
+                </div>
+                <div class="col-2"> 
+                    <audio id="myAudio">
+                        <source src="/local/video-courses/{{$product.Name}}/checks/{{.Audio}}" type="audio/mp3">
+                        Your browser does not support the audio element.
+                      </audio>
+                      <input onclick="playAudio()" type="image" src="/static/svg/listen.svg" style="max-height: 90px; max-width: 90px;"
+                        name="saveForm" class="btTxt submit img-zoom-min" id="saveForm" />
+                        {{if eq "admin" $role }}
+                        <div class="btn btn--green" >
+                            <a href="/videos/edit-check/{{.ID.Hex}}/{{$serviceType.Hex}}">Edit check</a>
+                          </div>
+                          {{end}}
+                    </div>
+                </div>
+            {{end}}
+
+
+
+
+
+
+
+           
+
+    </div>
+              </div> </div>
+      </div>
+      </div>
+    <script type="text/javascript">
+
+      function afterLoad(){
+        highlightON();
+      }
+
+
+      //Highlight the icon Settings in the navigation Bar
+      function highlightON() {
+        videosON();
+      }
+
+      //Removes the highligh from the navigation bar
+      function highlightOFF() {
+        videosOFF();
+      }    
+
+    </script>
+  </body>

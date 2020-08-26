@@ -1,0 +1,82 @@
+<div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12 navbar_section">
+        <div class="navmenu six-icons">
+          <ul>
+            <a href="/records/wk/wallet">
+              <li id="first-section" onmouseover="highlightOFF(); walletON();" onmouseout="walletOFF(); highlightON();">
+                <img src="/static/svg/wallet.svg" class="mx-auto d-block" id="first-icon">
+                <p id="first-text" class="navbar-text-desktop">Wallet</p>
+              </li>
+            </a>
+            <a href="/records/wk/sales">
+              <li id="second-section" onmouseover="highlightOFF(); recordsSalesON();" onmouseout="recordsSalesOFF(); highlightON();">
+                <img src="/static/svg/records-products.svg" class="mx-auto d-block" id="second-icon">
+                <p id="second-text" class="navbar-text-desktop"> {{template "t-stock-generated.html" .}}</p>
+              </li>
+            </a>
+            <a href="/records/wk/orders">
+              <li id="third-section" onmouseover="highlightOFF(); recordsOrdersON();" onmouseout="recordsOrdersOFF(); highlightON();">
+                <img src="/static/svg/records-orders.svg" class="mx-auto d-block" id="third-icon">
+                <p id="third-text" class="navbar-text-desktop">Orders</p>
+              </li>
+            </a>
+            <a href="/records/wk/items">
+              <li id="fourth-section" onmouseover="highlightOFF(); materialsON();" onmouseout="materialsOFF(); highlightON();">
+                <img src="/static/svg/records-materials.svg" class="mx-auto d-block" id="fourth-icon">
+                <p id="fourth-text" class="navbar-text-desktop">Materials</p>
+              </li>
+            </a>
+            <a href="/records/wk/payments">
+              <li id="fifth-section" onmouseover="highlightOFF(); paymentsON();" onmouseout="paymentsOFF(); highlightON();">
+                <img src="/static/svg/records-payments.svg" class="mx-auto d-block" id="fifth-icon">
+                <p id="fifth-text" class="navbar-text-desktop">{{template "t-payments.html" .}}</p>
+              </li>
+            </a>
+            <a href="/dashboard">
+              <li id="back-section" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+                <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon">
+                <p id="back-text" class="navbar-text-desktop">  {{template "t-back.html" .}}</p>
+              </li>
+            </a>
+          </ul>
+        </div>
+        <div class="navmenu_mobile six-icons-mobile">
+          <ul>
+            <a href="/records/wk/wallet">
+              <li id="first-section-mobile" onmouseover="highlightOFF(); walletON();" onmouseout="walletOFF(); highlightON();">
+                <img src="/static/svg/wallet.svg" class="mx-auto d-block" id="first-icon-mobile">
+                <p id="first-text-mobile" class="navbar-text-mobile">Wallet</p>
+              </li>
+            </a>
+            <a href="/records/wk/sales">
+              <li id="second-section-mobile" onmouseover="highlightOFF(); recordsSalesON();" onmouseout="recordsSalesOFF(); highlightON();">
+                <img src="/static/svg/records-products.svg" class="mx-auto d-block" id="second-icon-mobile">
+                <p id="second-text-mobile" class="navbar-text-mobile">Sales</p>
+              </li>
+            </a>
+            <a href="/records/wk/orders">
+              <li id="third-section-mobile" onmouseover="highlightOFF(); recordsOrdersON();" onmouseout="recordsOrdersOFF(); highlightON();">
+                <img src="/static/svg/records-orders.svg" class="mx-auto d-block" id="third-icon-mobile">
+                <p id="third-text-mobile" class="navbar-text-mobile">Orders</p>
+              </li>
+            </a>
+            <a href="/records/wk/items">
+              <li id="fourth-section-mobile" onmouseover="highlightOFF(); materialsON();" onmouseout="materialsOFF(); highlightON();">
+                <img src="/static/svg/records-materials.svg" class="mx-auto d-block" id="fourth-icon-mobile">
+                <p id="fourth-text-mobile" class="navbar-text-mobile">Materials</p>
+              </li>
+            </a>
+            <a href="/records/wk/payments">
+              <li id="fifth-section-mobile" onmouseover="highlightOFF(); paymentsON();" onmouseout="paymentsOFF(); highlightON();">
+                <img src="/static/svg/records-payments.svg" class="mx-auto d-block" id="fifth-icon-mobile">
+                <p id="fifth-text-mobile" class="navbar-text-mobile">{{template "t-payments.html" .}}</p>
+              </li>
+            </a>
+            <a href="/dashboard">
+              <li id="back-section-mobile" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+                <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon-mobile">
+                <p id="back-text-mobile" class="navbar-text-mobile">  {{template "t-back.html" .}}</p>
+              </li>
+            </a>
+          </ul>
+        </div>
+      </div>

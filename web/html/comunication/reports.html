@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Conversations</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{template "nav-comunication.html" .}}
+    <div class="margin-body" >
+      <div id="app">
+        {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-search-end.html" .}}
+        <div class="table-title">
+          <p>  {{template "t-reports.html" .}} </p>
+    </div>
+        <div class="row">
+        <div class="col-12">
+          <table class="table">
+            <thead class="table-header">
+              <tr>
+                <th @click="sort('user')">&nbsp;  User</th>
+                <th @click="sort('type')">Type</th>
+                <th @click="sort('isclose')">State</th>
+                <th @click="sort('date')">{{template "t-date.html" .}}</th>
+                <th class="center" >  {{template "t-see.html" .}}</th>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              <tr v-for="sale in sortedSales">
+              <td> *((sale.user)) </td>
+              <td> *((sale.type)) </td>
+              <td> *((sale.isclose)) </td>
+              <td> *((sale.date)) </td>
+              <td  class="center">
+                  <a v-bind:href="'/comunication/see-report/' + sale.id"> 
+                  <img type="image" src="/static/svg/look.svg" class="icon-table" /> 
+                </a>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+       
+          <!-- Toggle button section start -->
+        </div>
+      </div>
+      {{template "pagination.html"}}
+        </div>
+    {{if not .reports}}
+    <p class="empty-field center">  You still have no reports in the database. <br/>
+    <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+    You can create a new Report clicking the button on the right, and then every report created will be display here,<br/> 
+    where you can search  and edit them. </p>    
+  {{end}}
+  <div class="row">
+  <div class="col-12">
+    <div class="btn btn--blue" >
+      <a href="/comunication/new-report"> {{template "t-new-report.html"  .}}</a>
+    </div>
+  </div>
+</div>  
+      </div>
+      <script type="text/javascript">
+        {{template "vue-init.html" .}}
+        c.user.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+        c.type.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+        c.isclose.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+        c.date.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)); 
+        {{template "vue-final.html" .}}
+      </script>
+       
+    </div>
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      reportsON();
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      reportsOFF();
+    }    
+  </script>
+</body>
+
+</html>

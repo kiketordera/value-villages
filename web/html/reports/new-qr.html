@@ -1,0 +1,26 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>QR export</title>
+  {{template "imports.html" }}
+</head>
+{{range .PDFpages}}
+<!-- <page size="A4"> -->
+<page>
+    <div class="row" style="margin-top: -0.4cm">
+      <div class="col-12">
+        <img src="/static/img/pdf/logo.png" class="img-fluid logo-pdf" />
+                      {{.Date}} 
+        <img src="data:image/png;base64,{{.ID}}" class="img-fluid qrID" />
+                    These QRs are only for {{.TypeOfItem}} 
+      </div>
+    </div>
+    <br>
+    <div class="row" style="margin-top: -0.5cm">
+      {{range .QRs}}
+            <img src="data:image/png;base64,{{.}}" class="img-fluid qr" />
+      {{end}}
+    </div>
+</body>
+</page>
+{{end}}

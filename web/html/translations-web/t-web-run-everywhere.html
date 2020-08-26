@@ -1,0 +1,13 @@
+{{if eq "swahili" .GLOBAL.language }}
+<img src="/static/img/home/everywhere-ks.png" alt="" class="img-background">
+{{else if eq "french" .GLOBAL.language }}
+<img src="/static/img/home/everywhere-fr.png" alt="" class="img-background">
+{{else if eq "german" .GLOBAL.language }}
+<img src="/static/img/home/everywhere-gr.png" alt="" class="img-background">
+{{else if eq "spanish" .GLOBAL.language }}
+<img src="/static/img/home/everywhere-es.png" alt="" class="img-background">
+{{else}}
+<img src="/static/img/home/everywhere-en.png" alt="" class="img-background">
+{{end}}
+
+

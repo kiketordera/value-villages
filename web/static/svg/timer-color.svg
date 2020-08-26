@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="213.118" height="238.864" viewBox="0 0 213.118 238.864">
+  <g id="time-hver" transform="translate(0.118)">
+    <line id="Line_26" data-name="Line 26" y1="24.7" transform="translate(97 4.7)" fill="none" stroke="#a97c50" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="9"/>
+    <line id="Line_27" data-name="Line 27" y1="10.2" x2="10.3" transform="translate(147.6 34.2)" fill="none" stroke="#3c2415" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="9"/>
+    <line id="Line_28" data-name="Line 28" x1="10.2" y1="10.2" transform="translate(36.2 34.2)" fill="none" stroke="#3c2415" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="9"/>
+    <path id="Path_819" data-name="Path 819" d="M162.3,187.6A92.561,92.561,0,1,0,97,214.5H208.3" fill="none" stroke="#f7941d" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="9"/>
+    <circle id="Ellipse_10" data-name="Ellipse 10" cx="70.8" cy="70.8" r="70.8" transform="translate(26.2 51.2)" stroke-width="9" stroke="#00a3d2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/>
+    <line id="Line_29" data-name="Line 29" x2="34.5" transform="translate(79.8 4.5)" fill="none" stroke="#a97c50" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="9"/>
+    <line id="Line_30" data-name="Line 30" y2="32.5" transform="translate(97 78.3)" fill="none" stroke="#ed037c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="9"/>
+    <line id="Line_31" data-name="Line 31" x1="17.8" transform="translate(108 122)" fill="none" stroke="#ed037c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="9"/>
+    <path id="Path_820" data-name="Path 820" d="M190.5,196.5l18,18-18,18" fill="none" stroke="#f7941d" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="9"/>
+    <circle id="Ellipse_11" data-name="Ellipse 11" cx="14" cy="14" r="14" transform="translate(83 108)" fill="#63b190"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+{{if eq "swahili" .GLOBAL.language }}
+Mfanyakazi
+{{else if eq "turkana" .GLOBAL.language}}
+    Ekasuban etich
+{{else if eq "french" .GLOBAL.language }}
+    Travailleur
+{{else if eq "german" .GLOBAL.language }}
+Arbeiter
+{{else if eq "spanish" .GLOBAL.language }}
+    Trabajador
+{{else}}
+    Worker
+{{end}}

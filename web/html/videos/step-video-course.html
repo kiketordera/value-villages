@@ -1,0 +1,140 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Step {{.numberNoURL}} {{.product.Name}}</title>
+  {{template "imports.html"}}
+  {{$serviceType := .serviceType}} 
+  {{$ID := .id}} 
+
+</head>
+<body onload="afterLoad()">  
+    {{template "nav-service.html" .}}
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+      {{template "i-step-video.html" .}}
+      {{template "information-end.html" .}}
+          <div class="row">
+            <div class="col-12"> 
+              <h1 class="title" style="margin-bottom: 0; text-transform: uppercase;">{{.product.Name}} </h1>
+              <h1 class="title" style="margin-bottom: 25px;"> {{ .step.Title }} </h1>
+            </div>
+          </div>
+            <div class="step-video">
+              <video width="100%" height="100%" style="border-radius: 10px;" controls preload="none">
+                 <source src="/local/video-courses/{{.product.Name}}/steps/{{.step.Video }}">
+              </video>
+            </div>
+            {{if .step.Warnings }}
+                  <div class="main_items">
+            <div class="warningSection">
+              <h2>
+                <img style="transform: scale(.8);" src="/static/svg/warning.svg" >
+                <span>
+                  {{template "t-warnings.html" .}}
+                </span>
+              </h2>
+              {{range .step.Warnings }}
+              <p> {{.}}</p>
+              {{end}}
+              <br>
+              <audio id="myAudio" preload="none">
+                <source src="/local/video-courses/{{.product.Name}}/steps/{{.step.Audio}}" type="audio/mp3">
+                Your browser does not support the audio element.
+              </audio>
+              <input onclick="playAudio()" type="image" src="/static/svg/listen.svg" style="max-height: 90px; max-width: 90px; float: right;"
+                name="saveForm" class="btTxt submit" id="saveForm" />
+            </div>
+            {{end}}
+            <div class="warningSection">
+              <h2>
+                <span>
+                    {{if eq "english" .GLOBAL.language }}
+                    Description step 
+                 {{else if eq "swahili" .GLOBAL.language}}
+                 Hatua ya maelezo
+                 {{else if eq "french" .GLOBAL.language }}
+                 Étape de la description
+                   {{else if eq "german" .GLOBAL.language }}
+                   Beschreibungsschritt
+                   {{else if eq "spanish" .GLOBAL.language }}
+                  Descripción del paso
+                   {{end}}
+                </span>
+              </h2>
+              <p>{{.step.Description}}</p>
+            </div>
+            {{if .tools}}
+            {{if .materials}}
+           <div class="materialsSection">
+              <h2>
+                <img src="/static/svg/toolbox.svg" alt="Toolbox svg">
+                <span>
+                    {{if eq "english" .GLOBAL.language }}
+                    Tools and materials 
+                 {{else if eq "swahili" .GLOBAL.language}}
+                 Vyombo na vifaa
+                 {{else if eq "french" .GLOBAL.language }}
+                 Outils et matériaux
+                   {{else if eq "german" .GLOBAL.language }}
+                   Werkzeuge und Materialien
+                   {{else if eq "spanish" .GLOBAL.language }}
+                  Materiales y herramientas
+                   {{end}}
+                </span>
+              </h2>
+              <div class="row">
+                {{range .tools }}
+                <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                  <img src="{{.Photo}}" class="image-square-rounded">
+                </div>
+                {{end}}
+                {{range .materials }}
+                <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluids">
+                  <img src="{{.Photo}}" class="image-square-rounded">
+                </div>
+                {{end}}
+              </div>
+            </div>
+            {{end}}
+            {{end}}
+            
+            <br><br> 
+    
+
+  <div class="col" style="float: right;">
+    <div style="float: right;">
+    {{if gt (len .pagination) 1 }}
+      {{range $i, $e := .pagination}}
+          {{if .Active}}
+          <!-- <a href="videos/step-video-course/{{$ID.Hex}}/{{$i}}/{{$serviceType.Hex}}" class=""> -->
+            <button class="pagination-number-active"><p>{{.Fakenumb}}</p></button> 
+          <!-- </a> -->
+          {{else}}
+          <a href="/videos/step-video-course/{{$ID.Hex}}/{{$i}}/{{$serviceType.Hex}}" class="">
+            <button class="pagination-number"><p>{{.Fakenumb}}</p></button> 
+            </a>
+          {{end}}
+      {{end}}
+    {{end}}
+  </div>
+  </div></div>
+              </div> </div>
+      </div>
+      </div>
+    <script type="text/javascript">
+      function afterLoad(){
+        highlightON();
+      }
+
+      //Highlight the icon Settings in the navigation Bar
+      function highlightON() {
+        videosON();
+      }
+
+      //Removes the highligh from the navigation bar
+      function highlightOFF() {
+        videosOFF();
+      }    
+
+    </script>
+  </body>

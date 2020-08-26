@@ -1,0 +1,1 @@
+Here you can see all the changes made by you in the app, including the transactions, payments, orders, modifications... Basically everything you do in the app registered by a chronological pipeline

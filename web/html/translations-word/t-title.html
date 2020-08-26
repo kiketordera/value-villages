@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+Title:
+{{else if eq "swahili" .GLOBAL.language}}
+Kichwa
+{{else if eq "turkana" .GLOBAL.language}}
+Akou
+{{else if eq "french" .GLOBAL.language }}
+Titre
+{{else if eq "german" .GLOBAL.language }}
+Titel
+{{else if eq "spanish" .GLOBAL.language }}
+Titulo
+{{end}}

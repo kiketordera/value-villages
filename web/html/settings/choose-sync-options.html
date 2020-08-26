@@ -1,0 +1,50 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Choose sync</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+        {{template "nav-activity.html" .}}
+  <div class="margin-body">
+    {{template "information-start.html" .}}
+    {{template "i-choose-sync.html" .}}
+    {{template "information-end.html" .}}
+        <br>
+      <br>
+  <div class="row">
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          <a href="/settings/exports">
+            <img src=/static/svg/export.svg class="img-fluid image-dashboard" />
+            <p class="dashboard-text" >   {{template "t-exports.html" .}} </p>
+          </a>
+      </div>  
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+            <a href="/settings/imports">
+            <img src=/static/svg/download.svg class="img-fluid image-dashboard" />
+           <p class="dashboard-text" >   {{template "t-imports.html" .}} </p>
+          </a>
+      </div>
+    
+    </div>
+
+
+
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      syncON();
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      syncOFF();
+    }
+  </script>
+</body>
+
+</html>

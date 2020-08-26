@@ -1,0 +1,10 @@
+Esta es la página del dashboard. Es el menú principal donde iniciarás la aplicación.
+
+
+El primer conjunto de iconos son los servicios del pueblo a los que tienes acceso. Allí podrás realizar las acciones propias de los servicios.
+
+
+El segundo conjunto de iconos son las acciones propias relacionadas con la aplicación en general.
+
+
+El último icono es para  salir de la aplicación.

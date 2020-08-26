@@ -1,0 +1,208 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Activity</title>
+  {{template "imports.html"}}
+  <link rel="stylesheet" href="/static/css/bootstrap-datepicker3.css">
+  <script src="/static/js/bootstrap-datepicker.min.js"></script>
+  <!-- THIS CODE MAKE THE NUMBERS BIGGER, IS MORE CONFORTABLE TO TACTIL -->
+  <style type="text/css">
+        .datepicker td, .datepicker th {
+            width: 1.5em;
+            height: 1.5em;
+        }
+        
+  </style>
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-activity.html" .}}
+  
+  <div class="margin-body-form">
+    {{template "information-start.html" .}}
+        {{template "i-activity.html" .}}
+        {{template "information-end.html" .}}
+    <br>
+    {{template "service-picker.html" .}}
+  
+    {{range .audits}}
+    <div class="row">
+      <div class="col-12">
+          <p class="title">{{.Date}}</p>
+      </div>
+    </div>
+       {{if .Created}}
+    <div class="row">
+      <div class="activity-container">
+        <p> <img src="/static/svg/new.svg" class="activity-img"> You have created {{len .Created}} Items </p>
+      </div>
+      <section class="scroll-section">
+        <div class="pic-container">
+          <div>
+            <ul>
+              {{range .Created}}
+              <li>
+                  <a href="{{.Link}}">
+                    <p class="img-description">{{.Type}}</p>
+                  <img class="{{.Class}}" src="{{.Icon}}">
+                  <p class="img-title">{{.Name}}</p>
+                  {{if .SecondLine}}
+                  <p class="img-description">{{.SecondLine}} </p>
+                  {{else}}
+                  <p class="img-description" style="color: white;"> . </p>
+                  {{end}}
+                </a>
+              </li>
+              {{end}}
+            </ul>
+          </div>
+        </div>
+      </section>​
+    </div>
+    {{end}}
+
+        {{if .Modified}}
+    <div class="row">
+        <div class="activity-container">
+          <p> <img src="/static/svg/modified.svg" class="activity-img">  You have modified {{len .Modified}}  Item</p>
+        </div>
+        <section class="scroll-section">
+          <div class="pic-container">
+            <div>
+              <ul>
+                {{range .Modified}}
+                <li>
+                  <a href="{{.Link}}">
+                      <p class="img-description">{{.Type}}</p>
+                      <img class="{{.Class}}" src="{{.Icon}}">
+                      <p class="img-title">{{.Name}}</p>
+                      {{if .SecondLine}}
+                      <p class="img-description">{{.SecondLine}} </p>
+                      {{else}}
+                      <p class="img-description" style="color: white;"> . </p>
+                      {{end}}
+                  </a>
+                </li>
+                {{end}}
+              </ul>
+            </div>
+          </div>
+        </section>​
+      </div>
+      {{end}}
+      
+          {{if .Deleted}}
+    <div class="row">
+      <div class="activity-container">
+          <p class="img-description">{{.Type}}</p>
+        <p> <img src="/static/svg/deleted.svg" class="activity-img"> You have deleted {{len .Deleted}}  Items</p>
+      </div>
+      <section class="scroll-section">
+        <div class="pic-container">
+          <div>
+            <ul>
+              {{range .Deleted}}
+              <li>
+                <a href="{{.Link}}">
+                    <img class="{{.Class}}" src="{{.Icon}}">
+                    <p class="img-title">{{.Name}}</p>
+                    {{if .SecondLine}}
+                    <p class="img-description">{{.SecondLine}} </p>
+                    {{else}}
+                    <p class="img-description" style="color: white;"> . </p>
+                    {{end}}
+                </a>
+              </li>
+              {{end}}
+            </ul>
+          </div>
+        </div>
+      </section>​
+    </div>
+    {{end}}
+        
+	{{end}}
+  </div>
+</div>
+
+
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+      
+      {{if ne (len .services) 1 }}
+        {{if .serviceVisualID}}
+            document.getElementById('serviceID').value = {{.serviceVisualID.Hex}};
+        {{else}}
+          document.getElementById('serviceID').value = "all";
+        {{end}}
+      {{end}}
+    }
+
+    var fromAlways = true;
+    var tilToday = true;
+
+    function disableFrom() {
+      if (document.getElementById('fromdate').disabled) {
+        document.getElementById('fromdate').disabled = true;
+      } else {
+        document.getElementById('fromdate').disabled = false;
+      }
+    }
+
+    function disableTo() {
+        document.getElementById('todate').disabled = true;
+    }
+
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      activityON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      activityOFF()
+    }    
+
+
+    // DATES
+
+    var date = new Date();
+    // The number is the quantity of date ahead
+    date.setDate(date.getDate()+0);
+
+    $('#fromdate').datepicker({ 
+        startDate: date
+    });
+
+
+    $('#fromdate').datepicker({
+          weekStart: 1,
+          daysOfWeekHighlighted: "6,0",
+          autoclose: true,
+          todayHighlight: true,
+      });
+      
+      $('#fromdate').datepicker("setDate", new Date());
+
+      $('#todate').datepicker({ 
+        startDate: date
+    });
+
+
+    $('#todate').datepicker({
+          weekStart: 1,
+          daysOfWeekHighlighted: "6,0",
+          autoclose: true,
+          todayHighlight: true,
+      });
+      
+      $('#todate').datepicker("setDate", new Date());
+
+  </script>
+</body>
+
+</html>

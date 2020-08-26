@@ -1,0 +1,21 @@
+{{if eq "swahili" .GLOBAL.language }}
+<p class="title-gradient">Uzalishaji wako</p> 
+<p class="text-gradient">Mtazamo rahisi na wazi wa bidhaa zilizotengenezwa, malipo, mapato, na uwajibikaji wa kazi yako. Usikose namba!<br>
+{{else if eq "turkana" .GLOBAL.language}}
+<p class="title-gradient">Aurinet nalon</p> 
+<p class="text-gradient">angolikinet nabeben ka akitetemet luangiboro luasubakinitae, akitach,ngaremuneta ka uwajibika a etic kon. nikosenga anamba.<br>
+{{else if eq "french" .GLOBAL.language }}
+<p class="title-gradient">Votre production</p> 
+<p class="text-gradient">Une vue claire et aisée des produits réalisés, des paiements, des bénéfices et de la responsabilité de votre travail. Ne manquez pas un numéro!<br>
+{{else if eq "german" .GLOBAL.language }}
+<p class="title-gradient">Ihre Produktion</p> 
+<p class="text-gradient">Eine einfache und klare Übersicht über die hergestellten Produkte, die Zahlungen, die Gewinne und die Verantwortung Ihrer Arbeit. Verpassen Sie keine Zahl!<br>
+{{else if eq "spanish" .GLOBAL.language }}
+<p class="title-gradient">Tu producción</p> 
+<p class="text-gradient">Una visión fácil y clara de los productos realizados, los pagos, las ganancias y la responsabilidad de su trabajo. No te pierdas un número!<br>
+{{else}}
+<p class="title-gradient">Your production</p> 
+<p class="text-gradient">An easy and clear view of the products made, 
+  the payments, earnings, and accountability of your work.
+  Don’t miss a number!<br>
+{{end}}

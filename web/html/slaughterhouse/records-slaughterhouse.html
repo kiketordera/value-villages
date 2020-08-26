@@ -1,0 +1,280 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>{{template "t-records.html" .}}</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+  {{template "nav-service.html" .}}
+
+
+  <div class="margin-body">
+
+        <!-- THIS IS FOR Information **************************************** -->
+        <div class="information-continent" id='changeator' style="z-index:2">
+          <div class="changer-view-button">
+            <div class="row" >
+                <div class="col-12">
+                  <embed class="information-text" src="/static/text/records-worker/records-wallet.txt">
+                </div>
+            </div>
+            <div class="row" class="buttons-info">
+                 <div class="col-2 offset-6  offset-lg-7" style="top: -85px;">
+                    <audio id="myAudio" preload="none">
+                        <source src="/local/video-courses/{{.product.Name}}/steps/{{.step.Audio }}" type="audio/mp3">
+                        Your browser does not support the audio element.
+                      </audio>
+                      <input onclick="playAudio()" type="image" src="/static/svg/listen.svg"
+                        name="saveForm" class="btTxt submit listen-info" id="saveForm" />
+                 </div>
+                 <div class="col-1 offset-1" style="top: -85px;">
+                    <div style="margin-left: 5px;" onclick="changeView();" class="btn btn-primary ok-button">
+                            OK
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+        <div class="changer-icon">
+          <div class="col-1 offset-11">
+            <img src="/static/svg/info.svg" alt="product icon" class="img-fluid" onclick="changeView()">
+          </div>
+        </div>
+        <!-- END  -->
+        <br>
+    {{if ne (len .workshops) 1 }}
+     
+    <form  name="myForm" role="form" method="post" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col">
+        <p class="form-text"> Workshop: </p>
+      </div>
+      <div class="col">
+        <select class="form-control custom-select form-field" name="workshopID" id="workshopID">
+          {{range .workshops}}
+          <option value="{{.ID.Hex}}"> {{.Village}}: {{.Name}} </option>
+          {{end}}
+        </select>
+      </div>
+        <div class="col">
+          <button type="submit" class="btn btn-primary wk-button">Change the views</button>
+        </div>
+    </div>
+    </form>
+<br>
+{{end}}
+  
+
+<div class="row">
+  <div class="col-12 col-lg-6">
+      
+    
+
+    
+
+
+    <table class="table">
+      <thead class="table-title">
+        <tr>
+          <th colspan="6">
+            <p>
+              {{template "t-stock-generated.html" .}} </p>
+          </th>
+        </tr>
+      </thead>
+      <thead class="table-header">
+        <tr>
+          <th>Worker</th>
+          <th>Workshop</th>
+          <th>Product</th>
+          <th>Date</th>
+          <th class="center">Price</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        {{range .wkPurchases}}
+        <tr>
+            <td class="center">
+                <div>
+                  <a href="/workshop/performance/worker/{{.UserID}}">
+                    <img src="{{.UserPhoto}}" class="image-rounded-table img-fluid" /> </a>
+                </div>
+              </td>
+
+          <td>{{.WorkshopName}}</td>
+          <td>
+              <img src="{{.Photo}}" class="image-square-rounded-table" />
+          </td>
+           <td>{{.Date}}</td>
+           <td class="center">{{.Price}}</td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+
+    <div class="normal-button">
+      <a href="/workshop/new-purchase">New purchase</a>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <table class="table">
+      <thead class="table-title">
+        <tr>
+          <th colspan="5">
+            <p>
+              Workshop Sales </p>
+          </th>
+        </tr>
+      </thead>
+      <thead class="table-header">
+        <tr>
+          <th>Name</th>
+          <th class="center">Item</th>
+          <th>Worker</th>
+          <th class="center">Date</th>
+          <th class="center">Quantity</th>
+          <th class="center">Price</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        {{range .wkSales}}
+        <tr>
+          <td>{{.ServiceName}}</td>
+          <td class="center">
+            <div>
+                <img src="{{.ItemPhoto}}" class="image-square-rounded-table"/> </a>
+          </td>
+          <td>
+            <div> 
+              <img src="/local/users/{{.Username}}/{{.UserPhoto}}" class="image-rounded-table img-fluid" />
+            </div>
+          </td> 
+          <td>{{.Date}}</td>
+          <td class="center">{{.Quantity}}</td>
+          <td class="center">{{.Price}}</td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+      <div class="normal-button">
+        <a href="/workshop/new-sale">New sale</a>
+      </div>
+    <!-- Toggle button section end -->
+  </div>
+</div>
+
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <table class="table">
+        <thead class="table-title">
+          <tr>
+            <th colspan="4">
+              <p>
+                {{template "t-payments.html" .}} </p>
+            </th>
+          </tr>
+        </thead>
+        <thead class="table-header">
+          <tr>
+            <th>Date</th>
+            <th>Worker</th>
+            <th class="center">Quantity</th>
+            <th class="center">See</th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          {{range .paymentsHTML}}
+          <tr>
+            <td>{{.Date}}</td>
+            <td>{{.Worker}}</td>
+            <td class="center">{{.Quantity}} </td>
+            <td class="center">
+              <div>
+                <a href="/workshop/see-payment/{{.ID.Hex}}">
+                  <img src="/static/svg/look.svg" class="icon-table" /> </a>
+              </div>
+            </td>
+          </tr>
+          {{end}}
+        </tbody>
+      </table>
+
+      <div class="normal-button">
+        <a href="/workshop/new-payment">New payment</a>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <table class="table">
+        <thead class="table-title">
+          <tr>
+            <th colspan="5">
+              <p class="recordhd">
+                Worker Orders </p>
+            </th>
+          </tr>
+        </thead>
+        <thead class="table-header">
+          <tr>
+           
+            <th>Product</th>
+            <th>Worker</th>
+            <th>Date</th>
+            <th class="center">Quantity</th>
+            <th class="center">Status</th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          {{range .ordersHTML}}
+          <tr>
+          
+            <td>
+              <img src="/local/video-courses/{{.ItemName}}/{{.PhotoItem}}" class="image-square-rounded-table img-fluid" /> 
+          </td>
+          <td>
+            <div class=""> 
+              <img src="/local/users/{{.Username}}/{{.WorkerPhoto}}" class="image-rounded-table img-fluid" />
+            </div>
+          </td> 
+            <td>{{.Date}}</td>
+            <td class="center">{{.Quantity}}</td>
+            <td class="center">{{.Status}}</td>
+          </tr>
+          {{end}}
+        </tbody>
+      </table>
+        <div class="normal-button">
+          <a href="/workshop/new-worker-order">New worker order</a>
+        </div>
+      <!-- Toggle button section end -->
+    </div>
+  </div>
+  </div>
+  </div>
+  <!-- mainbody section start-->
+
+
+
+
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+      {{if ne (len .workshops) 1 }}
+          document.getElementById('workshopID').value = {{.wk.ID.Hex}};
+      {{end}}
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      recordsON()
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      recordsOFF()
+    }    
+  </script>
+</body>
+
+</html>

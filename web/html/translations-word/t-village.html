@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+    Village 
+{{else if eq "swahili" .GLOBAL.language}}
+    Kijiji
+    {{else if eq "turkana" .GLOBAL.language}}
+    Adakar
+{{else if eq "french" .GLOBAL.language }}
+    Village
+{{else if eq "german" .GLOBAL.language }}
+    Dorf
+{{else if eq "spanish" .GLOBAL.language }}
+    Pueblo
+{{end}}

@@ -1,0 +1,43 @@
+</p>
+</div>
+</div>
+
+<div class="row" class="buttons-info">
+{{if eq "worker" .GLOBAL.role }}
+ <div class="col-2 offset-1" style="bottom: 25px;">
+    <audio id="audio-information" preload="none">
+        <source src="/static/audio{{.GLOBAL.URL}}-{{.GLOBAL.language}}.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+      <input onclick="playAudioInformation()" type="image" src="/static/svg/listen.svg"
+        name="saveForm" class="btTxt submit listen-info img-zoom" id="saveForm" />
+ </div>
+ {{end}}
+ {{if eq "worker" .GLOBAL.role }}
+ <div class="col-1 offset-7">
+   {{else}}
+   <div class="col-1 offset-10">
+   {{end}}
+  <a href="" class="">
+    <div class="btn btn--green btn--animated">
+      {{template "t-done.html" .}}
+    </div>
+  </a>
+  </div>
+
+</div>
+</div>
+</div>
+ <!-- INFORMATION BUTTON -->
+<div class=" information-icon-search">
+  <div class="search-container" id="search-container">
+    <img src="/static/svg/search.svg" class="search-icon-information img-zoom" id="search-icon">  
+    <input class="search-field" type="text" v-model="filter" placeholder="Search" required>
+  </div>
+  <div class="information">
+    <a href="#information">
+      <img src="/static/svg/info.svg" alt="product icon" class="img-fluid">
+    </a>
+  </div>
+</div>
+<!-- END INFORMATION -->

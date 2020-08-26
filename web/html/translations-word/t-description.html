@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+    Description
+{{else if eq "swahili" .GLOBAL.language}}
+    Hariri
+    {{else if eq "turkana" .GLOBAL.language}}
+    Alomoret
+{{else if eq "french" .GLOBAL.language }}
+    La description
+{{else if eq "german" .GLOBAL.language }}
+    Beschreibung
+{{else if eq "spanish" .GLOBAL.language }}
+    Descripción
+{{end}}

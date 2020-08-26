@@ -1,0 +1,169 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Items to {{.service.Name}}</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+    <div class="margin-body">
+        <form onsubmit="return askForEnable()" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+          {{if .itemsNOTChecked }}
+                      <header class="title">  Items NOT checked to Service {{.service.Name}} </header>
+                <div class="row">
+                  <!-- The QR -->
+                  <div class="col">
+                  {{template "qr-vue.html"}}
+                </div>
+                    <!-- The items -->
+                    {{range .itemsNOTChecked }}
+                          <div class="col-6 col-sm-6 col-md-4 col-xl-3 center">
+                              <div class="image-upload">
+                                <label for="{{.ID.Hex}}-IMG">
+                                    {{if .IsTrackable}}  
+                                    <img id="{{.ID.Hex}}" src="{{.Photo}}"
+                                    class="img-fluid image-square-rounded no-selected" />
+                                    {{else}}
+                                    <img id="{{.ID.Hex}}" src="{{.Photo}}"
+                                    class="img-fluid image-square-rounded no-selected image-tactil" />
+                                    <input type="file" class="custom-file-input" id="{{.ID.Hex}}-IMG" name="{{.ID.Hex}}" accept="image/*">
+                                    <input style="margin-top: -90%; display: none;" type="checkbox" id="ID-{{.ID.Hex}}" name="item" value="{{.ID.Hex}}">                        
+                                    {{end}}
+                                    <p class="text-services">{{.VideoOrItemName}}</p>
+                                </label>  
+                              </div>  
+                          </div> 
+                  {{end}} 
+              </div><br>
+              {{end}}
+
+
+       {{if .itemsChecked }}
+              <header class="title"> Items Already checked to Service {{.service.Name}} </header>
+        <div class="row">
+            {{range .itemsChecked }}
+                  <div class="col-6 col-sm-6 col-md-4 col-xl-3 center">
+                      <div class="image-upload">
+                            <img id="{{.ID.Hex}}" src="{{.Photo}}"
+                            class="img-fluid image-square-rounded" />
+                            <input style="margin-top: -90%; display: none;" type="checkbox">                      
+                            <p class="text-services">{{.Quantity}}</p>
+                      </div>  
+                  </div> 
+          {{end}} 
+      </div><br>
+         
+      {{if not .close}}
+      <div class="row">
+        <div class="col-12">
+          <label class="checkbox path">
+            <div class="text-checkbox-long">
+           <input onclick="warning()" type="checkbox" name="confirmed" id="confirmed"> 
+           <svg style="margin-left: 0px; width: auto" viewBox="0 0 21 21">
+               <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+           </svg> 
+         </div>
+        Mark this checkbox if you want to close the delivery
+       </label>
+     </div>
+      </div>
+            {{end}}
+
+            {{end}}
+  
+            {{if not .close}}
+                  <div style="margin-top: 20px;">
+                    <button type="submit" class="btn btn--green">Deliver and close</button>
+                    <div onclick="goBack();" class="btn btn--red">
+                      Cancel
+              </div>
+                  </div>
+                  {{else}}
+                  <div onclick="goBack();" class="btn btn--red" >
+                      OK
+                    </div>
+                  {{end}}
+
+                  </form>
+                
+              <!-- Toggle button section end -->
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+  function afterLoad(){
+    highlightON();
+  }
+  
+  
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+    recordsON();
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF(){
+    recordsOFF();
+  }
+
+
+
+   var enable = false
+
+   // Ask to the User to Disable the Chackbox
+   function askForDisable() {
+    if (enable) {
+      alert("You need to mark the transaction as NOT delivered to add Items!");
+      return false
+    }
+   }
+
+   // Ask to the User to Enable the Chackbox
+   function askForEnable() {
+   if (!enable) {
+    alert("You need to mark the transaction as delivered if you want to close it!");
+      // return false;
+    } 
+   }
+
+   // Alerts to the user to the consecuencias of Enable the Checkbox
+   function warning() {
+     if (!enable) {
+      alert("You market the Delivery as sent, that means that you CAN NOT MODIFY any information anymnore, if you want to add more items to the delivery, please Unchech the Slider");
+      enable = true
+    } else {
+       enable = false
+     }
+    }
+
+    $('.image-tactil').click(function (e) {
+            if ($(this).hasClass('no-selected')) {
+                var product = $(this).attr('id');
+                console.log($("#workers-" + product));
+                $("#ID-" + product).prop("checked", true);
+                $(this).addClass("selected");
+                $(this).removeClass("no-selected");
+                console.log("Entramos en no-selected");
+            }
+            else if ($(this).hasClass("selected")) {
+                var product = $(this).attr('id');
+                $(this).addClass("no-selected");
+                $("#ID-" + product).prop("checked", false);
+                $(this).removeClass("selected");
+                console.log("Entramos en selected");
+            }
+        });
+
+   
+  </script>
+</body>
+
+</html>

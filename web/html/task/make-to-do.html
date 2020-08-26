@@ -1,0 +1,126 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <title>{{.todo.TitleToDo}} </title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+  {{template "nav-to-do.html" .}}
+
+<br><br>
+    <div class="margin-body">
+        <header class="title">  {{.todo.TitleToDo}}  </header>
+        <p class="center">  {{.todo.DescriptionToDo}}  </p>
+        <form onsubmit="return askForEnable(); return validateForm()" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+        
+          <div class="row">
+          {{range .todo.Descriptions}}
+            <div class="col-12 col-lg-6">
+              <textarea placeholder="{{.Description}}" onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" name="descriptions" id="descriptions" rows="4" required></textarea>
+            </div>
+            {{end}}
+          </div>
+            <div class="row" style="margin-top: 25px;">
+          {{range .todo.Checkboxes}}
+          <div class="col-4">
+            <label class="checkbox path">
+              <div class="text-checkbox-long">
+             <input type="checkbox" name="istrackable" id="istrackable"> 
+             <svg viewBox="0 0 21 21">
+                 <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+             </svg> 
+           </div>{{.TitleCheckbox}}
+         </label>
+         
+          </div>
+          {{end}}
+        </div>
+          
+            <div class="row" style="margin-top: 25px;">
+              {{range .todo.Numbers}}
+              <div class="col-4">
+                  <input type="number" id="numbers" name="numbers" class="form-control form-field" placeholder=" {{.TitleNumber}}" required>
+                </div>
+                  {{end}}
+                </div>
+            <br><br>
+            <div class="row">
+          {{range .todo.Photos}}
+            <div class="col-6 col-sm-6 col-md-4 col-xl-3 center">
+                <div class="image-upload">
+                  <label for="{{.ID.Hex}}">
+                      <img src="{{.Photo}}"
+                      class="img-fluid image-square-rounded no-selected image-tactil" />
+                      <p class="text-services">{{.TitlePhoto}}</p>
+                    <input type="file" class="custom-file-input" id="{{.ID.Hex}}" name="photo" accept="image/*" capture="environment" required>
+                  </label>  
+                </div>  
+            </div> 
+          {{end}}
+        </div>
+
+        {{if .todo.IsTrackable}}
+<div class="row">
+  <div class="col">
+   <p class="form-text">Scan the QR of this task</p> 
+  {{template "qr-vue.html"}}
+    </div>
+</div>
+      {{end}}
+
+    <div class="col-12">
+        {{if not .edit }}
+        <button type="submit" class="btn btn--green">Create</button>
+        {{else}}
+        <button type="submit" class="btn btn--green">Update</button>
+        {{end}}
+        <div onclick="goBack();" class="btn btn--red">
+          Cancel
+        </div>
+    </div>
+</div>
+</form>
+
+  <script type="text/javascript">
+
+   
+
+      function afterLoad() {
+        highlightON();
+        
+      }
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      calendarON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      calendarOFF()
+    }
+
+
+    $('.image-tactil').click(function (e) {
+            if ($(this).hasClass('no-selected')) {
+                var product = $(this).attr('id');
+                console.log($("#workers-" + product));
+                $("#ID-" + product).prop("checked", true);
+                $(this).addClass("selected");
+                $(this).removeClass("no-selected");
+                console.log("Entramos en no-selected");
+            }
+            else if ($(this).hasClass("selected")) {
+                var product = $(this).attr('id');
+                $(this).addClass("no-selected");
+                $("#ID-" + product).prop("checked", false);
+                $(this).removeClass("selected");
+                console.log("Entramos en selected");
+            }
+        });
+  </script>
+</body>
+
+</html>

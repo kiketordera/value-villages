@@ -1,0 +1,142 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Test duplicate</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+  {{template "nav-development.html" .}}
+  
+
+  <div class="margin-body">
+
+    {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-end.html" .}}
+
+<div class="row">
+  <div class="col-12 ">
+      
+    
+
+    
+
+
+    <table class="table">
+      <thead class="table-title">
+        <tr>
+          <th colspan="6">
+            <p>
+               Test Duplicated </p>
+          </th>
+        </tr>
+      </thead>
+      <thead class="table-header">
+        <tr>
+          <th>TEST</th>
+          <th class="center">Result</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr>
+          <td>Village</td>
+          <td class="center">
+            {{if not .dVillage}}
+            <img src="/static/svg/status-complete.svg" class="image-square-rounded-table" />
+            {{else}}
+            <img src="/static/svg/problem.svg" class="image-square-rounded-table" />
+            {{end}}
+          </td>
+        </tr>
+
+        <td>Service</td>
+        <td class="center">
+          {{if not .dService}}
+          <img src="/static/svg/status-complete.svg" class="image-square-rounded-table" />
+          {{else}}
+          <img src="/static/svg/problem.svg" class="image-square-rounded-table" />
+          {{end}}
+        </td>
+      </tr>
+
+    <td>User</td>
+    <td class="center">
+      {{if not .dUser}}
+      <img src="/static/svg/status-complete.svg" class="image-square-rounded-table" />
+      {{else}}
+      <img src="/static/svg/problem.svg" class="image-square-rounded-table" />
+      {{end}}
+    </td>
+  </tr>
+
+  <td>Category Type</td>
+  <td class="center">
+    {{if not .dCatType}}
+    <img src="/static/svg/status-complete.svg" class="image-square-rounded-table" />
+    {{else}}
+    <img src="/static/svg/problem.svg" class="image-square-rounded-table" />
+    {{end}}
+  </td>
+</tr>
+
+<td>Category</td>
+<td class="center">
+  {{if not .dCategories}}
+  <img src="/static/svg/status-complete.svg" class="image-square-rounded-table" />
+  {{else}}
+  <img src="/static/svg/problem.svg" class="image-square-rounded-table" />
+  {{end}}
+</td>
+</tr>
+
+<td>Item</td>
+<td class="center">
+  {{if not .dItem}}
+  <img src="/static/svg/status-complete.svg" class="image-square-rounded-table" />
+  {{else}}
+  <img src="/static/svg/problem.svg" class="image-square-rounded-table" />
+  {{end}}
+</td>
+</tr>
+
+<td>Video</td>
+<td class="center">
+  {{if not .dVideo}}
+  <img src="/static/svg/status-complete.svg" class="image-square-rounded-table" />
+  {{else}}
+  <img src="/static/svg/problem.svg" class="image-square-rounded-table" />
+  {{end}}
+</td>
+</tr>
+
+      </tbody>
+    </table>
+
+    <a onclick="goBack();" style="margin-top: 40px;">
+      <button type="button" style="margin-top: 34px; background-color: #63B190; border-color: #63B190;" class="btn btn-primary form-button2" id="buttonSteps">OK</button>
+    </a>
+  </div>
+ </div>
+ </div>
+  </div>
+  <!-- mainbody section start-->
+
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      testON();
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      testOFF();
+    }    
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 23.84 32.75">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: #41000f;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect class="cls-1" width="23.84" height="32.75"/>
+    </clipPath>
+  </defs>
+  <g id="Repeat_Grid_1" data-name="Repeat Grid 1" class="cls-2" transform="translate(0 0)">
+    <g id="Group_1888" data-name="Group 1888" transform="translate(-28 -248)">
+      <path id="Path_1633" data-name="Path 1633" class="cls-3" d="M21.352,3.291H15.813V2.408A1.082,1.082,0,0,0,14.77,1.284H13.485A1.62,1.62,0,0,0,11.96,0a1.62,1.62,0,0,0-1.525,1.284H9.151A1.1,1.1,0,0,0,8.027,2.408v.883H2.488A2.612,2.612,0,0,0,0,6.02v24A2.612,2.612,0,0,0,2.488,32.75H21.352a2.612,2.612,0,0,0,2.488-2.729v-24A2.612,2.612,0,0,0,21.352,3.291ZM8.99,2.408c0-.08.08-.08,0,0l1.445-.08A1.543,1.543,0,0,0,11.88,3.371a1.663,1.663,0,0,0,1.445-1.044h1.365a.079.079,0,0,1,.08.08V4.656c0,.08,0,.08-.08.08H8.99a.079.079,0,0,1-.08-.08V2.408ZM22.716,30.021a1.509,1.509,0,0,1-1.445,1.525H2.488a1.509,1.509,0,0,1-1.445-1.525v-24A1.509,1.509,0,0,1,2.488,4.5H8.027v.161A1.082,1.082,0,0,0,9.07,5.779h5.7a1.082,1.082,0,0,0,1.044-1.124V4.5h5.539A1.509,1.509,0,0,1,22.8,6.02v24Z" transform="translate(28 248)"/>
+      <path id="Path_1634" data-name="Path 1634" class="cls-3" d="M21.664,14.9H9.062a.562.562,0,1,0,0,1.124H21.744a.549.549,0,0,0,.562-.562A.62.62,0,0,0,21.664,14.9Z" transform="translate(26.323 245.06)"/>
+      <path id="Path_1635" data-name="Path 1635" class="cls-3" d="M21.664,22.9H9.062a.562.562,0,0,0,0,1.124H21.744a.549.549,0,0,0,.562-.562A.62.62,0,0,0,21.664,22.9Z" transform="translate(26.323 243.482)"/>
+      <path id="Path_1636" data-name="Path 1636" class="cls-3" d="M21.664,31.2H9.062a.562.562,0,1,0,0,1.124H21.744a.549.549,0,0,0,.562-.562A.62.62,0,0,0,21.664,31.2Z" transform="translate(26.323 241.844)"/>
+      <circle id="Ellipse_9" data-name="Ellipse 9" class="cls-3" cx="1.124" cy="1.124" r="1.124" transform="translate(31.05 259.398)"/>
+      <circle id="Ellipse_10" data-name="Ellipse 10" class="cls-3" cx="1.124" cy="1.124" r="1.124" transform="translate(31.05 265.82)"/>
+      <path id="Path_1637" data-name="Path 1637" class="cls-3" d="M4.924,30.5a1.124,1.124,0,1,0,0,2.248,1.1,1.1,0,0,0,1.124-1.124A1.148,1.148,0,0,0,4.924,30.5Z" transform="translate(27.25 241.982)"/>
+    </g>
+  </g>
+</svg>

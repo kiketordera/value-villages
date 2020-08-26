@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Unda Aina mpya ya Huduma na uiongeze kwenye ukusanyaji wa habari ambayo imeandaliwa
+{{else if eq "turkana" .GLOBAL.language}}
+    Tosub iyes nakitetet a ang'arasit na kietak ania akinumnum a ekoi lo esubitae
+{{else if eq "french" .GLOBAL.language }}
+Créer un nouveau type de service et l'ajouter à la base de données
+{{else if eq "german" .GLOBAL.language }}
+Eine neue Art des Dienstes erstellen und zur Datenbank hinzufügen
+{{else if eq "spanish" .GLOBAL.language }}
+Crear un nuevo tipo de servicio y añadirlo a la base de datos
+{{else}}
+Create a new Service Type and Add it to DataBase
+{{end}}
+

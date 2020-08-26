@@ -1,0 +1,21 @@
+
+
+{{if eq "swahili" .GLOBAL.language }}
+Fuatilia vitu <span style="color: #ED037C">katika</span> mlolongo mzima
+
+{{else if eq "turkana" .GLOBAL.language}}
+Kiwapak  <span style="color: #ED037C">ngiboro</span> ania emlolongo adaang
+
+{{else if eq "french" .GLOBAL.language }}
+Suivre les <span style="color: #ED037C">articles</span> tout au long de la chaîne
+
+{{else if eq "german" .GLOBAL.language }}
+Verfolgen Sie von <span style="color: #ED037C">Gegenständen</span> in der gesamten Kette
+
+{{else if eq "spanish" .GLOBAL.language }}
+Rastrea los <span style="color: #ED037C">artículos</span> en toda la cadena
+
+{{else}}
+Track <span style="color: #ED037C">items</span> in the whole chain
+
+{{end}}

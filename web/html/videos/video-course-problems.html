@@ -1,0 +1,96 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Step {{.numberNoURL}} {{.product.Name}}</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()"> 
+          {{$product := .product}} 
+          {{template "nav-service.html" .}}
+
+
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+      {{template "i-video-problems.html" .}}
+      {{template "information-end.html" .}}
+
+        {{if .problemsUser }}
+          <div class="row">
+            <div class="col-12"> 
+              <h1 class="title">Your Mistakes</h1>
+            </div>
+          </div>
+          <div class="row">
+              {{range .problemsUser}}
+              <div class="col-4"> 
+                  <img src="/local/video-courses/{{$product.Name}}/problems/photos/{{.PhotoProblem}}" class="product-image">
+              </div>
+           {{end}}
+</div>
+{{end}}
+          <br>
+          {{if .problemsOthers }}
+          <div class="row">
+              <div class="col-12"> 
+                <h1 class="title">Other's problems</h1>
+              </div>
+            </div>
+            {{range .problemsOthers}}
+            <div class="row">
+                <div class="col-4"> 
+                    <img src="/local/video-courses/{{$product.Name}}/problems/photos/{{.PhotoProblem}}" class="product-image">
+                </div>
+           
+            {{end}}
+            {{else }}
+            <div class="row">
+                <div class="col-12"> 
+                  <h1 class="title">There is no problems for this product</h1>
+                </div>
+              </div>
+
+            {{end}}
+
+
+         
+            <div class="col-12">
+                <div onclick="goBack();" class="btn btn--green">
+                        OK
+                      </div>
+        </div>
+           
+    </div>
+    
+    
+    
+    
+    
+    
+              </div> </div>
+      </div>
+      </div>
+    
+    
+    <script type="text/javascript">
+
+      function afterLoad(){
+        highlightON();
+      }
+
+
+      //Highlight the icon Settings in the navigation Bar
+      function highlightON() {
+        videosON();
+      }
+
+      //Removes the highligh from the navigation bar
+      function highlightOFF() {
+        videosOFF();
+      }    
+
+      
+
+    </script>
+
+  </body>

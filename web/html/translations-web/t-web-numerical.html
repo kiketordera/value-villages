@@ -1,0 +1,28 @@
+{{if eq "swahili" .GLOBAL.language }}
+<p class="title-gradient">Alfabeti ya nambari</p> 
+<p class="text-gradient">Alfabeti ya nambari iliyoundwa mahsusi kwa watu wasiojua kusoma na kuandika, kuelewa kikamilifu ni pesa ngapi hata bila kujua kusoma na kuandika.</p>
+
+{{else if eq "turkana" .GLOBAL.language}}
+<p class="title-gradient">Alphabet a anamba</p> 
+<p class="text-gradient">Alphabet a anamba loasubakinitae kotere ngitunga lupe eyenete akisomare ka akigir, akielewarit echamam erai ngaropiyae ngai eroko akien akisomare ka akigir.</p>
+
+{{else if eq "french" .GLOBAL.language }}
+<p class="title-gradient">Alphabet numérique</p> 
+<p class="text-gradient">Alphabet numérique conçu spécialement pour les personnes analphabètes, afin de leur permettre de comprendre pleinement combien elles gagnent, même sans savoir lire ou écrire.</p>
+
+{{else if eq "german" .GLOBAL.language }}
+<p class="title-gradient">Numerisches Alphabet</p> 
+<p class="text-gradient">Numerisches Alphabet, das speziell für Analphabeten entwickelt wurde, damit sie auch ohne Lesen und Schreiben vollständig verstehen, wie viel sie verdienen.</p>
+
+{{else if eq "spanish" .GLOBAL.language }}
+<p class="title-gradient">Alfabeto numérico</p> 
+<p class="text-gradient">Alfabeto numérico diseñado específicamente para personas analfabetas, para comprender plenamente cuánto están ganando incluso sin saber leer o escribir.</p>
+
+{{else}}
+<p class="title-gradient">Numerical alphabet</p> 
+<p class="text-gradient">Numerical alphabet designed specifically for illiterate people, to fully understand how much are they earning even
+ without knowing how to read or write.</p>
+
+{{end}}
+
+

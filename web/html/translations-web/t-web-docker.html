@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Hii ni chombo ambacho tunasanikisha programu zote na ni zote tunahitaji. Hakuna utegemezi kwa kiasi kikubwa hupunguza matengenezo na kurahisisha kupelekwa
+{{else if eq "turkana" .GLOBAL.language}}
+Yen erai iborosit ni iwakinio aprogram daang ka erai daang kisaki.emam akitegemear ania ekias aloapolon iyatari ngasubetea kongina iwesekinio yaarae
+{{else if eq "french" .GLOBAL.language }}
+C'est le conteneur où nous installons toutes les couches logicielles et c'est tout ce dont nous avons besoin. L'absence de dépendances réduit considérablement la maintenance et simplifie le déploiement
+{{else if eq "german" .GLOBAL.language }}
+Dies ist der Container, in dem wir alle Softwareschichten installieren, und das ist alles, was wir brauchen. Das Fehlen von Abhängigkeiten reduziert den Wartungsaufwand erheblich und vereinfacht den Einsatz
+{{else if eq "spanish" .GLOBAL.language }}
+Este es el contenedor donde instalamos todas las capas de software y es todo lo que necesitamos. La ausencia de dependencias reduce enormemente el mantenimiento y simplifica el despliegue
+{{else}}
+This is the container where we install al the software layers and it´s all wat we need. No dependencies vastly reduces the maintenance and simplifies the deployment
+{{end}}
+

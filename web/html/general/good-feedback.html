@@ -1,0 +1,43 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Accion complete</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    <div class="margin-body-log-in-worker">
+        <div class="row">
+          <div class="col-8 offset-2 center">
+            <img src="/static/svg/status-complete.svg" style="max-width: 250px;" class="image-rounded ">
+          </div>
+        </div>        <br>
+        <div class="row">
+            <div class="col-8 offset-2">
+          <p style="color: #63B190; text-align: center; font-size: 27px; font-family: nunito"> {{template "t-good-feedback.html" .}}!</p>
+        </div>
+      </div>
+    </div>
+
+  <script type="text/javascript">
+    function afterLoad(){
+      window.setTimeout(function (){
+        window.history.go(-2); 
+        return false;
+      }, 850)
+    }
+     //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+      //settingsON()
+  }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF(){
+      //settingsOFF()
+  }
+    
+  </script>
+</body>
+
+</html>

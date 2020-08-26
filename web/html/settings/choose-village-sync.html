@@ -1,0 +1,44 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Choose Village for sync</title>
+  {{template "imports.html"}}
+</head>
+<script type="text/javascript">
+  function afterLoad(){
+    highlightON();
+  }
+  
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON() {
+          syncON();
+        }
+
+        //Removes the highligh from the navigation bar
+        function highlightOFF() {
+          syncOFF();
+        }
+</script>
+<body onload="afterLoad()">
+    {{template "nav-activity.html" .}}
+    <div class="margin-body">      
+        <div class="row">
+            <div class="col">
+                <header class="title">Choose a Village for make the Synchronization</header>
+                <br>
+             <div class="row"> 
+                  {{range .villages}}
+                  <div class="col-6 col-sm-6 col-md-4 col-xl-3 center">
+                      <a href="/settings/new-export/{{.ID.Hex}}">
+                        <img src=/static/svg/tent.svg class="image-dashboard" />
+                        <p class="dashboard-text">{{.Name}}</p>
+                      </a>
+                  </div>
+                  {{end}}
+            </div>
+          </div>
+        </div>        
+  </div>
+</div>
+</body>
+</html>

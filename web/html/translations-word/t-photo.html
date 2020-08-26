@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+    Photo 
+{{else if eq "swahili" .GLOBAL.language}}
+    Picha
+    {{else if eq "turkana" .GLOBAL.language}}
+    Etolim a itwan
+{{else if eq "french" .GLOBAL.language }}
+    Photo
+{{else if eq "german" .GLOBAL.language }}
+    Foto
+{{else if eq "spanish" .GLOBAL.language }}
+    Foto
+{{end}}

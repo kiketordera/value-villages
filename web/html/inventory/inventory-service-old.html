@@ -1,0 +1,162 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Deliveries Workshops</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+
+    {{template "nav-stock.html"}}
+
+    <div class="margin-body">
+
+
+      {{if .stocksMaterialHTML}}
+        <div class="row">
+        <div class="col-12">
+              <table class="table">
+                <thead class="table-title"> 
+                  <tr> 
+                      {{if eq "Workshop" .position }}
+                      <th colspan="8"> <p> Stock of Materials from Local Workshops </p> </th>
+                      {{else if eq "NutritionCenter" .position }}
+                      <th colspan="8"> <p> Stock of Materials from Local Nutrition centers </p> </th>
+                      {{else if eq "Clinic" .position }}
+                      <th colspan="8"> <p> Stock of Materials from Local Clinics </p> </th>
+                      {{end}}
+                  </tr>                                     
+                </thead>
+                <thead class="table-header"> 
+                    <tr> 
+                        <th> &nbsp; Item</th> 
+                        <th > Service</th> 
+                        <th class="center"> Quantity </th>
+                      </tr>                                       
+                </thead>                                 
+                <tbody class="table-body"> 
+                    {{range .stocksMaterialHTML }}
+                    <tr> 
+                      <td>{{.ItemName}}</td> 
+                      <td>{{.ServiceName}}</td> 
+                      <td class="center">{{.Quantity}}</td> 
+                        </tr>  
+                      {{end}}
+                </tbody>
+              </table>
+        </div>
+        </div>
+        {{end}}
+
+
+        {{if .stocksToolHTML}}
+        <div class="row">
+        <div class="col-12">
+              <table class="table">
+                <thead class="table-title"> 
+                  <tr> 
+                      {{if eq "Workshop" .position }}
+                      <th colspan="8"> <p> Stock of Tools from Local Workshops </p> </th>
+                      {{else if eq "NutritionCenter" .position }}
+                      <th colspan="8"> <p> Stock of Tools from Local Nutrition centers </p> </th>
+                      {{else if eq "Clinic" .position }}
+                      <th colspan="8"> <p> Stock of Tools from Local Clinics </p> </th>
+                      {{end}}
+                  </tr>                                     
+                </thead>
+                <thead class="table-header"> 
+                    <tr> 
+                        <th> &nbsp; Item</th> 
+                        <th > Service</th> 
+                        <th class="center"> Quantity </th>
+                      </tr>                                       
+                </thead>                                 
+                <tbody class="table-body"> 
+                    {{range .stocksToolHTML }}
+                    <tr> 
+                      <td>{{.ItemName}}</td> 
+                      <td>{{.ServiceName}}</td> 
+                      <td class="center">{{.Quantity}}</td> 
+                        </tr>  
+                      {{end}}
+                </tbody>
+              </table>
+        </div>
+        </div>
+        {{end}}
+
+
+
+        {{if .stocksProductHTML}}
+        <div class="row">
+        <div class="col-12">
+              <table class="table">
+                <thead class="table-title"> 
+                  <tr> 
+                      {{if eq "Workshop" .position }}
+                      <th colspan="8"> <p> Stock of Products from Local Workshops </p> </th>
+                      {{else if eq "NutritionCenter" .position }}
+                      <th colspan="8"> <p> Stock of Products from Local Nutrition centers </p> </th>
+                      {{else if eq "Clinic" .position }}
+                      <th colspan="8"> <p> Stock of Products from Local Clinics </p> </th>
+                      {{end}}
+                  </tr>                                     
+                </thead>
+                <thead class="table-header"> 
+                    <tr> 
+                        <th> &nbsp; Item</th> 
+                        <th > Service</th> 
+                        <th class="center"> Quantity </th>
+                      </tr>                                       
+                </thead>                                 
+                <tbody class="table-body"> 
+                    {{range .stocksProductHTML }}
+                    <tr> 
+                      <td>{{.ItemName}}</td> 
+                      <td>{{.ServiceName}}</td> 
+                      <td class="center">{{.Quantity}}</td> 
+                        </tr>  
+                      {{end}}
+                </tbody>
+              </table>
+        </div>
+        </div>
+        {{end}}
+
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function afterLoad(){
+    highlightON();
+  }
+  
+  
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+    {{if eq "Workshop" .position }}
+    workshopON();
+    {{else if eq "NutritionCenter" .position }}
+    nutritionON();
+    {{else if eq "Clinic" .position }}
+    clinicON();
+    {{end}}
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF(){
+    {{if eq "Workshop" .position }}
+    workshopOFF();
+    {{else if eq "NutritionCenter" .position }}
+    nutritionOFF();
+    {{else if eq "Clinic" .position }}
+    clinicOFF();
+    {{end}}
+  }
+  </script>
+</body>
+
+</html>

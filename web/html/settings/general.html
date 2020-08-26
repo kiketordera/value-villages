@@ -1,0 +1,63 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Activity</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-activity.html" .}}
+
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+      {{template "i-general.html" .}}
+      {{template "information-end.html" .}}
+            
+  <div class="row">
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+          {{if eq "admin" .GLOBAL.role }}
+        <a href="/settings/change-password">
+          {{else}}
+          <a href="/settings/set-password-worker">
+            {{end}}
+          <img src=/static/svg/password.svg class="img-fluid image-dashboard" />
+          <p class="dashboard-text" >  {{template "t-change-my-password.html" .}} </p>
+        </a>
+      </div>
+
+      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+        {{if eq "admin" .GLOBAL.role }}
+      <a href="/settings/change-password">
+        {{else}}
+        <a href="/settings/set-password-worker">
+          {{end}}
+        <img src=/static/svg/password.svg class="img-fluid image-dashboard" />
+        <p class="dashboard-text" >  {{template "t-change-my-photo.html" .}} </p>
+      </a>
+    </div>
+    </div>
+
+
+  </div>
+
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      generalON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      generalOFF()
+    }    
+  </script>
+</body>
+
+</html>

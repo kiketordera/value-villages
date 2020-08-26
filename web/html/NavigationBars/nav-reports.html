@@ -1,0 +1,34 @@
+<div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12 navbar_section">
+  <div class="navmenu two-icons">
+    <ul>
+      <a href="/reports/show-qr-codes">
+        <li id="first-section" onmouseover="highlightOFF(); qrON();" onmouseout="qrOFF(); highlightON();">
+          <img src="/static/svg/qr.svg" class="mx-auto d-block" id="first-icon">
+          <p id="first-text" class="navbar-text-desktop">QR</p>
+        </li>
+      </a>
+      <a href="/dashboard">
+        <li id="back-section" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+          <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon">
+          <p id="back-text" class="navbar-text-desktop"> {{template "t-back.html" .}}</p>
+        </li>
+      </a>
+    </ul>
+  </div>
+  <div class="navmenu_mobile two-icons-mobile">
+    <ul>
+      <a href="/reports/show-qr-codes">
+        <li id="first-section-mobile" onmouseover="highlightOFF(); qrON();" onmouseout="qrOFF(); highlightON();">
+          <img src="/static/svg/qr.svg" class="mx-auto d-block" id="first-icon-mobile">
+          <p id="first-text-mobile" class="navbar-text-mobile">QR</p>
+        </li>
+      </a>
+      
+      <a href="/dashboard">
+        <li id="back-section-mobile" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+          <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon-mobile">
+          <p id="back-text-mobile" class="navbar-text-mobile"> {{template "t-back.html" .}}</p>
+        </li>
+      </a>
+  </div>
+</div>

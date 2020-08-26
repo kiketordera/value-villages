@@ -1,0 +1,45 @@
+<div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12 navbar_section">
+  <div class="navmenu three-icons">
+    <ul>
+      <a href="/comunication/conversations">
+        <li id="first-section" onmouseover="highlightOFF(); conversationsON();" onmouseout=" conversationsOFF(); highlightON(); ">
+          <img src="/static/svg/conversation.svg" class="mx-auto d-block" id="first-icon">
+          <p id="first-text" class="navbar-text-desktop">Conversations</p>
+        </li>
+      </a>
+      <a href="/comunication/reports">
+        <li id="second-section" onmouseover="highlightOFF(); reportsON()" onmouseout="  reportsOFF();highlightON();">
+          <img src="/static/svg/report.svg" class="mx-auto d-block" id="second-icon">
+          <p id="second-text" class="navbar-text-desktop"> {{template "t-reports.html" .}} </p>
+        </li>
+      </a>
+      <a href="/dashboard">
+        <li id="back-section" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+          <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon">
+          <p id="back-text" class="navbar-text-desktop">  {{template "t-back.html" .}}</p>
+        </li>
+      </a>
+    </ul>
+  </div>
+  <div class="navmenu_mobile three-icons-mobile">
+    <ul>
+      <a href="/comunication/conversations">
+        <li id="first-section-mobile" onmouseover="highlightOFF(); conversationsON();" onmouseout=" conversationsOFF(); highlightON();">
+          <img src="/static/svg/conversation.svg" class="mx-auto d-block" id="first-icon-mobile">
+          <p id="first-text-mobile" class="navbar-text-mobile">Conversations</p>
+        </li>
+      </a>
+      <a href="/comunication/reports">
+        <li id="second-section-mobile" onmouseover="highlightOFF(); reportsON();" onmouseout="  reportsOFF();highlightON();">
+          <img src="/static/svg/report.svg" class="mx-auto d-block" id="second-icon-mobile">
+          <p id="second-text-mobile" class="navbar-text-mobile"> {{template "t-reports.html" .}} </p>
+        </li>
+      </a>      
+      <a href="/dashboard">
+        <li id="back-section-mobile" onmouseover="highlightOFF(); backON();" onmouseout="backOFF(); highlightON();">
+          <img src="/static/svg/back.svg" class="mx-auto d-block" id="back-icon-mobile">
+          <p id="back-text-mobile" class="navbar-text-mobile">  {{template "t-back.html" .}}</p>
+        </li>
+      </a>
+  </div>
+</div>

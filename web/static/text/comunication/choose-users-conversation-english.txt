@@ -1,0 +1,3 @@
+In this page, you can see all the users to select all of them to include them in the conversation.
+
+All the messages will arrive to the users that you select, and they will be able to participate in the conversation, been able to send text, audios and photos.

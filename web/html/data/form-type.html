@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    {{if not .edit }}
+    <title>New Category Type</title>
+    {{else}}
+    <title>Edit {{.catType.Name}}</title>
+    {{end}}
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{template "nav-data.html" . }}
+  <div class="margin-body-form">
+    {{template "information-start.html" .}}
+    {{template "i-dashboard.html" .}}
+    {{template "information-end.html" .}}
+    <div class="col-12">
+        {{if not .edit }}
+        <header class="title">
+          {{template "t-create-new-type-cat.html" .}}
+        </header>
+        {{else}}
+        <header class="title">
+            {{template "t-update.html" .}} {{.catType.Name}}
+        </header>
+        {{end}}
+    </div> <br>
+    <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <input name="name" id="name" onchange="this.value = capitalizeFirstLetter(this.value)" type="text" required="required"/>
+            <label for="input" class="control-label">  {{template "t-name.html" .}}</label><i class="bar"></i>
+          </div>    
+        </div>
+       
+      </div>
+      <br>
+     
+<div class="col-12">
+  {{if not .edit }}
+  <button type="submit" class="btn btn--green btn--animated">
+          {{template "t-create.html" .}}
+  </button>
+  {{else}}
+  <button type="submit" class="btn btn--green btn--animated">
+    {{template "t-update.html" .}}
+  </button>
+  {{end}}
+  <div onclick="goBack();" class="btn btn--red btn--animated">
+      
+      {{template "t-cancel.html" .}}
+</div>
+    </form>
+  </div>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+      {{if .edit }}
+          fillData();
+      {{end}}
+    }
+
+    {{if .edit }}
+    function fillData(){
+      var perf = document.getElementById("name");
+      perf.value = {{.catType.Name}}
+    }
+    {{end}}
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      categoriesON();
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      categoriesOFF();
+    }
+
+
+    function validateForm() {
+      //Validation for the field Name
+      var x = document.forms["myForm"]["name"].value;
+      if (x == "") {
+        alert("Name must be filled out, can't be empty!");
+        var element = document.getElementById("name");
+        element.classList.add("is-invalid");
+        element.focus();
+        return false;
+      } else {
+        var element = document.getElementById("name");
+        element.classList.remove("is-invalid");
+      }
+    }
+  </script>
+</body>
+
+</html>

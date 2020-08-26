@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <title>Animals</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+
+<br><br>
+    <div class="margin-body">
+
+        <div class="row">
+            <div class="col-2 offset-1">
+                <a href="/slaughterhouse/parts-animals/cow">
+                  <img src=/static/svg/cow.svg class="img-fluid image-dashboard" />
+                  <p class="animal-text" > COW </p>
+                </a>
+            </div>  
+            <div class="col-2 offset-1">
+                <a href="/slaughterhouse/parts-animals/goat">
+                  <img src=/static/svg/goat.svg class="img-fluid image-dashboard" />
+                  <p class="animal-text" > GOAT </p>
+                </a>
+            </div>  
+            <div class="col-2 offset-1">
+                <a href="/slaughterhouse/parts-animals/camel">
+                  <img src=/static/svg/camel.svg class="img-fluid image-dashboard" />
+                  <p class="animal-text" > CAMEL </p>
+                </a>
+            </div>  
+</div>
+</div>
+
+  <script type="text/javascript">
+
+   
+
+      function afterLoad() {
+        highlightON();
+        
+      }
+
+
+    function validateForm() {
+      //Validation for the field Name
+      var x = document.forms["myForm"]["name"].value;
+      if (x == "") {
+        alert("Name must be filled out, can't be empty!");
+        var element = document.getElementById("name");
+        element.classList.add("is-invalid");
+        return false;
+      } else {
+        var element = document.getElementById("name");
+        element.classList.remove("is-invalid");
+      }
+      //Validation for the field Price
+      var x = document.forms["myForm"]["price"].value;
+      if (x == "") {
+        alert("Price number must be filled out, can't be empty!");
+        var element = document.getElementById("price");
+        element.classList.add("is-invalid");
+        return false;
+      } else {
+        var element = document.getElementById("price");
+        element.classList.remove("is-invalid");
+      }
+      //Validation for the field Description
+      var x = document.forms["myForm"]["description"].value;
+      if (x == "" || x == " ") {
+        alert("Description must be filled out, can't be empty!");
+        var element = document.getElementById("description");
+        element.classList.add("is-invalid");
+        return false;
+      } else {
+        var element = document.getElementById("description");
+        element.classList.remove("is-invalid");
+      }
+      //Validation for the field Photo
+      var x = document.forms["myForm"]["photo"].value;
+      if (x == "") {
+        alert("Photo must be filled out, can't be empty!");
+        var element = document.getElementById("placeHolderPhoto");
+        element.classList.add("is-invalid");
+        return false;
+      } else {
+        var element = document.getElementById("placeHolderPhoto");
+        element.classList.remove("is-invalid");
+      }
+    }
+
+    
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      animalON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      animalOFF()
+    }
+  </script>
+</body>
+
+</html>

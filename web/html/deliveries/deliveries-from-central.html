@@ -1,0 +1,102 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Deliveries from Central</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+
+        {{template "nav-deliveries.html" .}}
+        {{$serviceType := .serviceType}}
+
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+        {{template "i-deliveries.html" .}}
+        {{template "information-end.html" .}}
+
+        {{if .dPack }}
+        <div class="row">
+        <div class="col-12">
+          <div class="table-title">
+            <p> Deliveries to Services </p>
+      </div>
+              <table class="table">
+                <thead class="table-header"> 
+                    <tr> 
+                        <th> &nbsp; {{template "t-village.html" .}}</th> 
+                        <th> {{template "t-service.html" .}} </th>  
+                        <th> Date </th> 
+                        <th class="center"> {{template "t-sent.html" .}}</th> 
+                        <th class="center"> {{template "t-manager.html" .}}</th> 
+                        <th class="center"> {{template "t-action.html" .}} </th>
+                      </tr>                                       
+                </thead>                                 
+                <tbody class="table-body"> 
+                    {{range .dPack }}
+                    <tr> 
+                      <td>{{.VillageName}}</td> 
+                      <td>{{.ServiceReceiverName}}</td> 
+                      <td>{{.Date}}</td> 
+                      {{if .IsSent }}
+                      <td class="center">Yes</td> 
+                      {{else}}
+                      <td class="center">No</td> 
+                      {{end}}
+                      <td class="center">{{.ManagerName}}</td> 
+                      {{if .IsSent}}
+                      <td> 
+                          <div class="center"> <a href="/deliveries/new-stock/{{.ServiceEmitterID.Hex}}/{{.ID.Hex}}">
+                              <img type="image" src="/static/svg/look.svg" class="icon-table" /> </a>
+                            </a>
+                          </td>
+                      </tr>  
+                      {{else}}
+                      <td> 
+                          <div class="center"> <a href="/deliveries/new-stock/{{.ServiceEmitterID.Hex}}/{{.ID.Hex}}">
+                              <img type="image" src="/static/svg/edit.svg" class="icon-table" /> </a>
+                            </a>
+                          </td>
+                        </tr>  
+                      {{end}}
+                    {{end }}                                                 
+                </tbody>
+              </table>    
+            {{end}}
+
+            {{if not .dPack}}
+                  <p class="empty-field center">  You still have no deliveries in the database. <br/>
+                  <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+                  You can create a new Delivery clicking the button on the right, and then every delivery created will be display here,<br/> 
+                  where you can search  and edit them. </p>    
+                {{end}}
+
+              <div class="btn btn--blue">
+                  <a href="/deliveries/create-new-stock">New Delivery</a>
+              </div>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function afterLoad(){
+    highlightON();
+  }
+  
+  
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+    deliveriesON();
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF(){
+    deliveriesOFF();
+  }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+
+{{if eq "swahili" .GLOBAL.language }}
+<img src="/static/img/home/graph-ks.png" alt="" >
+{{else if eq "french" .GLOBAL.language }}
+<img src="/static/img/home/graph-fr.png" alt="" >
+{{else if eq "german" .GLOBAL.language }}
+<img src="/static/img/home/graph-gr.png" alt="" >
+{{else if eq "spanish" .GLOBAL.language }}
+<img src="/static/img/home/graph-es.png" alt="" >
+{{else}}
+<img src="/static/img/home/graph-en.png" alt="" >
+{{end}}
+
+

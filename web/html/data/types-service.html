@@ -1,0 +1,103 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <title>Villages</title>
+    {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-data.html" . }}
+    <div class="margin-body" id="app">
+        {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-search-end.html" .}}
+        <div class="table-title">
+            <p> Service type </p>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr class="table-header">
+                                <th @click="sort('name')"> &nbsp; {{template "t-name.html" .}}
+                                </th>
+                                <th class="center">
+                                    Allow free purchases
+                                </th>
+                                <th class="center">
+                                    Icon
+                                </th>
+                                <th class="center">
+                                    {{template "t-edit.html" .}}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body ">
+                            <tr v-for="sale in sortedSales">
+                                <td>&nbsp; *((sale.name)) </td>
+                                <td class=" center"> *((sale.allownoqrpurchase)) </td>
+
+                                <td class=" center">
+                                    <img v-bind:src="sale.icon" style="cursor: initial; max-height: 100; max-height: 100px" class="img-fluid image-square-rounded-table">
+                                </td>
+
+                                <td class=" center">
+                                    <a v-bind:href="'/data/edit-service-type/' + sale.id">
+                                        <img type="image" src="/static/svg/edit.svg" class="icon-table" />
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        {{template "pagination.html" }}
+                </div>
+                {{if eq "admin" .GLOBAL.role }}
+                <a href="/data/new-service-type" class="btn btn--blue btn--animated">  
+                    New Discipline
+              </a> {{end}}
+            </div>
+            <!-- VUE ENDS -->
+
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 50px;">
+        <div class="col  center img-fluid">
+            <a href="/data/villages">
+                <img src=/static/svg/previous.svg class="img-fluid image-dashboard-van" />
+                <p class="dashboard-text" style="margin-top: 22px;"> See Services </p>
+            </a>
+        </div>
+        <div class="col-9 col-lg-7  center img-fluid">
+        </div>
+    </div>
+    <script type="text/javascript">
+        function afterLoad() {
+            highlightON();
+        }
+
+        //Highlight the icon Orders in the navigation Bar
+        function highlightON() {
+            villagesON()
+        }
+
+        //Removes the highligh from the navigation bar
+        function highlightOFF() {
+            villagesOFF()
+        }
+    </script>
+
+
+    <!-- HERE WE TELL VUE THE PARAMETERS TO SEARCH IN THE TABLE -->
+    <script type="text/javascript">
+                {{template "vue-init.html".}}
+        c.name.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)));
+               {{ template "vue-final.html".}}
+
+    </script>
+</body>
+
+</html>

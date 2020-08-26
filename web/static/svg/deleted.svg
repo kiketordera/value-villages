@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 223.5 223.4">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: #cf1f26;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect class="cls-1" width="223.5" height="223.4"/>
+    </clipPath>
+  </defs>
+  <g id="Repeat_Grid_1" data-name="Repeat Grid 1" class="cls-2">
+    <g transform="translate(219 -963)">
+      <path id="Union_1" data-name="Union 1" class="cls-3" d="M32.7,190.7a111.723,111.723,0,1,1,190.8-78.9h-.1A111.723,111.723,0,0,1,32.7,190.7ZM39.1,39A102.847,102.847,0,1,0,111.7,9,102.658,102.658,0,0,0,39.1,39Zm5,77.2a4.5,4.5,0,0,1,0-9H179.4a4.7,4.7,0,0,1,4.6,4.5,4.481,4.481,0,0,1-4.5,4.5Z" transform="translate(-219 963)"/>
+    </g>
+  </g>
+</svg>

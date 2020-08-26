@@ -1,0 +1,119 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Service payments</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()" >
+    {{$serviceType := .serviceType.Hex}}
+    {{template "nav-service.html" .}}
+  <div class="margin-body" >
+    <div id="app">
+      {{template "information-start.html" .}}
+      {{template "i-dashboard.html" .}}
+      {{template "information-search-end.html" .}}
+
+    <div class="table-title-reduced">
+      <p>    {{if eq "english" .GLOBAL.language }}
+        Payments from the  {{.service.Name}}  
+     {{else if eq "swahili" .GLOBAL.language}}
+     Malipo kutoka kwa  {{.service.Name}}
+     {{else if eq "french" .GLOBAL.language }}
+     Paiements à partir du  {{.service.Name}}
+       {{else if eq "german" .GLOBAL.language }}
+       Zahlungen vom  {{.service.Name}}
+       {{else if eq "spanish" .GLOBAL.language }}
+       Pagos de  {{.service.Name}} 
+       {{end}} </p>
+</div>
+    <br>
+      <div class="row">
+          <div class="col-12" >
+            <table class="table">
+              <thead class="table-header">
+                <tr>
+                  <th  @click="sort('date')">&nbsp;
+                      {{if eq "english" .GLOBAL.language }}
+                      Date
+                   {{else if eq "swahili" .GLOBAL.language}}
+                   Tarehe
+                   {{else if eq "french" .GLOBAL.language }}
+                   Date
+                     {{else if eq "german" .GLOBAL.language }}
+                     Datum
+                     {{else if eq "spanish" .GLOBAL.language }}
+                    Fecha
+                     {{end}}
+                  </th>
+                  <th  @click="sort('worker')">
+                      {{if eq "english" .GLOBAL.language }}
+                      User 
+                   {{else if eq "swahili" .GLOBAL.language}}
+                   Mtumiaji
+                   {{else if eq "french" .GLOBAL.language }}
+                   Utilisateur
+                     {{else if eq "german" .GLOBAL.language }}
+                     Nutzer
+                     {{else if eq "spanish" .GLOBAL.language }}
+                    Usuario
+                     {{end}}
+                  </th>
+                  <th  @click="sort('quantity')">
+                      {{template "t-quantity.html" .}}  
+                  </th>
+                  <th class="center">
+                    {{template "t-see.html" .}}
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="table-body">
+                <tr  v-for="sale in sortedSales">
+                  <td>&nbsp; *((sale.date)) </td>
+                  <td> *((sale.worker)) </td>
+                  <td> *((sale.quantity)) </td>
+                  <td>
+                      <a v-bind:href="'/records/see/payment/' + sale.id + '/{{$serviceType}}'"> 
+                      <img type="image" src="/static/svg/look.svg" class="icon-table" /> 
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            {{template "pagination.html" }}
+          </div>
+        </div>
+        </div>
+            {{if not .paymentsHTML}}
+            <p class="empty-field center">  You still have no Payments in the database. <br/>
+            <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+            You can create a new Payment clicking the button on the right, and then every payment created will be display here,<br/> 
+            where you can search and visualize them. </p>    
+          {{end}}
+            <div class="btn btn--blue">
+              <a href="/records/new/payment/{{.serviceType.Hex}}">
+                {{template "t-new.html" .}}  {{template "t-payment.html" .}} 
+              </a>
+            </div>
+          </div>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      recordsON()
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      recordsOFF()
+    }    
+  </script>
+    <script type="text/javascript">
+      {{template "vue-init.html" .}}
+        c.date.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+        c.worker.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+        c.quantity.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0))); 
+      {{template "vue-final.html" .}}
+    </script>
+</body>
+</html>

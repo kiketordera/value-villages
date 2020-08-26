@@ -1,0 +1,101 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <title>Access</title>
+    {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+        {{template "nav-data.html" . }}
+    <div class="margin-body" >
+      <div id="app">
+        {{template "information-start.html" .}}
+        {{template "i-access.html" .}}
+        {{template "information-search-end.html" .}}
+        <div class="row">
+          <div class="col-12">
+        <!-- VUE STARTS -->
+              <div> 
+                <div class="table-title">
+                <p> Access </p>
+          </div>
+                  <table class="table" >
+                      <thead>
+                    <tr class="table-header">
+                        <th @click="sort('nameuser')"> &nbsp; 
+                            {{template "t-photo.html" .}}
+                        </th> 
+                        <th @click="sort('nameuser')"> 
+                            {{template "t-name.html" .}}
+                        </th> 
+                        <th @click="sort('namevillage')">
+                            {{template "t-village.html" .}}
+                        </th> 
+                        <th> 
+                            {{template "t-services.html" .}}
+                        </th> 
+                        <th  class="center"> 
+                            {{template "t-edit.html" .}}
+                          </th>
+                    </tr>
+                  </thead>
+                    <tbody class="table-body">
+                      <tr s v-for="sale in sortedSales">
+                          <td> <img v-bind:src="sale.photouser" style="cursor: initial; max-height: 100; max-height: 100px" class="img-fluid image-square-rounded-table">
+                          <td> *((sale.nameuser))  </td>
+                        <td > *((sale.namevillage)) </td>
+                        <td >
+                                <div v-for="ser in sale.services" class="image_cover"> 
+                                        <img type="image" v-bind:src="ser.photo" class="access-table"/>
+                                        <br> *((ser.name))
+                                      </div>
+
+                        </td>
+                        <td  class="center">
+                            <a v-bind:href="'/data/edit-access/' + sale.id"> 
+                            <img type="image" src="/static/svg/edit.svg" class="icon-table" /> 
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>
+                      {{template "pagination.html" }}
+                    </div></div>
+                  </div></div>
+                    {{if not .users}}
+                    <p class="empty-field center">  You still have no Workers in the database. <br/>
+                    <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+                    Here you can give to the workers access to the services created in the same village, and then every access created will be display here,
+                    where you can search  and edit them. </p>    
+                  {{end}}
+
+                  </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+     <!-- HERE WE TELL VUE THE PARAMETERS TO SEARCH IN THE TABLE -->
+     <script type="text/javascript">
+     {{template "vue-init.html" .}}
+          c.nameuser.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+          c.namevillage.toLowerCase().indexOf(this.filter.toLowerCase())  >= 0)); 
+     {{template "vue-final.html" .}}
+    </script>
+            <script type="text/javascript">
+                function afterLoad() {
+                    highlightON();
+                }
+
+                //Highlight the icon Orders in the navigation Bar
+                function highlightON() {
+                    accessON()
+                }
+
+                //Removes the highligh from the navigation bar
+                function highlightOFF() {
+                    accessOFF()
+                }
+            </script>
+</body>
+</html>

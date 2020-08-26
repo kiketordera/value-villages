@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Unda Mtumiaji mpya na uiongeze kwenye ukusanyaji wa habari ambayo imeandaliwa
+{{else if eq "turkana" .GLOBAL.language}}
+    Tosub eketumiaran lokitetet na kietak ani akinumnum a ekoi alo esubitae
+{{else if eq "french" .GLOBAL.language }}
+Créer un nouvel utilisateur et l'ajouter à la base de données
+{{else if eq "german" .GLOBAL.language }}
+Ein neuer Benutzer erstellen und zur DatenBank hinzufügen
+{{else if eq "spanish" .GLOBAL.language }}
+Crear un nuevo usuario y añadirlo a la base de datos
+{{else}}
+Create a new User and add it to DataBase
+{{end}}
+

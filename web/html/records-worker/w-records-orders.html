@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Records Orders </title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()" >
+    {{if .fromService}}
+        {{template "nav-service.html" .}}
+    {{else}}
+        {{template "nav-records-worker.html" .}}
+    {{end}}
+  <div class="margin-body" id="app">
+    <div class="row">
+      <div class="col-12">
+        {{template "information-start.html" .}}
+        {{template "i-w-records-orders.html" .}}
+        {{template "information-end.html" .}}
+        <div >
+          <div class="table-title">
+            <p> Records Orders </p>
+      </div>
+          <table class="table">
+              <thead>
+            <tr class="table-header">
+                <th @click="sort('itemName')" class="table-header-icon-container" >
+                  <div class="table-header-icon" >
+                    <img src="/static/svg/item.svg" alt="items"> 
+                   <div class="">Item</div> 
+                  </div>
+              </th>
+              <th class="center" @click="sort('dateunix')">
+                <img src="/static/svg/date.svg" alt="shillings"> <br>
+                Date
+              </th>
+              <th class="center" @click="sort('alreadyMade')">
+                  <img src="/static/svg/status.svg" style="max-width: 55px" class="img-fluid" alt="shillings"> <br>
+                  Status
+              </th>
+            </tr>
+          </thead>
+            <tbody class="table-body">
+              <tr v-for="sale in sortedSales">
+                <td>  <img style="margin-left: 10px;" v-bind:src="sale.photoitem" style="cursor: initial; max-height: 100; max-height: 100px" class="img-fluid image-square-rounded-table">
+                  *((sale.itemname))</td>
+                <td class="center">*((sale.date))</td>
+                <td class="center">
+                    <p>*((sale.alreadymade)) from *((sale.quantity))</p>
+                    <img v-bind:src="sale.status" style="max-width: 95px" class="img-fluid" alt="shillings">
+                  </td>
+                  
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            {{template "pagination.html"}}
+        </div>
+        {{if not .orders}}
+        {{template "empty-worker.html" .}}  
+      {{end}}
+
+            </div>
+          
+</body>
+<script type="text/javascript">
+  function afterLoad() {
+    highlightON();
+  }
+
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON() {
+    {{if .fromService}}
+      recordsON();
+    {{else}}
+      recordsOrdersON();
+    {{end}}
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF() {
+    {{if .fromService}}
+      recordsOFF();
+    {{else}}
+      recordsOrdersOFF();
+    {{end}}
+  }
+</script>
+<script type="text/javascript">
+  {{template "vue-init.html" .}}
+    c.itemname.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+    c.date.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+    c.alreadymade.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+    c.quantity.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0))); 
+  {{template "vue-final.html" .}}
+</script>
+
+
+
+</html>

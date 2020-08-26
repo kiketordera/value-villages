@@ -1,0 +1,22 @@
+<div class="col center">
+    <div class="button_outer2">
+      <div class="btn_upload-audio">
+          <input type="file" id="audio" name="audio" accept="audio/*" class="audio" capture="environment">
+          <p>Record audio</p> 
+          </div>
+          <div class="processing_bar"></div>
+          <div class="success_box"></div>
+      </div>
+      <audio id="player" style="width: 100%; margin-top: 15px" controls></audio>
+    <script>
+      const recorder = document.getElementById('audio');
+      const player = document.getElementById('player');
+
+      recorder.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const url = URL.createObjectURL(file);
+        // Do something with the audio file.
+        player.src = url;
+      });
+    </script>
+  </div>

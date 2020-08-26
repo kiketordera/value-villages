@@ -1,0 +1,270 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+        {{if not .edit }}
+        <title>New User</title>
+        {{else}}
+        <title>Edit {{.user.Role }} {{.user.Name }}</title>
+        {{end}}
+    {{template "imports.html"}}
+</head>
+<body onload="afterLoad()" >
+        {{template "nav-data.html" . }}
+    <div class="margin-body-form">
+            
+          {{template "information-start.html" .}}
+          {{template "i-new-user.html" .}}
+          {{template "information-end.html" .}}
+        <div class="col-12">
+                {{if not .edit }}
+                <header class="title">
+                    {{template "t-create-user.html" .}}
+                </header>
+                {{else}}
+                <header class="title">
+                    {{if eq "english" .GLOBAL.language }}
+                    Update the information of {{.user.Name }} and update it to DataBase 
+                 {{else if eq "swahili" .GLOBAL.language}}
+                 Sasisha habari ya {{. .Erer.Name}} na uisasishe kwa DataBase
+                 {{else if eq "french" .GLOBAL.language }}
+                 Mettez à jour les informations de {{.user.Name}} et mettez-les à jour dans DataBase
+                   {{else if eq "german" .GLOBAL.language }}
+                   Aktualisieren Sie die Informationen von {{.user.Name}} und aktualisieren Sie sie auf DataBase
+                 {{else if eq "spanish" .GLOBAL.language }}
+                 Actualizar la información de {{.user.Username}} en la Base de Datos  
+                   {{end}}
+                </header>
+                {{end}}
+        </div>
+        <form onsubmit="return validateForm()" name="myForm" id="myForm" role="form " method="post" enctype="multipart/form-data">
+            <div onchange="fillUsername(event);" class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <input name="name" id="name" onchange="this.value = capitalizeFirstLetter(this.value)" type="text" required="required"/>
+                        <label for="input" class="control-label"> {{template "t-name.html" .}}</label><i class="bar"></i>
+                      </div>    
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <input name="surname" id="surname" onchange="this.value = capitalizeFirstLetter()" type="text" required="required"/>
+                        <label for="input" class="control-label"> {{template "t-surname.html" .}}</label><i class="bar"></i>
+                      </div>    
+                            </div>
+                <div class="col">
+                    <input autocorrect="off" autocomplete="off" class="form-control form-field" type="text" name="username"
+                        id="username"  style="display: none;" readonly="true" placeholder="username" required="required">
+                        <select class="custom-select form-control form-field" name="village" id="village" required>
+                            <option value="" disabled selected> {{template "t-select-village.html" .}} </option>
+                            {{range .villages}}
+                            <option value="{{.ID.Hex}}">{{.Name}} </option>
+                            {{end}}
+                        </select>
+                </div>
+            </div>
+
+            <div class="row" id="descriptionPlace">
+                <div class="col" id="colDes">
+                    <div class="form-group">
+                        <textarea  rows="6" name="description" id="description" onchange="this.value = capitalizeFirstLetter(this.value)" required="required"></textarea>
+                        <label for="textarea" class="control-label">Story</label><i class="bar"></i>
+                      </div>
+                                   </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <input type="number" name="age" id="age" required="required"/>
+                        <label for="input" class="control-label">{{template "t-age.html" . }}</label><i class="bar"></i>
+                      </div> 
+                </div>
+                <div class="col" style="margin-top: 10px; padding: 0;">
+
+                    <div class="col">
+                        <div class="cntr">
+                            <label for="male" class="radio radio-gender">
+                              <input type="radio" name="gender" id="male" value="male" class="hidden"/>
+                              <span class="label"></span> {{template "t-male.html" . }}
+                            </label>
+                            <label for="female" class="radio radio-gender">
+                              <input type="radio"  name="gender" id="female" value="female" class="hidden"/>
+                              <span class="label"></span>  {{template "t-female.html" .}}
+                            </label>
+                          </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+                <div class="col">
+                    <select class="custom-select form-control form-field" name="tribe" id="tribe" required>
+                        <option value=""  disabled selected>
+                            {{template "t-select-tribe.html" .}}
+                            </option>
+                        <option value="Ngidoca">Ngidoca</option>
+                        <option value="Ngiduya">Ngiduya</option>
+                        <option value="Ngikadanya">Ngikadanya</option>
+                        <option value="Ngikalesso">Ngikalesso</option>
+                        <option value="Ngikatap">Ngikatap</option>
+                        <option value="Ngikateok">Ngikateok</option>
+                        <option value="Ngikinom">Ngikinom</option>
+                        <option value="Ngikosomoroko">Ngikosomoroko</option>
+                        <option value="Ngilelet">Ngilelet</option>
+                        <option value="Ngilobol">Ngilobol</option>
+                        <option value="Ngimacarmukata">Ngimacarmukata</option>
+                        <option value="Ngimedeo">Ngimedeo</option>
+                        <option value="Ngimerpur">Ngimerpur</option>
+                        <option value="Ngimeturuana">Ngimeturuana</option>
+                        <option value="Ngingolereto">Ngingolereto</option>
+                        <option value="Ngiponga">Ngiponga</option>
+                        <option value="Ngipuco">Ngipuco</option>
+                        <option value="Ngirarak">Ngirarak</option>
+                        <option value="Ngisalika">Ngisalika</option>
+                        <option value="Ngisiger">Ngisiger</option>
+                        <option value="Ngitarapakolong">Ngitarapakolong</option>
+                        <option value="Ngitengor">Ngitengor</option>
+                        <option value="Ngiteso">Ngiteso</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    {{ if not .edit }}
+            {{template "upload-img.html" .}}
+                        
+                {{end}}
+            </div>
+                <div class="col-1">   
+            </div>
+                <div class="col">
+                    <div class="cntr">
+                        <label for="worker" class="radio radio-role">
+                          <input type="radio" name="role" id="worker" value="worker" class="hidden"/>
+                          <span class="label"></span>  {{template "t-worker.html" .}}
+                        </label>
+                        <label for="manager" class="radio radio-role">
+                          <input type="radio"  name="role" id="manager" value="manager" class="hidden"/>
+                          <span class="label"></span>  {{template "t-manager.html" .}}
+                        </label>
+                        {{if eq "admin" .GLOBAL.role }}
+                        <label for="admin" class="radio radio-role">
+                          <input type="radio"  name="role" id="admin" value="admin" class="hidden"/>
+                          <span class="label"></span>Admin
+                        </label>
+                        {{end}}
+                      </div>
+                </div>
+            </div>
+            <br>
+         
+            <!-- <div class="col"> / -->
+             {{ if .edit }}
+                <button type="submit" class="btn btn--green btn--animated">
+                    {{template "t-update.html" .}}
+                </button>
+                <div onclick="goBack();" class="btn btn--red btn--animated">
+                    {{template "t-cancel.html" .}}
+                </div>
+                    <a href="/settings/set-password/{{.user.ID.Hex}}" onclick="return confirm('Are you sure you want to reset the password of {{.user.Name }} {{.user.Surname }}?')" class="btn btn--blue btn--animated" style="float: left;">Reset password</a>
+                    
+            {{else}}
+
+                <button type="submit" class="btn btn--green btn--animated">
+                        {{template "t-create.html" .}}
+                </button>
+                <div onclick="goBack();" class="btn btn--red btn--animated">
+                    {{template "t-cancel.html" .}}
+                </div>
+               
+                {{end}}
+            </div>
+    </div>
+    </form>
+    <script>
+    var countGender = 0;
+    var countRole = 0;
+
+    // This function validates the form to not introduce null values
+    function validateForm() {
+        // Validation for product select
+        if (countGender == 0) {
+        alert("You must select a Gender for the User!");
+        return false;
+        }
+        // Validation for product select
+        if (countRole == 0) {
+        alert("You must select a Role for the User!");
+        return false;
+        }
+    }
+
+
+        function increaseGender() {
+            countGender++;
+        }
+        function increaseRole() {
+            countRole++;
+        }
+
+        /* Change the selec image if the user clicks the image */
+        $('.radio-gender').click(function (e) {
+            increaseGender();
+        });
+
+        $('.radio-role').click(function (e) {
+            increaseRole();
+        });
+
+
+        function afterLoad() {
+            highlightON();
+            {{ if .edit }}
+            fillData();
+            {{ end }}
+        }
+
+
+        // Highlight the icon Settings in the navigation Bar
+        function highlightON() {
+            usersON();
+        }
+
+        // Removes the highligh from the navigation bar
+        function highlightOFF() {
+            usersOFF();
+        }
+
+    </script>
+    <script>
+        {{ if .edit}}
+        function fillData() {
+            var name = document.getElementById("name");
+            name.value = {{.user.Name }}
+            var surname = document.getElementById("surname");
+            surname.value = {{.user.Surname }}
+            fillUsername();
+            var age = document.getElementById("age");
+            age.value = {{.user.Age }}
+            var gender = document.getElementById("{{.user.Gender }}");
+            gender.checked = true;
+            var tribe = document.getElementById("tribe");
+            tribe.value = {{.user.Tribe }}
+            var role = document.getElementById("{{.user.Role }}");
+            role.checked = true;
+            var story = document.getElementById("description");
+            story.value = {{.user.Story }}
+            var village = document.getElementById("village");
+            village.value = {{.user.IDVillage.Hex}}
+         }
+        {{ end }}
+
+        
+    </script>
+</body>
+
+</html>

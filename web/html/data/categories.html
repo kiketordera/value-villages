@@ -1,0 +1,189 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title> {{template "t-categories.html" . }}</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{$role := .GLOBAL.role}}
+    {{template "nav-data.html" . }}
+  <div class="margin-body"  >
+    {{template "information-start.html" .}}
+    {{template "i-categories.html" .}}
+    {{template "information-end.html" .}}
+      <div class="row">
+        <div class="col-12 col-lg-8">
+      <div>
+                      <!-- VUE STARTS -->
+                      <div id="app">
+                        <div class="table-title" >
+                          <p> {{template "t-categories.html" . }} </p>
+                    </div>
+                    <img src="/static/svg/search.svg" style="margin-top: -5px; margin-left: 5px; z-index: 9; position: relative;" class="search-icon-information img-zoom" id="search-icon">  
+                    <input class="search-field" style="margin-bottom: 10px; margin-left: 8px; z-index: -1;" type="text" v-model="filter" placeholder="Search" required>
+                          <table class="table" >
+                            <thead>
+                            <tr class="table-header">
+                                <th class="center" @click="sort('name')">
+                                    {{template "t-name.html" .}}
+                                </th> 
+                                <th @click="sort('type')">  
+                                    {{if eq "english" .GLOBAL.language }}
+                                    Category Type 
+                                {{else if eq "swahili" .GLOBAL.language}}
+                                Hariri
+                                {{else if eq "french" .GLOBAL.language }}
+                                Type
+                                  {{else if eq "german" .GLOBAL.language }}
+                                    Art
+                                  {{else if eq "spanish" .GLOBAL.language }}
+                                  Tipo
+                                  {{end}}
+                                </th> 
+                                <th @click="sort('timecheking')"> 
+                                  {{template "t-check-every.html" .}}
+                                </th> 
+                                <th @click="sort('timecheking')"> 
+                                  {{template "t-item-type.html" .}}
+                                </th> 
+                                <th > 
+                                    {{template "t-services.html" .}}
+                                </th> 
+                                <th class="right"> 
+                                    {{if eq "admin" $role }}   
+                                    {{template "t-edit.html" .}}
+                            </th> {{end}} 
+                                  </th>
+                            </tr>
+                          </thead>
+                          </thead>
+                            <tbody class="table-body">
+                              <tr  v-for="sale in sortedSales">
+                                  <td style="align-items: left;"> 
+                                    <div class="center">
+                                      <a v-bind:href="'/data/see-items/' + sale.id"> 
+                                      <img v-bind:src="sale.icon" style="cursor: pointer; max-height: 100; max-height: 100px" class="image-square-rounded-table img-zoom"> 
+                                      <br>  <p class="table-text" >*((sale.name)) </p> 
+                                    </a>
+                                   </div>
+                                  </td>
+                                <td> *((sale.type))</td>
+                                <td> *((sale.timecheking))</td>
+                                <td> *((sale.typeitem))</td>
+                                <td class="center" >
+                                    <div v-for="ser in sale.services" class="image_cover"> 
+                                            <img type="image" v-bind:src="ser" class="access-table"/>
+                                    </div>
+                                </td>
+                                {{if eq "admin" .GLOBAL.role }}   
+                                <td>
+                                    <a v-bind:href="'/data/edit-category/' + sale.id"> 
+                                    <img type="image" src="/static/svg/edit.svg" class="icon-table" /> 
+                                  </a>
+                                </td>
+                                {{end}}
+                              </tr>
+                            </tbody>
+                          </table>
+                          <p>
+                              {{template "pagination.html" }}
+                            </div>
+                          </div>
+                        {{if not .cat}}
+                        <p class="empty-field center">  You still have no categories in the database. <br/>
+                        <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+                        You can create a new Category clicking the button on the right, and then every category created will be display here,<br/> 
+                        where you can search and edit them. You can also add items to every category. </p>    
+                      {{end}}
+                 {{if eq "admin" .GLOBAL.role }}
+                 <a href="/data/new-category" class="btn btn--blue btn--animated">   {{if eq "english" .GLOBAL.language }}
+                  New Category 
+              {{else if eq "swahili" .GLOBAL.language}}
+              Jamii mpya
+              {{else if eq "french" .GLOBAL.language }}
+              Nouvelle catégorie
+                {{else if eq "german" .GLOBAL.language }}
+                Neue Kategorie
+                {{else if eq "spanish" .GLOBAL.language }}
+                Nueva categoría             {{end}}</a>
+                            {{end}}
+                          </div>
+                <!-- VUE ENDS -->   
+                
+            
+            
+      <div class="col-12 col-lg-3 offset-lg-1">
+        <div class="table-title">
+          <p> Category {{template "t-types.html" .}} </p>
+    </div>
+        <table class="table">
+          <thead class="table-header">
+            <tr>
+              <th> &nbsp;
+                  {{template "t-name.html" .}}
+              </th>
+              {{if eq "admin" $role }}     <th class="right">
+                  {{template "t-edit.html" .}}
+              </th> {{end}}
+            </tr>
+          </thead>
+          <tbody class="table-body">
+              {{range .types}}
+            <tr>
+              <td>
+                &nbsp; {{.Name}} 
+              </td>
+              {{if eq "admin" $role }}
+              <td class="right">
+                  <a href="/data/edit-type/{{.ID.Hex}}">
+                    <img type="image" src="/static/svg/edit.svg" style="max-height: 40px; max-width: 40px;" name="saveForm"
+                      class="btTxt submit" />
+                  </a>
+                </td>
+                {{end}}
+            </tr> 
+              {{end}}
+          </tbody>
+        </table>
+        {{if eq "admin" $role }}
+        <a href="/data/new-type" class="btn btn--blue btn--animated">  {{if eq "english" .GLOBAL.language }}
+          New Type 
+       {{else if eq "swahili" .GLOBAL.language}}
+       Aina mpya
+       {{else if eq "french" .GLOBAL.language }}
+       Nouveau genre
+         {{else if eq "german" .GLOBAL.language }}
+         Neuer Typ
+         {{else if eq "spanish" .GLOBAL.language }}
+        Nuevo tipo
+         {{end}}</a>
+        {{end}}
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      categoriesON();
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      categoriesOFF();
+    }
+  </script>
+
+   <!-- HERE WE TELL VUE THE PARAMETERS TO SEARCH IN THE TABLE -->
+<script type="text/javascript">
+{{template "vue-init.html" .}}
+      c.name.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+      c.timecheking.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+      c.type.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 )); 
+{{template "vue-final.html" .}}
+</script>
+</body>

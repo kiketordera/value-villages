@@ -1,0 +1,18 @@
+{{if eq "swahili" .GLOBAL.language }}
+Imetengenezwa na   <img src="/static/svg/heart.svg"  class="heart"> na
+
+{{else if eq "turkana" .GLOBAL.language}}
+Esubakintae ka  <img src="/static/svg/heart.svg"  class="heart"> ka
+
+{{else if eq "french" .GLOBAL.language }}
+Fait avec   <img src="/static/svg/heart.svg"  class="heart"> par
+
+{{else if eq "german" .GLOBAL.language }}
+Gemacht mit  <img src="/static/svg/heart.svg"  class="heart"> von
+{{else if eq "spanish" .GLOBAL.language }}
+Hecho con   <img src="/static/svg/heart.svg"  class="heart"> por
+{{else}}
+Made with   <img src="/static/svg/heart.svg"  class="heart"> by
+{{end}}
+
+

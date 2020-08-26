@@ -1,0 +1,39 @@
+    const app = new Vue({
+    el:'#app',
+    data:{
+      cats:JSON.parse({{.JSON}}),
+      currentSort:'name',
+      currentSortDir:'asc',
+      pageSize: {{.GLOBAL.itemspertable}},
+      currentPage:1,
+      productPhoto: '',
+      id: '',
+      filter:'',
+    },
+    delimiters: ['*((', '))'],
+    methods:{
+      sort:function(s) {
+        //if s == current sort, reverse
+        if(s === this.currentSort) {
+          this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
+        }
+        this.currentSort = s;
+      },
+      nextPage:function() {
+        if((this.currentPage*this.pageSize) < this.cats.length) this.currentPage++;
+      },
+      prevPage:function() {
+        if(this.currentPage > 1) this.currentPage--;
+      },
+      loadPage:function(n) {
+        this.currentPage = n;
+      }
+  
+    },
+    computed:{
+  
+      sortedSales:function() {
+        let _cats = this.cats;
+        // filter
+        if(this.filter !== '') {
+          _cats = _cats.filter(c => ((

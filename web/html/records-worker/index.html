@@ -1,0 +1,143 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+ <title>Index</title>
+ {{template "imports.html"}}
+
+</head>
+
+<script type="text/javascript">
+  var quantity = 890;
+      // Adds one to the quantity
+      function addOne() {
+        quantity += 1
+      }
+</script>
+<body onload="afterLoad()">
+    {{template "nav-service.html" .}}
+    <div class="margin-body-form">
+
+      {{template "information-start.html" .}}
+      {{template "i-index.html" .}}
+      {{template "information-end.html" .}}
+  
+  
+      <div class="row">
+        <div class="col-12">
+          <header class="title">Numerical Alphabet</header>
+              <div class="row">
+                <div class="col-3 col-sm-2">
+                  <img src="/static/svg/circle.svg" style="max-width: 80px; margin-top: 5%" class="mx-auto d-block img-fluid">
+                </div>
+                <div class="col-3 col-sm-2">
+                  <a>
+                  <img src="/static/img/money/oneshilling.png"  onclick="addOne()" class="img-fluid" style="cursor: pointer;">
+                </a>
+                </div>
+                <div class="col-3 col-sm-2">
+                  <img src="/static/svg/triangle.svg" style="max-width: 80px; margin-top: 5%; " class="mx-auto d-block img-fluid" >
+                </div>
+                <div class="col-3 col-sm-2">
+                  <img src="/static/img/money/50.png"  onclick="addFifty()" style="min-width: 150px;" class="mx-auto d-block img-fluid">
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3 col-sm-2">
+                  <img src="/static/svg/line.svg" style="max-width: 80px; margin-top: 5%" class="mx-auto d-block img-fluid">
+                </div>
+                <div class="col-3 col-sm-2">
+                  <img src="/static/img/money/five.png" class="mx-auto d-block img-fluid">
+                </div>
+                <div class="col-3 col-sm-2">
+                  <img src="/static/svg/square.svg" style="max-width: 80px; margin-top: 5%; " class="mx-auto d-block img-fluid" >
+                </div>
+                <div class="col-3 col-sm-2">
+                  <img src="/static/img/money/100.png" style="min-width: 150px;" class="mx-auto d-block img-fluid">
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3 col-sm-2">
+                  <img src="/static/svg/cross.svg" style="max-width: 80px; margin-top: 5%" class="mx-auto d-block img-fluid">
+                </div>
+                <div class="col-3 col-sm-2">
+                  <img src="/static/img/money/ten.png" class="mx-auto d-block img-fluid">
+                </div>
+                <div class="col-3 col-sm-2">
+                  <img src="/static/svg/polygon.svg" style="max-width: 80px; margin-top: 5%; " class="mx-auto d-block img-fluid" >
+                </div>
+                <div class="col-3 col-sm-2">
+                  <img src="/static/img/money/500.png" style="min-width: 150px;" class="mx-auto d-block img-fluid">
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3 col-sm-2">
+                </div>
+                <div class="col-3 col-sm-2">
+                </div>
+                <div class="col-3 col-sm-2">
+                  <img src="/static/svg/star.svg" style="max-width: 80px; margin-top: 5%; " class="mx-auto d-block img-fluid" >
+                </div>
+                <div class="col-3 col-sm-2">
+                  <img src="/static/img/money/1000.png" style="min-width: 150px;" class="mx-auto d-block img-fluid">
+                </div>
+              </div>
+              <div class="row" style="margin-top: 100px;">
+                <div class="col-3 offset-3">
+                  <img src="/static/svg/total.svg" class="img-fluid " />
+                </div>
+                <div class="col-6">
+                  <div class="first_number">
+                    <script type="text/javascript">
+                          quantity;
+                    </script>
+                   
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="performance-symbols">
+                        <ul id="first111">
+                        </ul>
+                        <ul id="second111">
+                        </ul>
+                        <ul id="third111">
+                        </ul>
+                        <script type="text/javascript">
+                          
+                          putSymbols(quantity, 111);
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+    </div>
+    <script type="text/javascript">
+    
+     function afterLoad() {
+            highlightON();
+          }
+
+      //Highlight the icon Settings in the navigation Bar
+      function highlightON() {
+        recordsON()
+      }
+
+      //Removes the highligh from the navigation bar
+      function highlightOFF() {
+        recordsOFF()
+      }
+
+  
+
+      
+  </script>
+</body>
+</html>
+

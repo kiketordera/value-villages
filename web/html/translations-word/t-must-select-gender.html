@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Lazima uchague jinsia kwa mtumiaji
+{{else if eq "turkana" .GLOBAL.language}}
+Ecamakina iseuni ikile kori aberu ania eketumiaran
+{{else if eq "french" .GLOBAL.language }}
+Vous devez choisir le sexe de l'utilisateur
+{{else if eq "german" .GLOBAL.language }}
+Sie müssen ein Geschlecht für den Benutzer auswählen
+{{else if eq "spanish" .GLOBAL.language }}
+alert("Debes elegir el género para el usuario!");
+{{else}}
+alert("You must select a Gender for the User!");
+{{end}}
+

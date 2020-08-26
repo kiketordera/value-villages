@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Unahitaji kuchagua Huduma ili kuona habari hiyo
+{{else if eq "turkana" .GLOBAL.language}}
+Echamakina toseu  sodi king'olik ekoi ng'olo
+{{else if eq "french" .GLOBAL.language }}
+Vous devez choisir un service pour voir les informations
+{{else if eq "german" .GLOBAL.language }}
+Sie müssen einen Dienst auswählen, um die Informationen anzuzeigen
+{{else if eq "spanish" .GLOBAL.language }}
+Debes elegir un servicio para ver la información
+{{else}}
+You need to choose a Service to see the information
+{{end}}
+

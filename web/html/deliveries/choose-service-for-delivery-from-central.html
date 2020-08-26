@@ -1,0 +1,49 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Choose a Service</title>
+  {{template "imports.html"}}
+</head>
+<script type="text/javascript">
+  function afterLoad(){
+    highlightON();
+  }
+  
+  // Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+    deliveriesON();
+  }
+
+  // Removes the highligh from the navigation bar
+  function highlightOFF(){
+    deliveriesOFF();
+  }
+</script>
+<body onload="afterLoad()">
+    {{template "nav-deliveries.html" .}}
+    {{$serviceType := .serviceType}}
+    <div class="margin-body">      
+        <header class="title">Choose a service for make the delivery</header>
+        {{range .services}}
+          <div class="col-12">
+            {{if .Services }}
+            <p class="title"> Services from {{.VillageName}}</p>
+            <div class="row">
+                {{range .Services }}
+                <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                    <a href="/deliveries/new-stock/{{.ID.Hex}}/{{.DeliveryID.Hex}}">
+                      <img src={{.Photo}} class="image-dashboard" />
+                      <p class="dashboard-text">{{.Name}}</p>
+                    </a>
+                </div>
+                {{end}}
+            </div>
+            <br>
+            {{end}}
+          </div>
+      {{end}}
+        
+  </div>
+</div>
+</body>
+</html>

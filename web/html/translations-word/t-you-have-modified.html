@@ -1,0 +1,14 @@
+{{if eq "swahili" $.GLOBAL.language }}
+Umebadilisha
+{{else if eq "turkana" $.GLOBAL.language}}
+Ilokony
+{{else if eq "french" $.GLOBAL.language }}
+    Vous avez modifié
+{{else if eq "german" $.GLOBAL.language }}
+Sie haben geändert
+{{else if eq "spanish" $.GLOBAL.language }}
+    Has modificado
+{{else}}
+You have modified
+{{end}}
+

@@ -1,0 +1,87 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Manuals</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+  {{template "nav-home.html"}}
+
+  <div class="margin-web">
+
+    <div class="grid-manuals swing-in-top-fwd">
+      <a class="manual-link" href="/manuals/manual-data.pdf">
+      <div class="tile">
+        <div class="icon-and-title">
+          <img src="/static/svg/data.png" alt="">
+          <p> {{template "t-data.html" .}}</p>
+        </div>
+        <div class="links-manuals">
+          <p>{{template "t-web-for-starting.html" .}}</p>
+        </div>
+      </div>
+      </a>
+      <a class="manual-link" href="/manuals/manual-it.pdf">
+        <div class="tile">
+          <div class="icon-and-title">
+            <img src="/static/svg/africana.png" alt="">
+            <p>{{template "t-web-admin.html" .}}</p>
+          </div>
+          <div class="links-manuals">
+            <p>{{template "t-web-for-managing.html" .}}</p>
+          </div>
+        </div>
+        </a>
+
+    </div>
+    <div class="grid-manuals swing-in-top-fwd">
+      <a class="manual-link" href="/manuals/manual-design.pdf">
+      <div class="tile">
+        <div class="icon-and-title">
+          <img src="/static/svg/designer.svg" alt="">
+          <p>{{template "t-web-design.html" .}}</p>
+        </div>
+        <div class="links-manuals">
+          <p>{{template "t-web-style-guide.html" .}}</p>
+        </div>
+      </div>
+      </a>
+      <a class="manual-link" href="/manuals/manual-developers.pdf">
+        <div class="tile">
+          <div class="icon-and-title">
+            <img src="/static/svg/development.png" alt="">
+            <p>{{template "t-web-developers.html" .}}</p>
+          </div>
+          <div class="links-manuals">
+            <p>{{template "t-web-upgrade.html" .}}</p>
+          </div>
+        </div>
+        </a>
+    </div>
+
+    <div class="row" style="margin-top: 300px;"></div>
+    
+  </div>
+
+
+  <script>
+    function afterLoad() {
+     highlightON();
+   }
+
+   //Highlight the icon Settings in the navigation Bar
+   function highlightON() {
+     manualsON();
+   }
+
+   //Removes the highligh from the navigation bar
+   function highlightOFF() {
+    manualsOFF();
+   }
+</script>
+</body>
+</html>

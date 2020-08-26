@@ -1,0 +1,125 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    {{if not .edit }}
+    <title>New Category</title>
+    {{else}}
+    <title>Edit {{.category.Name}}</title>
+    {{end}}
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-comunication.html" .}}
+
+  <div class="margin-body-form">
+    {{template "information-start.html" .}}
+    {{template "i-new-conversation.html" .}}
+    {{template "information-end.html" .}}
+
+      <br><br>
+      <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+      <header class="title"> {{template "t-choose-conversation.html" .}}</header>
+      <div class="col-12">
+          <p class="title"> Central User</p>
+          <div class="row">
+              <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                  <img id="{{.centralUser.ID.Hex}}" src="/local/users/{{.centralUser.Username}}/{{.centralUser.Photo}}"
+                      class="img-fluid image-square-rounded no-selected image-tactil" />
+                      <input style="margin-top: -90%; display: none;" type="checkbox" id="ID-{{.centralUser.ID.Hex}}" name="userID" value="{{.centralUser.ID.Hex}}">                      
+                          <p class="text-services">VV Central</p>
+              </div>
+          <br>
+        </div>
+        </div>
+
+
+        <div class="col-12">
+            <p class="title"> Manager Users</p>
+            <div class="row">
+              {{range .managers}}
+                <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                    <img id="{{.ID.Hex}}" src="{{.Photo}}"
+                        class="img-fluid image-rounded no-selected image-tactil" />
+                        <input style="margin-top: -90%; display: none;" type="checkbox" id="ID-{{.ID.Hex}}" name="userID" value="{{.ID.Hex}}">                      
+                            <p class="text-services">{{.Name}} {{.Surname}}</p>
+                </div>
+                {{end}}
+            <br>
+          </div>
+          </div>
+
+          <div class="col-12">
+              <p class="title"> Worker Users</p>
+              <div class="row">
+                {{range .workers}}
+                  <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                      <img id="{{.ID.Hex}}" src="{{.Photo}}"
+                          class="img-fluid image-rounded no-selected image-tactil" />
+                          <input style="margin-top: -90%; display: none;" type="checkbox" id="ID-{{.ID.Hex}}" name="userID" value="{{.ID.Hex}}">                      
+                              <p class="text-services">{{.Name}} {{.Surname}}</p>
+                  </div>
+                  {{end}}
+              <br>
+            </div>
+            </div>
+
+
+
+            <div class="col-12">
+                  {{if not .edit }}
+                  <button type="submit" class="btn btn--green">Create</button>
+                  {{else}}
+                  <button type="submit" class="btn btn--green">Update</button>
+                  {{end}}
+                  <div onclick="goBack();" class="btn btn--red">
+                    Cancel
+                  </div>
+            </div>
+        </form>
+     
+
+
+
+ 
+       
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      conversationsON();
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      conversationsOFF();
+    } 
+
+   
+
+    $('.image-tactil').click(function (e) {
+            if ($(this).hasClass('no-selected')) {
+                var product = $(this).attr('id');
+                console.log($("#workers-" + product));
+                $("#ID-" + product).prop("checked", true);
+                $(this).addClass("selected");
+                $(this).removeClass("no-selected");
+                console.log("Entramos en no-selected");
+            }
+            else if ($(this).hasClass("selected")) {
+                var product = $(this).attr('id');
+                $(this).addClass("no-selected");
+                $("#ID-" + product).prop("checked", false);
+                $(this).removeClass("selected");
+                console.log("Entramos en selected");
+            }
+        });
+  </script>
+</body>
+
+</html>

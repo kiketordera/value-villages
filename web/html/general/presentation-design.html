@@ -1,0 +1,128 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Design</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+  {{template "nav-home.html"}}
+  <div class="margin-web">
+
+    <p class="title-web a-expand">{{template "t-web-design-beyound.html" .}}</p>
+
+    <div class="design-piece" data-aos="fade-right">
+        <div class="img-container-design">
+          <img class="design-container-img" src="/static/img/home/design-1@2x.png" alt="" class="design-img">
+        </div>
+        <div class="design-container-text-right">
+          <div class="design-container-title">
+            <img src="/static/svg/lock-color.svg" alt="">
+            <p>{{template "t-web-auten.html" .}}</p>
+          </div>
+          <div class="design-container-text">
+            <p>
+              {{template "t-web-auten-paragraph.html" .}}
+            </p>
+          </div>
+        </div> 
+    </div>
+
+    <div class="design-piece" data-aos="fade-left">
+      <div class="design-container-text-left">
+        <div class="design-container-title ">
+          <img style="max-width: 9rem; min-width: 5rem;" src="/static/svg/dashboard-color.svg" alt="">
+          <p> {{template "t-dashboard.html" .}}</p>
+        </div>
+        <div class="design-container-text">
+          <p>
+            {{template "t-web-dashboard-paragraph.html" .}}
+              </p>
+        </div>
+
+
+      </div> 
+      <div class="img-container-design">
+        <img class="design-container-img" src="/static/img/home/design-dashboard@2x.png" alt="" class="design-img">
+      </div>
+  </div>
+
+
+  <div class="design-piece" data-aos="fade-right">
+    <div class="img-container-design">
+      <img class="design-container-img" src="/static/img/home/design-num@2x.png" alt="" class="design-img">
+    </div>
+    <div class="design-container-text-right">
+      <div class="design-container-title">
+        <img src="/static/svg/alphabet-color.svg" alt="">
+        <p> {{template "t-web-numerical-alp.html" .}}</p>
+      </div>
+      <div class="design-container-text">
+        <p>
+        {{template "t-web-numerical-alp-paragraph.html" .}}
+        </p>
+      </div>
+    </div> 
+</div>
+
+<div class="design-piece" data-aos="fade-left">
+  <div class="design-container-text-left">
+    <div class="design-container-title ">
+      <img style="max-width: 9rem; min-width: 5rem;" src="/static/svg/performance-color.svg" alt="">
+      <p> {{template "t-performance.html" .}}</p>
+    </div>
+    <div class="design-container-text">
+      <p>{{template "t-web-performance-paragraph.html" .}}  </p>
+     </div>
+  </div> 
+  <div class="img-container-design">
+    <img class="design-container-img" src="/static/img/home/design-performance@2x.png" alt="" class="design-img">
+  </div>
+</div>
+
+
+<div class="design-piece" data-aos="fade-right">
+  <div class="img-container-design">
+    <img class="design-container-img" src="/static/img/home/design-video@2x.png" alt="" class="design-img">
+  </div>
+  <div class="design-container-text-right">
+    <div class="design-container-title">
+      <img src="/static/svg/video-color.svg" alt="">
+      <p>{{template "t-web-guided-video.html" .}}</p>
+    </div>
+    <div class="design-container-text">
+      <p>{{template "t-web-guided-paragraph.html" .}} </p>
+    </div>
+  </div> 
+</div>
+</div>
+
+
+  <div class="" style="margin-top:50px;">
+    
+    {{template "t-web-run-everywhere.html" .}}
+  </div>
+
+  <script>
+     
+    function afterLoad() {
+     highlightON();
+     AOS.init();
+  
+   }
+
+   //Highlight the icon Settings in the navigation Bar
+   function highlightON() {
+     designON();
+   }
+
+   //Removes the highligh from the navigation bar
+   function highlightOFF() {
+     designOFF();
+   }
+</script>
+</body>
+</html>

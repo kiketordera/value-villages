@@ -1,0 +1,139 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>{{.cat.Name}} </title>
+  {{template "imports.html"}}
+</head>
+<script type="text/javascript">
+  function afterLoad() {
+    highlightON();
+  }
+
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON() {
+    categoriesON();
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF() {
+    categoriesOFF();
+  }
+</script>
+
+<body onload="afterLoad()">
+    {{$role := .GLOBAL.role}}
+    {{template "nav-data.html" . }}
+  <div class="margin-body" >
+    <!-- VUE STARTS -->
+      <div id="app">
+        {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-search-end.html" .}}
+
+        <div class="table-title-reduced">
+          
+
+
+            {{if .cat.IsTrackable }} 
+            <img src="/static/svg/qr-scan.svg" alt="" class="qr-cat-image">
+          {{end}} 
+            
+            
+            
+          <p>   
+            
+       
+
+            {{if eq "english" .GLOBAL.language }}
+            Items in the category   {{.cat.IsTrackable}}
+         {{else if eq "swahili" .GLOBAL.language}}
+         Vitu kwenye jamii
+         {{else if eq "french" .GLOBAL.language }}
+         Articles dans la catégorie
+           {{else if eq "german" .GLOBAL.language }}
+           Artikel in der Kategorie
+           {{else if eq "spanish" .GLOBAL.language }}
+          Items en la categoría
+           {{end}}
+           {{.cat.Name}}
+       </p>
+    </div>
+          <table class="table">
+              <thead>
+            <tr class="table-header">
+                <th @click="sort('name')"> &nbsp; 
+                    {{template "t-name.html" .}}
+                </th> 
+                <th class="center" @click="sort('quantity')"> &nbsp; 
+                    {{template "t-quantity.html" .}}
+                </th> 
+                <th class="center" @click="sort('unit')"> &nbsp; 
+                  {{template "t-unit-type.html" .}}
+                </th> 
+                <th class="center" @click="sort('price')"> &nbsp; 
+                    {{template "t-price.html" .}}
+                </th> 
+                {{if eq "admin" .GLOBAL.role }}   
+                <th class="center"> 
+                    {{template "t-edit.html" .}}
+                  </th>
+                  {{end}}
+            </tr>
+          </thead>
+            <tbody class="table-body">
+              <tr v-for="sale in sortedSales">
+                <td> *((sale.name)) </td>
+                <td class="center"> *((sale.quantity))</td>
+                <td class="center"> *((sale.unit))</td>
+                <td class="center"> *((sale.price))</td>
+                {{if eq "admin" .GLOBAL.role }}   
+                <td class="center">
+                    <a v-bind:href="'/data/edit-item/' + sale.id"> 
+                    <img type="image" src="/static/svg/edit.svg" class="icon-table" /> 
+                  </a>
+                </td>
+                {{end}}
+              </tr>
+            </tbody>
+          </table>
+          <p>
+              {{template "pagination.html" }}
+            </div>
+
+            {{if not .items}}
+            <p class="empty-field center">  You still have no items in the database. <br/>
+            <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+            You can create a new Item clicking the button on the right, and then every item created will be display here,<br/> 
+            where you can search  and edit them. </p>    
+          {{end}}
+            {{if eq "admin" .GLOBAL.role }}
+            <a href="/data/new-item/{{.cat.ID.Hex}}" class="btn btn--blue btn--animated">  {{if eq "english" .GLOBAL.language }}
+              New Item 
+           {{else if eq "swahili" .GLOBAL.language}}
+           Bidhaa mpya
+           {{else if eq "french" .GLOBAL.language }}
+           Nouvel article
+             {{else if eq "german" .GLOBAL.language }}
+             Neuer Gegenstand
+             {{else if eq "spanish" .GLOBAL.language }}
+            Nuevo Ítem
+             {{end}}</a>
+
+          
+          {{end}}
+
+       
+</div>
+</div>
+</div>
+  <!-- HERE WE TELL VUE THE PARAMETERS TO SEARCH IN THE TABLE -->
+  <script type="text/javascript">
+  {{template "vue-init.html" .}}
+      c.name.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0) || 
+      c.price.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+      c.quantity.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0 || 
+      c.unit.toString().toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)); 
+{{template "vue-final.html" .}}
+</script>
+</body>
+</html>

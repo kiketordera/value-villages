@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Features</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+  {{template "nav-home.html"}}
+
+  <div class="margin-web">
+
+    <div class="title-container-features">
+      <img src="/static/svg/tent-hover.svg" alt="" class="features-icon">
+      <p class="title-features a-expand">
+          {{template "t-web-from-community.html" .}}     
+ </p>
+    </div>
+    <div class="flex-center"  data-aos="zoom-out-up">
+      <p class="features-container-text">
+        {{template "t-web-communities-paragraph.html" .}} 
+      </p>
+    </div>
+
+    <div class=" center"  data-aos="zoom-out-up">
+      <div class=" graph-home">
+        {{template "t-web-graph.html" .}} 
+      </div>
+    </div>
+
+
+    <div class="flex-center "  data-aos="zoom-out-up" style="margin-top: 10px;">
+      <p class="features-container-text">
+        {{template "t-web-to-serve.html" .}} 
+       </div>
+    <div class="" style="margin-top: 10px;">
+    {{template "world-map.html" .}}
+  </div>
+  
+<div class="" data-aos="zoom-out-up" style="padding-top: 65px;">
+  <div class="title-container-features">
+    <img src="/static/svg/wifi.svg"  style="margin-right: 10px; margin-bottom: 30px;"    class="features-icon">
+    <p class="title-features" style="margin-left: 20px; margin-bottom: 20px;">
+      {{template "t-web-offline.html" .}}
+    </p>
+  </div>
+  
+  <div class="flex-center" style="flex-direction: column;" >
+    <p class="features-container-text">
+      {{template "t-web-offline-paragraph.html" .}}
+  </p>
+    </div>
+
+
+
+
+    <div class="extra-margin" style="margin-top: 20px; margin-left: 5px; margin-right: 5px;">
+      <div class="flex-center-tec mod-home-container center">
+         
+          <div class="row" style="align-items: flex-start;">
+            <div class="col-4">
+                  <div class="flex-center-col-team"  data-aos="zoom-out-up">
+                    <p class="title-team">  <span style="color: #41B883; font-family: 'Nunito', sans-serif !important;">Vue</p>
+                      <p class="web-text" style="font-family: 'Nunito', sans-serif !important;">
+                        {{template "t-web-vue.html" .}}                  </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="flex-center-col-team"  data-aos="zoom-out-up">
+                      <p class="title-team">  <span style="color: #563E7D; font-family: 'Nunito', sans-serif !important;">Bootstrap</p>
+                        <p class="web-text" style="font-family: 'Nunito', sans-serif !important;">
+                        {{template "t-web-bootstrap.html" .}}                          </div>
+     </div>
+     <div class="col-4"> 
+                        <div class="flex-center-col-team"  data-aos="zoom-out-up">
+                          <p class="title-team">  <span style="color: #D0AA00; font-family: 'Nunito', sans-serif !important;">Gin gonic</p>
+                            <p class="web-text" style="font-family: 'Nunito', sans-serif !important;">
+                        {{template "t-web-gingonic.html" .}}                         </div>
+                        </div>
+                      </div>
+
+                      <div class="software-layers margin-top-20">
+                        <img src="/static/svg/devices.svg"  id="devices"   class="devices">
+                        {{template "svg-software-layers.html" .}}  
+                    </div>
+      
+
+
+
+          <div class="row" style="align-items: flex-start;">
+          <div class="col-4">
+                <div class="flex-center-col-team"  data-aos="zoom-out-up">
+                    <p class="title-team">  <span style="color: #6AD7E5; font-family: 'Nunito', sans-serif !important;">Golang</span></p>
+                    <p class="web-text" style="font-family: 'Nunito', sans-serif !important;">
+                      {{template "t-web-golang.html" .}}                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="flex-center-col-team"  data-aos="zoom-out-up">
+                    <p class="title-team">  <span style="color: #00A3D2; font-family: 'Nunito', sans-serif !important;">Docker</p>
+                    <p class="web-text" style="font-family: 'Nunito', sans-serif !important;">
+                      {{template "t-web-docker.html" .}}                          </div>
+   </div>
+  
+   <div class="col-4"> 
+                      <div class="flex-center-col-team"  data-aos="zoom-out-up">
+                    <p class="title-team">  <span style="color: #CF1F26; font-family: 'Nunito', sans-serif !important;">Raspbian</p>
+                    <p class="web-text" style="font-family: 'Nunito', sans-serif !important;">
+                      {{template "t-web-raspbian.html" .}}                         </div>
+                      </div>
+                    </div>
+      </div>
+  </div>
+  
+
+  </div>
+  
+    <div class="title-container-features">
+      <img src="/static/svg/video-color.svg" alt="" class="features-icon">
+      <p class="title-features">
+        {{template "t-web-step-by-step.html" .}}        </p>
+    </div>
+
+    <div class="flex-center "  data-aos="zoom-out-up">
+      <p class="features-container-text">
+        {{template "t-web-step-paragraph.html" .}}
+        </p>
+    </div>
+
+    <div class="mobiles"  data-aos="zoom-in-right">
+    <div class="mobiles-container center">
+      <div class="atom">
+        <img src="/static/img/home/three-mobile@3x1.png" alt="">
+        <p class="text-column">{{template "t-web-mobile1.html" .}}</p>
+      </div>
+      <div class="atom"  data-aos="zoom-in-up">
+        <img src="/static/img/home/three-mobile@3x2.png" alt="">
+        <p class="text-column">{{template "t-web-mobile2.html" .}}</p>
+      </div>
+      <div class="atom"  data-aos="zoom-in-left">
+        <img src="/static/img/home/three-mobile@3x3.png" alt="">
+        <p class="text-column">{{template "t-web-mobile3.html" .}}</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="title-container-features">
+    <img src="/static/svg/qr-pink.svg" alt="" class="features-icon">
+    <p class="title-features">
+      {{template "t-web-track-items.html" .}}    </p>
+  </div>
+    
+  <div class="flex-center" style="flex-direction: column;"  data-aos="zoom-out-up">
+    {{template "t-web-track-paragraph.html" .}}
+    </div>
+
+
+    <div class="title-container-features">
+      <img src="/static/svg/calendar-color.svg" alt="" class="features-icon">
+      <p class="title-features">
+        {{template "t-web-make-decisions.html" .}}
+      </p>
+    </div>
+
+
+    <div class="mobiles"  data-aos="zoom-out-up">
+      <div class="mobiles-container center">
+        <div class="">
+          <p class="features-container-text"  data-aos="zoom-out-up">
+            {{template "t-web-decisions-paragraph.html" .}}
+          </p>
+        </div>
+        <div class="atom" style="margin-top: -25px;">
+          <img src="/static/img/home/car@3x.png" alt="">
+          <p> {{template "t-web-easily.html" .}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="title-container-features">
+      <img src="/static/svg/report-PDF.svg" alt="" class="features-icon">
+      <p class="title-features">
+        {{template "t-web-easy-reports.html" .}}  </p>
+    </div>
+
+
+    <div class="flex-center" style="flex-direction: column;"  data-aos="zoom-out-up">
+      <p class="features-container-text">
+        {{template "t-web-easy-reports-paragraph.html" .}}
+      </p>
+    </div>
+  </div>
+</div>
+<script>
+
+
+  var devicesZoom = false;
+  var startAnimation = true;
+  
+function waitPromise(interval) {
+  
+
+          return new Promise(resolve => {
+
+            if (!startAnimation) {
+              setTimeout(resolve, 1300);
+            } else {
+                          
+            if (devicesZoom) {
+              setTimeout(resolve, 600);
+            } else {
+              setTimeout(resolve, 100);
+            }
+            }
+
+
+          });
+        }
+
+        async function animate() {
+          var raspbian = document.getElementById("raspbian");
+          var vue = document.getElementById("vue");
+          var bootstrap = document.getElementById("bootstrap");
+          var gingonic = document.getElementById("gingonic");
+          var golang = document.getElementById("golang");
+          var docker = document.getElementById("docker");
+          var devices = document.getElementById("devices");
+
+          var latency = 5;
+
+          while (true) {
+            startAnimation = true;
+            raspbian.style.opacity = 0;
+            await waitPromise(latency);
+            raspbian.style.opacity = 1;
+            docker.style.opacity = 0;
+            await waitPromise(latency);
+            docker.style.opacity = 1;
+            golang.style.opacity = 0;
+            await waitPromise(latency);
+            golang.style.opacity = 1;
+            gingonic.style.opacity = 0;
+            await waitPromise(latency);
+            gingonic.style.opacity = 1;
+            bootstrap.style.opacity = 0;
+            await waitPromise(latency);
+            bootstrap.style.opacity = 1;
+            vue.style.opacity = 0;
+            await waitPromise(latency);
+            vue.style.opacity = 1;
+            devicesZoom = true;
+            devices.classList.add("scale");
+            await waitPromise(1500);
+            devices.classList.remove("scale");
+            await waitPromise(500);
+
+            devicesZoom = false;
+            startAnimation = false;
+            await waitPromise(500);
+
+          }
+        }
+
+  function afterLoad() {
+   highlightON();
+   AOS.init();
+   animate();
+ }
+
+ //Highlight the icon Settings in the navigation Bar
+ function highlightON() {
+   featuresON();
+ }
+
+ //Removes the highligh from the navigation bar
+ function highlightOFF() {
+   featuresOFF();
+ }
+</script>
+</body>
+</html>

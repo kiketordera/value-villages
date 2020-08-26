@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Edit Time</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-development.html" .}}
+
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+        {{template "i-edit-time.html" .}}
+        {{template "information-end.html" .}}
+    <div class="col-12">
+      <header class="title">The current time is: </header>
+      <header class="title">{{.time}} </header>
+    </div>
+      <div class="row" style="padding-top: 15vh;">
+        <div class="center-objects">
+                <a href="/development/day-plus" >
+                  <button type="button" class="btn btn--green reduced-8">{{template "t-add-one-day.html" .}}</button>
+                </a>
+                <a href="/development/week-plus" >
+                  <button type="button" class="btn btn--green reduced-8">  {{template "t-add-one-week.html" .}}</button>
+                </a>
+                <a href="/development/week-minus" >
+                  <button type="button"  class="btn btn--blue reduced-8" id="buttonSteps">{{template "t-back-one-week.html" .}}</button>
+                </a>
+                <a href="/development/day-minus" >
+                  <button type="button"class="btn btn--blue reduced-8" id="buttonSteps"> {{template "t-back-one-day.html" .}}</button>
+                </a>
+              </div>
+    </div>
+    <a href="/development/reset-time" >
+      <button type="button" style="margin-right: 35%; margin-top: 20vh" class="btn btn--green center">{{template "t-reset-real-date.html" .}}</button>
+    </a>
+  </div>
+  </div>
+
+  <script type="text/javascript">
+
+
+      function afterLoad() {
+        highlightON();
+      }
+    
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      timeON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      timeOFF()
+    }
+  </script>
+</body>
+
+</html>

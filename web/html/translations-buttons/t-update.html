@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+    Update 
+{{else if eq "swahili" .GLOBAL.language}}
+    Sasisha
+    {{else if eq "turkana" .GLOBAL.language}}
+    Kilokony
+{{else if eq "french" .GLOBAL.language }}
+    Mettre à jour
+{{else if eq "german" .GLOBAL.language }}
+    Aktualisieren
+{{else if eq "spanish" .GLOBAL.language }}
+    Actualizar
+{{end}}

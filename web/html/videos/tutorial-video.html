@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Products</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">      
+  {{$serviceType := .serviceType}} 
+  {{template "nav-service.html" .}}
+    <div class="margin-body">
+      {{template "information-start.html" .}}
+      {{template "i-w-videos.html" .}}
+      {{template "information-end.html" .}}
+        <br><br>
+    <div class="row">
+      {{range .products}}
+      <div class="col-md-4 col-sm-6 col-12">
+        <a href="/videos/description-video-course/{{.ID.Hex}}/{{$serviceType.Hex}}">
+          <div class="product-box">
+            <img src="/local/video-courses/{{.Name}}/{{.Photo}}" class="product-image">
+            <div class="background">
+              <div class="row">
+                <div class="col-7">
+                  <div class="product-name">{{.Name}}</div>
+                </div>
+                <div class="col-5 right">
+                  <div class="price-text">
+                    {{.Price}}
+                  </div>
+                  <div class="money-icons">
+                    <ul id="first{{.ID.Hex}}">
+                    </ul>
+                    <ul id="second{{.ID.Hex}}">
+                    </ul>
+                    <ul id="third{{.ID.Hex}}">
+                    </ul>
+                    <script type="text/javascript">
+                      putSymbols({{.Price }}, {{.ID }});
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {{end }}
+    </div>
+    <script type="text/javascript">
+      function afterLoad() {
+        // setPagination({{.paginationQuantity }}, {{.numberNoURL }});
+        highlightON();
+      }
+
+      //Highlight the icon Settings in the navigation Bar
+      function highlightON() {
+        videosON();
+      }
+
+      //Removes the highligh from the navigation bar
+      function highlightOFF() {
+        videosOFF();
+      }    
+    </script>
+</body>

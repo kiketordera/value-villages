@@ -1,0 +1,68 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <title>Create PDF QR</title>
+  {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{template "nav-reports.html" .}}
+  <div class="margin-body-form">
+    {{template "information-start.html" .}}
+    {{template "i-dashboard.html" .}}
+    {{template "information-end.html" .}}
+    <div class="col-12">
+        <header class="title">{{template "t-create-pdf.html" .}}</header>
+    </div> <br>
+    <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col">
+            <select class="custom-select form-control form-field" name="typeofitem" id="typeofitem" required>
+              <option value="" selected disabled> {{template "t-choose-type-item.html" .}}</option>
+              <option value="tool">Tool</option>
+              <option value="primarymaterial">Primary Row Material</option>
+              <option value="serviceproduct">Service Product</option>
+              <option value="task">{{template "t-task.html" .}}</option>
+            </select>
+        </div>
+        <div class="col">
+          <select class="custom-select form-control form-field" name="pages" id="pages" required>
+            <option value="" selected disabled>{{template "t-choose-n-pages.html" .}}</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+          </select>
+      </div>
+      </div>
+      <br>
+          <br>
+        <div class="col-12">
+           <button type="submit" class="btn btn--green btn--animated">
+                        {{template "t-create.html" .}}
+                </button>
+                <div onclick="goBack();" class="btn btn--red btn--animated">
+                    {{template "t-cancel.html" .}}
+                </div>
+        </div>
+    </form>
+  </div>
+  <script type="text/javascript">
+    function afterLoad() {
+        highlightON();
+    }
+
+    //Highlight the icon Orders in the navigation Bar
+    function highlightON() {
+        qrON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+        qrOFF()
+    }
+  </script>
+</body>
+
+</html>

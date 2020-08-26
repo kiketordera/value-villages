@@ -1,0 +1,66 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Add Transaction</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-stock.html"}}
+    {{$position := .position}}
+  <div class="margin-body">
+      <div class="col-12">
+        <header class="title">Choose a {{.position}} to see the stock of items</header>
+      </div>
+
+        <div class="row">
+            {{range .services }}
+            <div class="col-6 col-sm-4 col-lg-3 center">
+                <a href="/inventory/see-stock/{{.ID.Hex}}">
+                  {{if eq "Workshop" $position }}
+                  <img src="/static/svg/workshop.png" class="img-fluid image-square-rounded" />
+                  {{else if eq "NutritionCenter" $position }}
+                  <img src="/static/svg/food.png" class="img-fluid image-square-rounded" />
+                  {{else }}
+                  <img src="/static/svg/clinic.png" class="img-fluid image-square-rounded" />
+                  {{end}}
+                </a><br>
+              {{.Village}}:  {{.Name}}
+            </div>
+            {{end}}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+
+     //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+    {{if eq "Workshop" .position }}
+    workshopON();
+    {{else if eq "NutritionCenter" .position }}
+    nutritionON();
+    {{else if eq "Clinic" .position }}
+    clinicON();
+    {{end}}
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF(){
+    {{if eq "Workshop" .position }}
+    workshopOFF();
+    {{else if eq "NutritionCenter" .position }}
+    nutritionOFF();
+    {{else if eq "Clinic" .position }}
+    clinicOFF();
+    {{end}}
+  }
+  </script>
+</body>
+
+</html>

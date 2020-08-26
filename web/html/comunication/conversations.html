@@ -1,0 +1,103 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Conversations</title>
+  {{template "imports.html"}}
+</head>
+   
+<body onload="afterLoad()" >
+    {{template "nav-comunication.html" .}}
+    <div class="margin-body">
+      <div class=""  id="app">
+      <div class="row">
+        <div class="col-12">
+          {{template "information-start.html" .}}
+          {{template "i-conversations.html" .}}
+          {{template "information-search-end.html" .}}
+        <!-- VUE STARTS -->
+              <div >
+                <div class="table-title">
+                  <p>                 {{template "t-conversations.html" .}}
+                  </p>
+            </div>
+                  <table class="table">
+                      <thead>
+                    <tr class="table-header">
+                        <th > &nbsp; 
+                          {{template "t-participants.html" .}}
+                        </th> 
+                        <th @click="sort('lastmessage')"> 
+                          {{template "t-messages.html" .}}
+                        </th> 
+                        <th class="center"> 
+                          {{template "t-see.html" .}}
+                          </th>
+                    </tr>
+                  </thead>
+                    <tbody class="table-body ">
+                      <tr v-for="sale in sortedSales">
+                        <td >
+                            <a v-for="ser in sale.users"  v-bind:href="'/comunication/chat/' + sale.id" class="image_cover"> 
+                                <img v-bind:src="ser.photo" class="image-rounded-table" /> 
+                            </a>
+                        </td>
+                        <td> *((sale.lastmessage)) </td>
+                        <td class="center" >
+                            <a v-bind:href="'/comunication/chat/' + sale.id"> 
+                            <img type="image" src="/static/svg/look.svg" class="icon-table" /> 
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>
+                      
+                      {{template "pagination.html" }}
+             </div>
+          </div>
+      </div>
+    </div>
+            {{if not .conv}}
+            <p class="empty-field center">  You still have no conversations in the database. <br/>
+            <img src="/static/svg/empty-field.svg" class="img-fluid img-empty-field" /><br>
+            You can create a new Conversation clicking the button on the right, and then every conversation created will be display here,<br/> 
+            where you can search  and edit them. </p>    
+          {{end}}
+                          <div class="row">
+                            <div class="col">
+                              <div class="btn btn--blue"  style="margin-left: 25px;">
+                                <a href="/comunication/choose-users-conversation">  {{template "t-new-conversation.html" .}}</a>
+                              </div>
+                          </div>
+                          </div>
+                        </div>
+       </div>
+
+  <script type="text/javascript">
+  {{template "vue-init.html" .}}
+       c.lastmessage.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0))); 
+  {{template "vue-final.html" .}}
+</script>
+    </div>
+  </div>
+  </div>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      conversationsON();
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      conversationsOFF();
+    }    
+  </script>
+</body>
+
+</html>

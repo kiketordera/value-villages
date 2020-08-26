@@ -1,0 +1,39 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <script type="text/jsx" src="/react/output/table.jsx"></script>
+  <title>Dashboard</title>
+  {{template "imports.html"}}
+</head>
+<body>
+  <div class="margin-body-log-in-worker">
+      <div class="changer-icon">
+        {{template "information-start.html" .}}
+        {{template "i-dashboard.html" .}}
+        {{template "information-end.html" .}}
+          <div class="row">
+          
+          </div>
+          
+      </div>
+      <!-- END  -->
+<br>
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                <a href="/deliveries/stock-created">
+                  <img src=/static/svg/previous.svg class="img-fluid image-dashboard-van" />
+                  <p class="dashboard-text" style="margin-top: 22px;"> Dashboard </p>
+                </a>
+            </div>
+          {{range .services}}
+          <div class="col-4 col-sm-4 col-md-3 col-xl-2 center">
+              <a href="/videos/see-videos/{{.ID.Hex}}">
+                <img src={{.Icon}} class="img-fluid image-dashboard" />
+                <p class="dashboard-text" > {{.Name}} </p>
+              </a>
+          </div>
+          {{end}}
+      </div>
+    </div>
+</body>
+</html>

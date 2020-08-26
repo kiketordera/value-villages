@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    {{if not .edit }}
+ <title> {{template "t-new.html" . }} {{template "t-service.html" . }}</title>
+ {{else}}
+ <title>Edit {{.service.Name}}</title>
+ {{end}}
+ {{template "imports.html"}}
+</head>
+<body onload="afterLoad()">
+    {{template "nav-data.html" . }}
+    <div class="margin-body-form">
+      {{template "information-start.html" .}}
+      {{template "i-dashboard.html" .}}
+      {{template "information-end.html" .}}
+        <div class="col-12">
+            {{if not .edit }}
+          <header class="title">
+            {{template "t-create-service.html" .}}
+          </header></div> <br>
+          {{else}}
+          <header class="title">
+              {{if eq "english" .GLOBAL.language }}
+              Edit {{.service.Name}} and Upload it to DataBase 
+           {{else if eq "swahili" .GLOBAL.language}}
+           Hariri {{.service.Name}} na Uipakia kwa DataBase
+           {{else if eq "french" .GLOBAL.language }}
+           Éditez {{.service.Name}} et chargez-le dans la base de données
+             {{else if eq "german" .GLOBAL.language }}
+             Bearbeiten Sie {{.service.Name}} und laden Sie es in die Datenbank hoch
+             {{else if eq "spanish" .GLOBAL.language }}
+             Edita {{.service.Name}} y actualízalo en la Base de Datos
+             {{end}}
+          </header></div> <br>
+          {{end}}
+          <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data"> 
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <input name="name" id="name" onchange="this.value = capitalizeFirstLetter(this.value)" type="text" required="required"/>
+                      <label for="input" class="control-label"> {{template "t-name.html" .}}</label><i class="bar"></i>
+                    </div>                    </div>
+                <div class="col-6">
+                    <select class="form-control custom-select form-field" name="village" id="village" required>
+                      <option value="" selected disabled>Select Village </option>
+                      {{range .villages}}
+                      <option value="{{.ID.Hex}}">{{.Name}} </option>
+                      {{end}}
+                  </select> 
+                </div>
+              </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <input name="balance" id="balance" onchange="this.value = capitalizeFirstLetter(this.value)" type="number" required="required"/>
+                      <label for="input" class="control-label"> {{template "t-balance.html" .}}</label><i class="bar"></i>
+                    </div>  
+                  </div>
+                  <div class="col-6">
+                      <select class="form-control custom-select form-field" name="servicetype" id="servicetype" required>
+                        <option value="" selected disabled>Select Discipline </option>
+                        {{range .sType}}
+                        <option value="{{.ID.Hex}}">{{.Name}} </option>
+                        {{end}}
+                      </select>
+                      <a href="/data/new-service-type" class="btn btn--blue btn--animated reduced-8" > New Service Discipline </a>
+                  </div>
+                  </div>
+              </div>
+            </div>
+          
+            {{if not .edit }}
+            <button type="submit" class="btn btn--green btn--animated">
+              {{template "t-create.html" .}}
+            </button>
+            {{else}}
+            <button type="submit" class="btn btn--green btn--animated">
+              {{template "t-update.html" .}}
+            </button>
+            {{end}}
+            <div onclick="goBack();" class="btn btn--red btn--animated">
+                {{template "t-cancel.html" .}}
+            </div>
+          </form>                     
+        </div>
+ 
+<script type="text/javascript">
+  function afterLoad(){
+    highlightON();
+    {{if .edit }}
+      fillData();
+    {{end}}
+  }
+
+  {{if .edit }}    
+  function fillData(){
+    var perf = document.getElementById("name");
+    perf.value = {{.service.Name}}
+    var perf2 = document.getElementById("balance");
+    perf2.value = {{.service.Balance}}
+    var perf3 = document.getElementById("village");
+    perf3.value = {{.service.IDVillage}}
+    var perf4 = document.getElementById("servicetype");
+    perf4.value = {{.service.Type}}
+  }
+    {{end}}
+  //Highlight the icon Settings in the navigation Bar
+  function highlightON(){
+    villagesON()
+  }
+
+  //Removes the highligh from the navigation bar
+  function highlightOFF(){
+    villagesOFF()
+  }
+
+        </script>
+      </body>
+      </html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Choose test</title>
+  {{template "imports.html"}}
+
+</head>
+
+<body onload="afterLoad()">
+  {{template "nav-development.html" .}}
+  
+
+  <div class="margin-body">
+
+    {{template "information-start.html" .}}
+        {{template "i-choose-test.html" .}}
+        {{template "information-end.html" .}}
+
+ 
+<div class="row " style="margin-top: 40vh;">
+    <div class="center-objects">
+      <a href="/development/test-zip" >
+        <button type="button" class="btn btn--blue reduced-8">  {{template "t-custom-test.html" .}}</button>
+      </a>
+    </div>
+    <div class="center-objects">
+      <a href="/development/delete-test-duplicated" >
+        <button type="button" class="btn btn--green reduced-8">Delete Test Duplicated</button>
+      </a>
+      <a href="/development/make-test-duplicated" >
+        <button type="button" class="btn btn--green reduced-8">{{template "t-make-test-duplicated.html" .}}</button>
+      </a>
+    </div>
+ </div>
+ </div>
+  </div>
+  <!-- mainbody section start-->
+
+
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      testON();
+    }
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      testOFF();
+    }    
+  </script>
+</body>
+
+</html>

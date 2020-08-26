@@ -1,0 +1,29 @@
+<svg id="Group_1766" data-name="Group 1766" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242.8 135.8">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 9px;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #00a3d2;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #00a3d2;
+      }
+    </style>
+  </defs>
+  <path id="Path_806" data-name="Path 806" class="cls-1" d="M238.3,80.5S186,131.3,121.4,131.3,4.5,80.5,4.5,80.5"/>
+  <path id="Path_807" data-name="Path 807" class="cls-1" d="M4.5,80.5S56.8,29.7,121.4,29.7,238.3,80.5,238.3,80.5"/>
+  <path id="Path_808" data-name="Path 808" class="cls-1" d="M4.5,51S56.8,4.5,121.4,4.5,238.3,51,238.3,51"/>
+  <path id="Path_809" data-name="Path 809" class="cls-1" d="M69.9,121.1a65.646,65.646,0,0,1,0-81.3"/>
+  <path id="Path_810" data-name="Path 810" class="cls-1" d="M172.9,39.8a65.791,65.791,0,0,1,0,81.4"/>
+  <circle id="Ellipse_5" data-name="Ellipse 5" class="cls-2" cx="17.2" cy="17.2" r="17.2" transform="translate(105.9 63)"/>
+  <path id="Path_811" data-name="Path 811" class="cls-3" d="M232.8,49.4"/>
+  <path id="Path_812" data-name="Path 812" class="cls-3" d="M232.8,75.9"/>
+</svg>

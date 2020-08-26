@@ -1,0 +1,229 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    {{if not .edit }}
+    <title>New Category</title>
+    {{else}}
+    <title>Edit {{.category.Name}}</title>
+    {{end}}
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+    {{template "nav-comunication.html" .}}
+
+  <div class="margin-body-form">
+    {{template "information-start.html" .}}
+    {{template "i-dashboard.html" .}}
+    {{template "information-end.html" .}}
+
+    <div class="col-12">
+        <header class="title">   {{template "t-create-report.html" .}}</header>
+      
+    </div> <br>
+    <form onsubmit="return validateForm()" name="myForm" role="form" method="post" enctype="multipart/form-data">
+
+      <div class="row">
+          <div class="col">
+            <p class="form-text"> The report is related with: </p>
+           <br>
+           <div class="row">
+
+              <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                  <div class="col-12">
+                    <img id="suggestion" src="/static/svg/food.png" class="img-fluid image-square-rounded no-selected image-workers" />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-text">Suggestion</label>
+                    <br>
+                    <input style="margin-top: -90%; display: none" type="radio" name="type"
+                      id="workers-suggestion" value="suggestion">
+                  </div>
+                </div>
+
+                <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                    <div class="col-12">
+                      <img id="lost" src="/static/svg/tools.svg" class="img-fluid image-square-rounded no-selected image-workers" />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-text">Lost</label>
+                      <br>
+                      <input style="margin-top: -90%; display: none" type="radio"  name="type"
+                        id="workers-lost" value="lost">
+                    </div>
+                  </div>
+
+                  <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                      <div class="col-12">
+                        <img id="mistake" src="/static/svg/problem.svg" class="img-fluid image-square-rounded no-selected image-workers" />
+                      </div>
+                      <div class="col-12">
+                        <label class="form-text">Mistake</label>
+                        <br>
+                        <input style="margin-top: -90%; display: none" type="radio"  name="type"
+                          id="workers-mistake" value="mistake">
+                      </div>
+                    </div>
+
+                    <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                        <div class="col-12">
+                          <img id="abuse" src="/static/svg/tools.svg" class="img-fluid image-square-rounded no-selected image-workers" />
+                        </div>
+                        <div class="col-12">
+                          <label class="form-text">Abuse</label>
+                          <br>
+                          <input style="margin-top: -90%; display: none" type="radio"name="type"
+                            id="workers-abuse" value="abuse">
+                        </div>
+                      </div>
+
+                      <div class="col-4 col-sm-4 col-md-3 col-xl-2 center img-fluid">
+                          <div class="col-12">
+                            <img id="another" src="/static/svg/tools.svg" class="img-fluid image-square-rounded no-selected image-workers" />
+                          </div>
+                          <div class="col-12">
+                            <label class="form-text">Other</label>
+                            <br>
+                            <input style="margin-top: -90%; display: none" type="radio"  name="type"
+                              id="workers-another" value="another">
+                          </div>
+                        </div>
+
+                
+            </div>
+                    </div>
+          <br>
+        </div><br>
+
+
+
+      <div class="row">
+        <div class="col">
+          <textarea onchange="this.value = capitalizeFirstLetter(this.value)" class="form-control form-field" name="text" id="text" placeholder="Explain here your report" rows="6" required></textarea>
+        </div>
+        <br>
+      </div><br>
+                                  
+           <div class="row">
+          <div class="col-6">
+            {{template "upload-img-no-required.html" .}}
+          </div>
+          {{template "upload-audio.html" .}}
+        </div>
+      </p> 
+      
+        <div class="col-12">
+          <button type="submit" class="btn btn--green">Create</button>
+            <div onclick="goBack();" class="btn btn--red">
+                Cancel
+              </div>
+        </div>
+    </form>
+  </div>
+  <script type="text/javascript">
+    function afterLoad() {
+      highlightON();
+    }
+
+  
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+        reportsON();
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      reportsOFF();
+    }
+
+    var countProduct = 0;
+
+    function increaseProduct() {
+        countProduct++;
+        console.log("Esto es contProduct: ")
+        console.log(countProduct)
+      }
+
+      
+    function validateForm() {
+
+      // Validation for product select
+      if (countProduct == 0) {
+          alert("You should select a Reason for the report!");
+          return false;
+        }
+
+    
+
+      {{if eq "admin" .GLOBAL.role }}
+
+      //  // Validation for the field Audio
+      //  var x = document.forms["myForm"]["audio"].value;
+      // if (x == "") {
+      //   alert("Audio must be filled out, can't be empty!");
+      //   var element = document.getElementById("placeHolderAudio");
+      //   element.classList.add("is-invalid");
+      //   return false;
+      // } else {
+      //   var element = document.getElementById("placeHolderAudio");
+      //   element.classList.remove("is-invalid");
+      // }
+      {{end}}
+    }
+
+    
+/* Change the selec image if the user clicks the image */
+$('.image-workers').click(function (e) {
+
+if ($(this).hasClass('no-selected')) {
+  var product = $(this).attr('id');
+  console.log($("#workers-" + product));
+  $(".image-workers").removeClass("selected");
+  $(".image-workers").addClass("no-selected");
+  $("#workers-" + product).prop("checked", true);
+  $(this).addClass("selected");
+  $(this).removeClass("no-selected");
+  increaseProduct();
+}
+else if ($(this).hasClass("selected")) {
+  var product = $(this).attr('id');
+
+  $(this).addClass("no-selected");
+  $("#workers-" + product).prop("checked", false);
+  $(this).removeClass("selected");
+  increaseProduct();
+}
+});
+
+
+// FOR THE AUDIO
+// var btnUpload = $("#audio"),
+// btnOuter = $(".button_outer2");
+// btnUpload.on("change", function(e){
+// var ext = btnUpload.val().split('.').pop().toLowerCase();
+// // if($.inArray(ext, ['mp3','wam','jpg','jpeg']) == -1) {
+// //   $(".error_msg").text("Not an Image...");
+// // } else {
+//   $(".error_msg").text("");
+//   btnOuter.addClass("file_uploading");
+//   setTimeout(function(){
+//     btnOuter.addClass("file_uploaded");
+//   },3000);
+//   var uploadedFile = URL.createObjectURL(e.target.files[0]);
+//   setTimeout(function(){
+//     $("#uploaded_view").addClass("show");
+//   },3500);
+// // }
+// });
+// $(".file_remove").on("click", function(e){
+// $("#uploaded_view").removeClass("show");
+// $("#uploaded_view").find("img").remove();
+// btnOuter.removeClass("file_uploading");
+// btnOuter.removeClass("file_uploaded");
+// });
+
+  </script>
+</body>
+
+</html>

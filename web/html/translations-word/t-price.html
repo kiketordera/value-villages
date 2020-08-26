@@ -1,0 +1,13 @@
+{{if eq "english" .GLOBAL.language }}
+    Price 
+{{else if eq "swahili" .GLOBAL.language}}
+    Bei
+    {{else if eq "turkana" .GLOBAL.language}}
+    Ebei
+{{else if eq "french" .GLOBAL.language }}
+    Prix
+{{else if eq "german" .GLOBAL.language }}
+    Preis
+{{else if eq "spanish" .GLOBAL.language }}
+    Precio
+{{end}}

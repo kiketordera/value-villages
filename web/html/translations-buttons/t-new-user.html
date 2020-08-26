@@ -1,0 +1,11 @@
+{{if eq "english" .GLOBAL.language }}
+    New User 
+{{else if eq "swahili" .GLOBAL.language}}
+    Mtumiaji mpya
+{{else if eq "french" .GLOBAL.language }}
+    Nouvel utilisateur
+{{else if eq "german" .GLOBAL.language }}
+    Neuer Benutzer
+{{else if eq "spanish" .GLOBAL.language }}
+    Nuevo usuario  
+{{end}}

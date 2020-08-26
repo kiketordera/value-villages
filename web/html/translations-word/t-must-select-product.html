@@ -1,0 +1,14 @@
+{{if eq "swahili" .GLOBAL.language }}
+Lazima uchague bidhaa kwa
+{{else if eq "turkana" .GLOBAL.language}}
+    Miti kiseu ng'iboro ania
+{{else if eq "french" .GLOBAL.language }}
+Vous devez choisir un produit pour
+{{else if eq "german" .GLOBAL.language }}
+Sie müssen ein Produkt auswählen für
+{{else if eq "spanish" .GLOBAL.language }}
+Debes elegir un producto para el
+{{else}}
+You must select a product for the
+{{end}}
+

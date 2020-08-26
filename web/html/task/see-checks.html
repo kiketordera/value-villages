@@ -1,0 +1,107 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <title>Animals</title>
+  {{template "imports.html"}}
+</head>
+
+<body onload="afterLoad()">
+  {{template "nav-service.html" .}}
+
+<br><br>
+    <div class="margin-body">
+        <header class="title">  {{.todo.TitleToDo}}  </header>
+
+
+        <p class="center">  {{.todo.DescriptionToDo}}  </p>
+
+        <form onsubmit="return askForEnable(); return validateForm()" name="myForm" id="myForm" role="form" method="post" enctype="multipart/form-data">
+
+          {{range .checks}}
+        
+                  {{range .Descriptions}}
+                    {{.Description}}
+                  <br> <br> <br>
+                    {{end}}
+
+                  {{range .Checkboxes}}
+                    {{.TitleCheckbox}}: {{.Checkbox}} <br>
+                  {{end}}
+                    <br>
+                    <br><br>
+                  {{range .Numbers}}
+                    {{.TitleNumber}}: {{.Number}}
+                  {{end}}
+                    <br><br> 
+
+                    <div class="row">
+                      {{range .Photos}}
+                        <div class="col-6 col-sm-6 col-md-4 col-xl-3 center">
+                            <div class="image-upload">
+                              <label for="FRONT-IMG">
+                                  <img id="FRONT" src="{{.Photo}}"
+                                  class="img-fluid image-square-rounded no-selected image-tactil" />
+                                  <input style="margin-top: -90%; display: none;" type="checkbox" id="ID-FRONT}" name="item" value="FRONT">                      
+                                  <p class="text-services">{{.TitlePhoto}}</p>
+                              </label>  
+                            </div>  
+                        </div> 
+                      {{end}}
+                    </div> 
+         {{end}}
+
+    <div class="col-12">
+        <div onclick="goBack();" class="btn btn-primary cancel-button">
+          Cancel
+        </div>
+        {{if not .edit }}
+        <button type="submit" class="btn btn-primary form-button">Create</button>
+        {{else}}
+        <button type="submit" class="btn btn-primary form-button">Update</button>
+        {{end}}
+    </div>
+</div>
+</form>
+
+  <script type="text/javascript">
+
+   
+
+      function afterLoad() {
+        highlightON();
+        
+      }
+
+    //Highlight the icon Settings in the navigation Bar
+    function highlightON() {
+      // animalON()
+    }
+
+    //Removes the highligh from the navigation bar
+    function highlightOFF() {
+      // animalOFF()
+    }
+
+
+    $('.image-tactil').click(function (e) {
+            if ($(this).hasClass('no-selected')) {
+                var product = $(this).attr('id');
+                console.log($("#workers-" + product));
+                $("#ID-" + product).prop("checked", true);
+                $(this).addClass("selected");
+                $(this).removeClass("no-selected");
+                console.log("Entramos en no-selected");
+            }
+            else if ($(this).hasClass("selected")) {
+                var product = $(this).attr('id');
+                $(this).addClass("no-selected");
+                $("#ID-" + product).prop("checked", false);
+                $(this).removeClass("selected");
+                console.log("Entramos en selected");
+            }
+        });
+  </script>
+</body>
+
+</html>
