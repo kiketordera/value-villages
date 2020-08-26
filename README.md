@@ -13,7 +13,7 @@ What things you need to install for the software to run
 
 ```
 golang
-git only Windows)
+git (only Windows)
 ```
 
 ### Installing
