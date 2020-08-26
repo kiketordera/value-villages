@@ -21,7 +21,7 @@ git (only Windows)
 With this command you will install the project and all his dependencies
 
 ```
-go get -u github.com/kiketordera/valuevillages/...
+go get -u github.com/kiketordera/value-villages/...
 ```
 
 Change the directory to cmd/valuevillages, and there you will find the main.go file to run the project.
