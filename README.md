@@ -50,12 +50,10 @@ For simplicity, deployment is made all in docker. You have full documentation in
 ## Built With
 
 * [Gin-gonic](https://github.com/gin-gonic/gin) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Versioning
 
-Currently we are prior to release the virst stable version, as the Beta one is ending the testing period. Currently in the 0.9 Beta version
+This is the first version stable of the app, it is ready for production use.
 
 ## Authors
 
