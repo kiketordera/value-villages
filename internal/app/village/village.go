@@ -84,7 +84,7 @@ func New() Server {
 		fmt.Println(os.Getenv("GOPATH"))
 		if os.Getenv("GOPATH") == "" {
 			fmt.Println("Try writing the GOPATH with: ")
-			fmt.Println("export GOPATH=$HOME/go")
+			fmt.Println("\033[31mexport GOPATH=$HOME/go\033[37m")
 		}
 		os.MkdirAll(basePath+"/local-resources/", os.ModePerm)
 		db, err = bolthold.Open(basePath+"/local-resources/"+localVillage+".db", 0666, nil)

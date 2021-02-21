@@ -9,7 +9,7 @@
     svg:not(:root) {
       overflow: hidden;
       width:100%;
-      max-width: 100%;
+      max-width: 1800px;
       align-items: center;
       align-self: center;
       vertical-align: top;
@@ -124,50 +124,91 @@
     {{template "t-web-with-love.html" .}}
   </p>
   <div class="flex-center-team mod-home-container center">
-    <div class="flex-center-col-team mod-home"  data-aos="zoom-out-up">
-      <div class="">
-        <a href="https://kike.me" target="_blank">  
-      <img src="/static/img/team/kike.jpeg" class="image-rounded-team img-zoom" alt=""> 
+    <div class="flex-center-col-team mod-home" data-aos="zoom-out-up">
+      <div itemscope itemtype="https://schema.org/Person">
+        <a href="https://kike.me" target="_blank">
+          <img itemprop="image"
+            src="/static/img/team/kike.jpeg"
+            class="image-rounded-team img-zoom"
+            alt="Kike Tordera"
+          />
         </a>
-        <p class="title-team">Kike Tordera</p>
-        <p class="area-team"> {{template "t-web-developer.html" .}} </p>
-        <p class="web-text text-person">{{template "t-web-kike.html" .}} </div>
-          <div class="social">
-         <a href="https://www.linkedin.com/in/kiketordera/" target="_blank"> <img src="/static/svg/linkedin.svg" alt=""> </a>
-         <a href="https://kike.me" target="_blank">   <img src="/static/svg/web.svg" alt="">  </a>
-         <a href="mailto:kiketordera@gmail.com" target="_blank">   <img src="/static/svg/mail.svg" alt="">  </a>
-       </div>
-        </div>
-        <div class="flex-center-col-team mod-home"  data-aos="zoom-out-up">
-          <a href="https://www.linkedin.com/in/obadiah-edamoe-ekiru-670721166/" target="_blank">
-          <img src="/static/img/team/bambu.jpeg" class="image-rounded-team img-zoom" alt=""> 
-          </a>
-            <p class="title-team">Obadiah Ekiru </p>
-            <p class="area-team"> {{template "t-web-graphic.html" .}}<br></p>
-            <p class="web-text text-person">
-              {{template "t-web-bambu.html" .}}            </p> 
-            <div class="social">
-              <a href="https://www.linkedin.com/in/obadiah-edamoe-ekiru-670721166/" target="_blank"> <img src="/static/svg/linkedin.svg" alt=""> </a>
-              <a href="https://www.linkedin.com/in/obadiah-edamoe-ekiru-670721166/" target="_blank">   <img src="/static/svg/web.svg" alt="">  </a>
-              <a href="mailto:ekiruobadiah@gmail.com" target="_blank">   <img src="/static/svg/mail.svg" alt="">  </a>
-            </div>
-          </div>
-            <div class="flex-center-col-team mod-home"  data-aos="zoom-out-up">
-              <a href="http://gabirocha.com" target="_blank">
-              <img src="/static/img/team/gabi.jpg" class="image-rounded-team img-zoom" alt=""> 
-              </a>
-                <p class="title-team">Gabi Rocha</p>
-                <p class="area-team"> {{template "t-web-disenadora.html" .}}<br></p>
+        <p itemprop="name" class="title-team">Kike Tordera</p>
+        <p itemprop="jobTitle" class="area-team">{{template "t-web-developer.html" .}}</p>
+        <p  class="web-text text-person">{{template "t-web-kike.html" .}}</p>
+      </div>
 
-                <p class="web-text text-person">
-                  {{template "t-web-gabi.html" .}}
-                                </p> 
-                <div class="social">
-                  <a href="https://www.linkedin.com/in/gabirochadesign/" target="_blank"> <img src="/static/svg/linkedin.svg" alt=""> </a>
-                  <a href="http://gabirocha.com" target="_blank">   <img src="/static/svg/web.svg" alt="">  </a>
-                  <a href="mailto:gabriela@gabirocha.com" target="_blank">   <img src="/static/svg/mail.svg" alt="">  </a>
-                </div> 
-              </div>
+      <div class="social">
+        <a itemprop="sameAs" href="https://www.linkedin.com/in/kiketordera/" target="_blank">
+          <img src="/static/svg/linkedin.svg" alt="LinkedIn" />
+        </a>
+        <a itemprop="url" href="https://kike.me" target="_blank">
+          <img src="/static/svg/web.svg" alt="Website" />
+        </a>
+        <a itemprop="email" href="mailto:kiketordera@gmail.com" target="_blank">
+          <img src="/static/svg/mail.svg" alt="Mail" />
+        </a>
+      </div>
+    </div>
+    <div itemscope itemtype="https://schema.org/Person" class="flex-center-col-team mod-home" data-aos="zoom-out-up">
+      <a
+        href="https://www.linkedin.com/in/obadiah-edamoe-ekiru-670721166/"
+        target="_blank"
+      >
+        <img itemprop="image"
+          src="/static/img/team/bambu.jpeg"
+          class="image-rounded-team img-zoom"
+          alt="Obadiah Ekiru"
+        />
+      </a>
+      <p itemprop="name" class="title-team">Obadiah Ekiru</p>
+      <p itemprop="jobTitle" class="area-team">{{template "t-web-graphic.html" .}}<br /></p>
+      <p  class="web-text text-person">{{template "t-web-bambu.html" .}}</p>
+      <div class="social">
+        <a itemprop="sameAs"
+          href="https://www.linkedin.com/in/obadiah-edamoe-ekiru-670721166/"
+          target="_blank"
+        >
+          <img src="/static/svg/linkedin.svg" alt="Linkedin" />
+        </a>
+        <a itemprop="url"
+          href="https://www.linkedin.com/in/obadiah-edamoe-ekiru-670721166/"
+          target="_blank"
+        >
+          <img src="/static/svg/web.svg" alt="Website" />
+        </a>
+        <a itemprop="email" href="mailto:ekiruobadiah@gmail.com" target="_blank">
+          <img src="/static/svg/mail.svg" alt="Mail" />
+        </a>
+      </div>
+    </div>
+    <div itemscope itemtype="https://schema.org/Person" class="flex-center-col-team mod-home" data-aos="zoom-out-up">
+      <a href="http://gabirocha.com" target="_blank">
+        <img itemprop="image"
+          src="/static/img/team/gabi.jpg"
+          class="image-rounded-team img-zoom"
+          alt="Gabi Rocha"
+        />
+      </a>
+      <p itemprop="name" class="title-team">Gabi Rocha</p>
+      <p itemprop="jobTitle" class="area-team">{{template "t-web-disenadora.html" .}}<br /></p>
+
+      <p  class="web-text text-person">{{template "t-web-gabi.html" .}}</p>
+      <div class="social">
+        <a itemprop="sameAs"
+          href="https://www.linkedin.com/in/gabirochadesign/"
+          target="_blank"
+        >
+          <img src="/static/svg/linkedin.svg" alt="LinkedIn" />
+        </a>
+        <a itemprop="url" href="http://gabirocha.com" target="_blank">
+          <img src="/static/svg/web.svg" alt="Website" />
+        </a>
+        <a itemprop="email" href="mailto:gabriela@gabirocha.com" target="_blank">
+          <img src="/static/svg/mail.svg" alt="Mail" />
+        </a>
+      </div>
+    </div>
   </div>
   
   <p class="title-big"> {{template "t-web-awards.html" .}}</p>

@@ -1258,6 +1258,8 @@ body {
 .grid-manuals{
   display: grid;
   grid-template-columns: 1fr 1fr;
+  max-width: 1250px;
+  margin: 0 auto;
 }
 
 

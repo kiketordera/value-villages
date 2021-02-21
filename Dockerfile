@@ -7,9 +7,9 @@ WORKDIR $GOPATH/src/github.com/kiketordera/value-villages/
 
 RUN go get -d -v $GOPATH/src/github.com/kiketordera/value-villages/cmd/valuevillages
 # For RaspberryPI
-# RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=7 go build -a -installsuffix cgo -ldflags="-w -s" -o /go/bin/valuevillages $GOPATH/src/github.com/kiketordera/value-villages/cmd/valuevillages
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=7 go build -a -installsuffix cgo -ldflags="-w -s" -o /go/bin/valuevillages $GOPATH/src/github.com/kiketordera/value-villages/cmd/valuevillages
 # For Cloud Server
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags="-w -s" -o /go/bin/valuevillages $GOPATH/src/github.com/kiketordera/value-villages/cmd/valuevillages
+# RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags="-w -s" -o /go/bin/valuevillages $GOPATH/src/github.com/kiketordera/value-villages/cmd/valuevillages
 
 FROM scratch
 COPY --from=builder /go/bin/valuevillages /valuevillages
